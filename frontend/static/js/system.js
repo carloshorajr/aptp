@@ -1,5 +1,13 @@
 const System = {
 
+    lastData: {
+        cpu: null,
+        memory: null,
+        uptime: null
+    },
+
+interval: null,
+
     interval: null,
 
     async update() {
@@ -8,14 +16,32 @@ const System = {
 
         const data = await response.json();
 
-        document.getElementById("system-cpu").textContent =
-            `${data.cpu}%`;
+        if (data.cpu !== this.lastData.cpu) {
 
-        document.getElementById("system-memory").textContent =
-            `${data.memory}%`;
+            document.getElementById("system-cpu").textContent =
+                `${data.cpu}%`;
 
-        document.getElementById("system-uptime").textContent =
-            data.uptime;
+            this.lastData.cpu = data.cpu;
+
+        }
+
+        if (data.memory !== this.lastData.memory) {
+
+            document.getElementById("system-memory").textContent =
+                `${data.memory}%`;
+
+            this.lastData.memory = data.memory;
+
+        }
+
+        if (data.uptime !== this.lastData.uptime) {
+
+            document.getElementById("system-uptime").textContent =
+                data.uptime;
+
+            this.lastData.uptime = data.uptime;
+
+        }
 
     },
 

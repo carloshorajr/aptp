@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Histórico de Eventos</h2>
+
+        <div class="stats-panel">
+
+            {% with css_class="stat-total", title="Total", value=statistics.total %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+            {% with css_class="stat-info", title="INFO", value=statistics.info %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+            {% with css_class="stat-warning", title="WARNING", value=statistics.warning %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+            {% with css_class="stat-error", title="ERROR", value=statistics.error %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+            {% with css_class="stat-24h", title="Últimas 24h", value=statistics.last_24h %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+            {% with css_class="stat-today", title="Hoje", value=statistics.today %}
+                {% include "components/cards/stat_card.html" %}
+            {% endwith %}
+
+    </div>
+
+    <form method="GET">
+
+        <div class="filters-panel">
+
+            <div class="filter-item filter-period">
+
+                <label>Período</label>
+
+                <select name="period">
+
+                    <option value="">Tudo</option>
+                    <option value="today">Hoje</option>
+                    <option value="24h">Últimas 24h</option>
+                    <option value="7d">Últimos 7 dias</option>
+
+                </select>
+
+            </div>
+
+            <div class="filter-item filter-level">
+
+                <label>Nível</label>
+
+                <select name="level">
+
+                    <option value="">Todos</option>
+
+                    <option value="INFO"
+                        {% if filters.get('level') == 'INFO' %}selected{% endif %}>
+                        INFO
+                    </option>
+
+                    <option value="WARNING"
+                        {% if filters.get('level') == 'WARNING' %}selected{% endif %}>
+                        WARNING
+                    </option>
+
+                    <option value="ERROR"
+                        {% if filters.get('level') == 'ERROR' %}selected{% endif %}>
+                        ERROR
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="filter-item filter-source">
+
+                <label>Origem</label>
+
+                <select name="source">
+
+                    <option value="">Todas</option>
+
+                    {% for source in sources %}
+
+                        <option
+                            value="{{ source }}"
+                            {% if filters.get("source") == source %}selected{% endif %}
+                        >
+                            {{ source }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="filter-item filter-search">
+
+                <label>Pesquisar</label>
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ filters.get('search', '') }}"
+                    style="width:100%;"
+                    placeholder="Mensagem ou origem..."
+                >
+
+            </div>
+
+        <div class="filter-buttons">
+
+            {% with
+                href=None,
+                type="submit",
+                css_class="btn-primary",
+                label="Aplicar",
+                onclick=None
+            %}
+            {% include "components/buttons/button.html" %}
+            {% endwith %}
+
+            {% with
+                href="/events",
+                css_class="btn-outline",
+                label="Limpar"
+            %}
+            {% include "components/buttons/button.html" %}
+            {% endwith %}
+
+            {% with
+                href=None,
+                type="button",
+                css_class="btn-danger",
+                label="Apagar",
+                onclick="clearEvents()"
+            %}
+            {% include "components/buttons/button.html" %}
+            {% endwith %}
+
+        </div>
+
+    </div>
+
+    </form>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Data/Hora</th>
+                <th>Nível</th>
+                <th>Origem</th>
+                <th>Mensagem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for event in events %}
+
+            <tr>
+
+                <td>{{ event.timestamp.strftime("%d/%m/%y %H:%M") }}</td>
+
+                <td>
+
+                {% if event.level == "INFO" %}
+                <span class="badge badge-info">INFO</span>
+
+                {% elif event.level == "WARNING" %}
+                <span class="badge badge-warning">WARNING</span>
+
+                {% elif event.level == "ERROR" %}
+                <span class="badge badge-error">ERROR</span>
+
+                {% endif %}
+
+                </td>
+
+                <td>{{ event.source }}</td>
+
+                <td>{{ event.message }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+function clearEvents() {
+
+    if (!confirm(
+        "Deseja realmente apagar todo o histórico de eventos?\n\nEsta ação não poderá ser desfeita."
+    )) {
+        return;
+    }
+
+    fetch("/events/clear", {
+        method: "POST"
+    })
+    .then(() => window.location.reload());
+
+}
+
+</script>
+
+{% endblock %}

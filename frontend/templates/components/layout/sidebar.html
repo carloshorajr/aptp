@@ -1,0 +1,58 @@
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+
+        <div class="logo-box">
+
+            <div class="logo-expanded">
+                <img
+                    src="{{ url_for('static', filename='images/logo-light.png') }}"
+                    class="logo-image"
+                    alt="APTP"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="/" class="{% if current_page == '/' %}active{% endif %}">
+            <span class="icon">
+                <i class="fa fa-home"></i>
+            </span>
+            <span class="label">Dashboard</span>
+        </a>
+
+        <a href="/settings" class="{% if current_page == '/settings' %}active{% endif %}">
+            <span class="icon">
+                <i class="fa fa-cog"></i>
+        </span>
+            <span class="label">Configurações</span>
+        </a>
+
+        <a href="/metrics" class="{% if current_page == '/metrics' %}active{% endif %}">
+            <span class="icon">
+                <i class="fa fa-bar-chart"></i>
+            </span>
+            <span class="label">Métricas</span>
+        </a>
+
+        <a href="/events" class="{% if current_page == '/events' %}active{% endif %}">
+            <span class="icon">
+                <i class="fa fa-list-alt"></i>
+            </span>
+            <span class="label">Eventos</span>
+        </a>
+
+        <a href="/system" class="{% if current_page == '/system' %}active{% endif %}">
+            <span class="icon">
+                <i class="fa fa-desktop"></i>
+            </span>
+            <span class="label">Sistema</span>
+        </a>
+
+    </nav>
+
+</aside>

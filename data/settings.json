@@ -1,0 +1,12 @@
+{
+    "nome": "APTP 01",
+    "cliente": "",
+    "local": "",
+    "descricao": "",
+    "uuid": "192937b3-4550-4af7-8e2e-d44eaa6d0246",
+    "heartbeat": 60,
+    "coleta": 30,
+    "timezone": "America/Sao_Paulo",
+    "idioma": "pt-BR",
+    "log_level": "INFO"
+}

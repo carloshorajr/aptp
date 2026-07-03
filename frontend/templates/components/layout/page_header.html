@@ -1,0 +1,39 @@
+<div class="page-header">
+
+    <div class="page-header-left">
+
+        <h1>{{ page_title }}</h1>
+
+        <p>{{ page_subtitle }}</p>
+
+    </div>
+
+    <div class="page-header-right">
+
+        <div class="badge">
+            {{ application.status }}
+        </div>
+
+        <div class="version">
+            {{ application.version }}
+        </div>
+
+    </div>
+
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+    {% for category, message in messages %}
+
+        <div class="flash flash-{{ category }}">
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endwith %}

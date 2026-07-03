@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="settings-grid">
+
+    <div class="card">
+
+        <h2>Informações Gerais</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+
+                <label>Nome da Sonda</label>
+
+                <input
+                    type="text"
+                    value="{{ hostname }}"
+                    readonly
+                    style="background:#f5f7fb;color:#6b7280;"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Cliente</label>
+
+                <input
+                    type="text"
+                    name="cliente"
+                    value="{{ settings.cliente }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Endereço</label>
+
+                <input
+                    type="text"
+                    name="local"
+                    value="{{ settings.local }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Descritivo</label>
+
+                <textarea
+                    rows="4"
+                    name="descricao"
+                >{{ settings.descricao }}</textarea>
+
+            </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Comunicação</h2>
+
+        <div class="form-group">
+
+            <label>UUID</label>
+
+                <input
+                    type="text"
+                    name="uuid"
+                    value="{{ settings.uuid }}"
+                    readonly
+                >
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>Heartbeat (s)</label>
+
+                <input
+                    type="number"
+                    name="heartbeat"
+                    value="{{ settings.heartbeat }}"
+                    min="10"
+                    max="3600"
+                    step="1"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Coleta (s)</label>
+
+                <input
+                    type="number"
+                    name="coleta"
+                    value="{{ settings.coleta }}"
+                    min="5"
+                    max="3600"
+                    step="1"
+                >
+
+            </div>
+
+        </div>
+
+        {% with
+            href=None,
+            type="submit",
+            css_class="btn-primary",
+            label="Salvar Configurações",
+            onclick=None
+        %}
+        {% include "components/buttons/button.html" %}
+        {% endwith %}
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

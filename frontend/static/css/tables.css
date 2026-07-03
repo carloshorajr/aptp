@@ -1,0 +1,36 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #e5e7eb;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1){
+    width:170px;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2){
+    width:120px;
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3){
+    width:180px;
+}

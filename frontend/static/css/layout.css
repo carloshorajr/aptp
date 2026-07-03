@@ -1,0 +1,139 @@
+.page-header{
+    background:white;
+    border-radius:16px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.page-header-left h1{
+    font-size:28px;
+    font-weight:700;
+}
+
+.page-header-left p{
+    color:#64748b;
+}
+
+.page-header-right{
+    text-align:right;
+}
+
+.badge{
+    display:inline-block;
+    background:#dcfce7;
+    color:#166534;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.version{
+    color:#64748b;
+    font-size:14px;
+}
+
+.sidebar{
+    width:240px;
+    background:#1f2937;
+    color:#fff;
+    padding:20px;
+}
+
+.sidebar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:82px;
+    margin-bottom:34px;
+    gap:12px;
+}
+
+.logo-box{
+    flex:1;
+    min-width:0;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.logo-expanded{
+    width:170px;
+    height:60px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+}
+
+.logo-image{
+    width:170px;
+    height:auto;
+    display:block;
+    flex:none;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+}
+
+.menu a:hover{
+    background:#374151;
+}
+
+.menu a.active{
+    background:#374151;
+    border-left:3px solid #3b82f6;
+}
+
+.menu a.active .label{
+    font-weight:600;
+}
+
+.icon{
+    width:24px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:12px;
+}
+
+.icon i{
+    font-size:16px;
+}
+
+.flash{
+    padding:14px 18px;
+    margin:20px 0;
+    border-radius:8px;
+    font-weight:600;
+}
+
+.flash-success{
+    background:#dcfce7;
+    color:#166534;
+    border:1px solid #86efac;
+}

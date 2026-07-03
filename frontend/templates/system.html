@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="cards">
+
+    {% with
+        title="Hostname",
+        subtitle=None,
+        value=hostname
+    %}
+        {% include "components/cards/metric_card.html" %}
+    {% endwith %}
+
+    {% with
+        title="Uptime",
+        subtitle=None,
+        value=uptime
+    %}
+        {% include "components/cards/metric_card.html" %}
+    {% endwith %}
+
+    {% with
+        title="CPU",
+        subtitle=None,
+        value=cpu ~ "%"
+    %}
+        {% include "components/cards/metric_card.html" %}
+    {% endwith %}
+
+    {% with
+        title="Memória",
+        subtitle=None,
+        value=memory ~ "%"
+    %}
+        {% include "components/cards/metric_card.html" %}
+    {% endwith %}
+
+    {% for iface in interfaces %}
+
+    <div class="metric-card">
+
+        <div class="metric-title">
+
+            {{ iface.description }}
+
+            ({{ iface.interface }})
+
+        </div>
+
+        {% if iface.ssid %}
+
+        <div class="metric-subtitle">
+
+            {{ iface.ssid }}
+
+        </div>
+
+        {% endif %}
+
+        <div class="metric-value">
+
+            {{ iface.ip }}
+
+        </div>
+
+        {% if iface.mac %}
+
+        <div class="metric-subtitle">
+
+            MAC: {{ iface.mac }}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+    <div class="metric-card">
+
+        <div class="metric-title">
+
+            Disco
+
+        </div>
+
+        <div class="metric-subtitle">
+
+            {{ disk.used }} GB / {{ disk.total }} GB
+
+        </div>
+
+        <div class="metric-value">
+
+            {{ disk.percent }}%
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

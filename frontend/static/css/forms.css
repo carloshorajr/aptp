@@ -1,0 +1,48 @@
+.settings-grid{
+    display:grid;
+    gap:20px;
+}
+
+.settings-grid .card h2{
+    margin-bottom:20px;
+    font-size:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.form-group label{
+    margin-bottom:6px;
+    color:#64748b;
+    font-size:14px;
+}
+
+.form-group input,
+.form-group textarea{
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    padding:12px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#3b82f6;
+
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+input[readonly]{
+    background:#f3f4f6;
+    color:#555;
+    cursor:default;
+}

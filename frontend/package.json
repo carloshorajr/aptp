@@ -1,0 +1,23 @@
+{
+  "name": "@aptp/frontend",
+  "version": "0.1.0",
+  "description": "Frontend build environment for APTP",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "postcss static/css/src/input.css -o static/css/app.css",
+    "watch": "postcss static/css/src/input.css -o static/css/app.css --watch"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=9"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10",
+    "flowbite": "^3",
+    "postcss": "^8",
+    "postcss-cli": "^11",
+    "tailwindcss": "^4"
+  }
+}

@@ -118,5 +118,53 @@
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T14:39:55.931863-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T14:39:56.838717-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T14:40:07.081865-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T14:40:08.231851-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T14:40:53.456633-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T14:40:54.327150-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T14:41:05.073779-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T14:41:05.982303-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
     }
 ]

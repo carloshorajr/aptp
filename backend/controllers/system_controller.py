@@ -25,3 +25,13 @@ class SystemController:
             "settings": settings,
             "application": ApplicationService.get_application_info()
         }
+    
+    @staticmethod
+    def get_live_data():
+        info = SystemService.get_system_info()
+
+        return {
+            "cpu": info["cpu_percent"],
+            "memory": info["memory_percent"],
+            "uptime": SystemService.get_uptime()
+        }

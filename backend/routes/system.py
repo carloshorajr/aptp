@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 
 from backend.controllers.system_controller import SystemController
 
@@ -11,4 +11,11 @@ def system():
         "system.html",
         current_page=request.path,
         **SystemController.get_page_data()
+    )
+
+@system_bp.route("/system/data")
+def system_data():
+
+    return jsonify(
+        SystemController.get_live_data()
     )

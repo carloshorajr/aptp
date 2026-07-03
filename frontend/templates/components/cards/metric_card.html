@@ -10,7 +10,12 @@
     </div>
     {% endif %}
 
-    <div class="metric-value">
+    <div
+        class="metric-value"
+        {% if element_id %}
+        id="{{ element_id }}"
+        {% endif %}
+    >
         {{ value }}
     </div>
 

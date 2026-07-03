@@ -15,7 +15,8 @@
     {% with
         title="Uptime",
         subtitle=None,
-        value=uptime
+        value=uptime,
+        element_id="system-uptime"
     %}
         {% include "components/cards/metric_card.html" %}
     {% endwith %}
@@ -23,7 +24,8 @@
     {% with
         title="CPU",
         subtitle=None,
-        value=cpu ~ "%"
+        value=cpu ~ "%",
+        element_id="system-cpu"
     %}
         {% include "components/cards/metric_card.html" %}
     {% endwith %}
@@ -31,7 +33,8 @@
     {% with
         title="Memória",
         subtitle=None,
-        value=memory ~ "%"
+        value=memory ~ "%",
+        element_id="system-memory"
     %}
         {% include "components/cards/metric_card.html" %}
     {% endwith %}

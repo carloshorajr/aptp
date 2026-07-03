@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "timestamp": "2026-07-03T19:00:02.394731-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T19:00:03.409971-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T19:00:31.310946-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T19:00:32.405768-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    }
+]

@@ -19,6 +19,12 @@ const PageManager = {
             default:
 
                 break;
+            
+            case "events":
+                
+                Events.init();
+
+                break;
 
         }
 

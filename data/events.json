@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "timestamp": "2026-07-03T09:18:25.268504-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T09:18:27.188311-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T09:18:28.156391-03:00",
+        "level": "WARNING",
+        "source": "Sistema",
+        "message": "Inicialização após desligamento inesperado."
+    },
+    {
+        "timestamp": "2026-07-03T09:18:28.158947-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T09:29:18.312673-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T09:29:19.939124-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T09:29:20.952335-03:00",
+        "level": "WARNING",
+        "source": "Sistema",
+        "message": "Inicialização após desligamento inesperado."
+    },
+    {
+        "timestamp": "2026-07-03T09:29:20.955420-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    }
+]

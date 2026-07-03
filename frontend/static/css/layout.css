@@ -38,44 +38,6 @@
     font-size:14px;
 }
 
-.sidebar{
-    width:240px;
-    background:#1f2937;
-    color:#fff;
-    padding:20px;
-}
-
-.sidebar-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:82px;
-    margin-bottom:34px;
-    gap:12px;
-}
-
-.logo-box{
-    flex:1;
-    min-width:0;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-}
-
-.logo-expanded{
-    width:170px;
-    height:60px;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-}
-
-.logo-image{
-    width:170px;
-    height:auto;
-    display:block;
-    flex:none;
-}
 
 .layout{
     display:flex;
@@ -85,44 +47,6 @@
 .content{
     flex:1;
     padding:30px;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    padding:12px;
-    border-radius:8px;
-}
-
-.menu a:hover{
-    background:#374151;
-}
-
-.menu a.active{
-    background:#374151;
-    border-left:3px solid #3b82f6;
-}
-
-.menu a.active .label{
-    font-weight:600;
-}
-
-.icon{
-    width:24px;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    margin-right:12px;
-}
-
-.icon i{
-    font-size:16px;
 }
 
 .flash{

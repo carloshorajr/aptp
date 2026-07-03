@@ -58,5 +58,65 @@
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:04.180235-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:05.089429-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:12.350239-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:13.199502-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:41.085783-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T10:40:41.940690-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T10:41:00.128690-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T10:41:00.989818-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T10:41:13.834265-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T10:41:14.790637-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
     }
 ]

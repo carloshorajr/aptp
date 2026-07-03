@@ -1,5 +1,7 @@
 const System = {
 
+    interval: null,
+
     async update() {
 
         const response = await fetch("/system/data");
@@ -20,6 +22,18 @@ const System = {
     init() {
 
         this.update();
+
+        if (this.interval) {
+
+            clearInterval(this.interval);
+
+        }
+
+        this.interval = setInterval(() => {
+
+            this.update();
+
+        }, 60000);
 
     }
 

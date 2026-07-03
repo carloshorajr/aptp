@@ -1,85 +1,42 @@
-async function loadPage(url) {
+async function loadPage(route, link) {
 
-    console.log("Solicitando:", url);
+    document
+        .querySelectorAll(".menu a")
+        .forEach(item => item.classList.remove("active"));
 
-    const response = await fetch(url);
+    link.classList.add("active");
 
-    if (!response.ok) {
-
-        console.error("Erro HTTP:", response.status);
-
-        return;
-
-    }
+    const response = await fetch(route);
 
     const html = await response.text();
 
     const parser = new DOMParser();
 
-    const documentHtml = parser.parseFromString(
-        html,
-        "text/html"
-    );
+    const documentHtml = parser.parseFromString(html, "text/html");
 
     const newContent = documentHtml.getElementById("app-content");
 
     if (!newContent) {
-
-        console.error("app-content não encontrado.");
-
         return;
-
     }
 
-    const currentContent = document.getElementById("app-content");
-
-    currentContent.innerHTML = newContent.innerHTML;
-
+    document.getElementById("app-content").innerHTML =
+        newContent.innerHTML;
 }
 
-function updateActiveMenu(url) {
+async function start() {
 
-    document
-        .querySelectorAll(".menu a")
-        .forEach(link => {
+    document.querySelectorAll(".menu a").forEach(link => {
 
-            link.classList.remove("active");
+        link.addEventListener("click", async event => {
 
-            if (link.dataset.route === url) {
+            event.preventDefault();
 
-                link.classList.add("active");
-
-            }
+            await loadPage(link.dataset.route, link);
 
         });
 
-}
-
-async function navigate(url) {
-
-    updateActiveMenu(url);
-
-    await loadPage(url);
-
-}
-
-function start() {
-
-    console.log("APTP iniciado");
-
-    document
-        .querySelectorAll(".menu a")
-        .forEach(link => {
-
-            link.addEventListener("click", async event => {
-
-                event.preventDefault();
-
-                await navigate(link.dataset.route);
-
-            });
-
-        });
+    });
 
 }
 

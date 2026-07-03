@@ -46,5 +46,17 @@
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-03T09:59:58.357800-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
+    },
+    {
+        "timestamp": "2026-07-03T09:59:59.243280-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda iniciada."
     }
 ]

@@ -1,5 +1,7 @@
 from flask import Flask
 
+from flask import jsonify
+
 import atexit
 
 from backend.routes.dashboard import dashboard_bp
@@ -17,6 +19,17 @@ app = Flask(
 )
 
 app.secret_key = "sonda-dev"
+
+@app.get("/api/status")
+def api_status():
+
+    return jsonify({
+
+        "status": "online",
+        "application": "APTP",
+        "version": "0.1.0-dev"
+
+    })
 
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(settings_bp)

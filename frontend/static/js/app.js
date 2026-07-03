@@ -1,3 +1,19 @@
+function showLoader(){
+
+    document
+        .getElementById("page-loader")
+        .classList.add("loading");
+
+}
+
+function hideLoader(){
+
+    document
+        .getElementById("page-loader")
+        .classList.remove("loading");
+
+}
+
 async function loadPage(route, link) {
 
     document
@@ -5,6 +21,8 @@ async function loadPage(route, link) {
         .forEach(item => item.classList.remove("active"));
 
     link.classList.add("active");
+
+    showLoader();
 
     const currentContent = document.getElementById("app-content");
 
@@ -32,7 +50,10 @@ async function loadPage(route, link) {
 
         currentContent.classList.remove("is-loading");
 
+        hideLoader();
+
     });
+
 }
 
 async function start() {

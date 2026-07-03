@@ -17,3 +17,27 @@ body{
 #app-content.is-loading{
     opacity:0;
 }
+
+/* ===========================
+   Page Loader
+=========================== */
+
+#page-loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:0;
+    height:3px;
+    background:#3b82f6;
+    z-index:9999;
+    opacity:0;
+    transition:
+        width .25s ease,
+        opacity .20s ease;
+
+}
+
+#page-loader.loading{
+    width:100%;
+    opacity:1;
+}

@@ -6,6 +6,12 @@ async function loadPage(route, link) {
 
     link.classList.add("active");
 
+    const currentContent = document.getElementById("app-content");
+
+    currentContent.classList.add("is-loading");
+
+    await new Promise(resolve => setTimeout(resolve, 180));
+
     const response = await fetch(route);
 
     const html = await response.text();
@@ -20,8 +26,13 @@ async function loadPage(route, link) {
         return;
     }
 
-    document.getElementById("app-content").innerHTML =
-        newContent.innerHTML;
+    currentContent.innerHTML = newContent.innerHTML;
+
+    requestAnimationFrame(() => {
+
+        currentContent.classList.remove("is-loading");
+
+    });
 }
 
 async function start() {

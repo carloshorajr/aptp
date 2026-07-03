@@ -8,3 +8,12 @@ body{
     font-family:Arial, sans-serif;
     background:#f4f6f9;
 }
+
+#app-content{
+    opacity:1;
+    transition:opacity .18s ease;
+}
+
+#app-content.is-loading{
+    opacity:0;
+}

@@ -6,44 +6,73 @@ const System = {
         uptime: null
     },
 
-interval: null,
-
     interval: null,
 
     async update() {
 
-        const response = await fetch("/system/data");
+        try {
 
-        const data = await response.json();
+            const response = await fetch("/system/data");
 
-        if (data.cpu !== this.lastData.cpu) {
+            if (!response.ok) {
 
-            document.getElementById("system-cpu").textContent =
-                `${data.cpu}%`;
+                throw new Error(
+                    `HTTP ${response.status}`
+                );
 
-            this.lastData.cpu = data.cpu;
+            }
 
-        }
+            const data = await response.json();
 
-        if (data.memory !== this.lastData.memory) {
+            if (data.cpu !== this.lastData.cpu) {
 
-            document.getElementById("system-memory").textContent =
-                `${data.memory}%`;
+                document.getElementById("system-cpu").textContent =
+                    `${data.cpu}%`;
 
-            this.lastData.memory = data.memory;
+                this.lastData.cpu = data.cpu;
 
-        }
+            }
 
-        if (data.uptime !== this.lastData.uptime) {
+            if (data.memory !== this.lastData.memory) {
 
-            document.getElementById("system-uptime").textContent =
-                data.uptime;
+                document.getElementById("system-memory").textContent =
+                    `${data.memory}%`;
 
-            this.lastData.uptime = data.uptime;
+                this.lastData.memory = data.memory;
+
+            }
+
+            if (data.uptime !== this.lastData.uptime) {
+
+                document.getElementById("system-uptime").textContent =
+                    data.uptime;
+
+                this.lastData.uptime = data.uptime;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Falha ao atualizar dados do sistema.",
+                error
+            );
 
         }
 
     },
+
+/*     destroy() {
+
+        if (this.interval) {
+
+            clearInterval(this.interval);
+
+            this.interval = null;
+
+        }
+
+    }, */
 
     init() {
 

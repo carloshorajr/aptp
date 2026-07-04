@@ -2,76 +2,122 @@
 
 {% block content %}
 
-<div class="cards">
+<div class="system-panel">
 
-    {% with
-        title="Hostname",
-        subtitle=None,
-        value=hostname
-    %}
-        {% include "components/cards/metric_card.html" %}
-    {% endwith %}
+    <div class="system-section">
 
-    {% with
-        title="Uptime",
-        subtitle=None,
-        value=uptime,
-        element_id="system-uptime"
-    %}
-        {% include "components/cards/metric_card.html" %}
-    {% endwith %}
+        <h3>Sistema</h3>
 
-    {% with
-        title="CPU",
-        subtitle=None,
-        value=cpu ~ "%",
-        element_id="system-cpu"
-    %}
-        {% include "components/cards/metric_card.html" %}
-    {% endwith %}
+        <div class="system-item">
+            <span class="system-label">Hostname</span>
+            <span class="system-value">{{ hostname }}</span>
+        </div>
 
-    {% with
-        title="Memória",
-        subtitle=None,
-        value=memory ~ "%",
-        element_id="system-memory"
-    %}
-        {% include "components/cards/metric_card.html" %}
-    {% endwith %}
+        <div class="system-item">
+            <span class="system-label">Uptime</span>
+            <span class="system-value" id="system-uptime">{{ uptime }}</span>
+        </div>
+
+    </div>
+
+    <div class="system-section">
+
+        <h3>Hardware</h3>
+
+        <div class="system-item">
+            <span class="system-label">CPU</span>
+            <span class="system-value" id="system-cpu">{{ cpu }}%</span>
+        </div>
+
+        <div class="system-item">
+            <span class="system-label">Memória</span>
+            <span class="system-value" id="system-memory">{{ memory }}%</span>
+        </div>
+
+        <div class="system-item">
+            <span class="system-label">Disco</span>
+            <span class="system-value">
+
+                {{ disk.used }} GB de {{ disk.total }} GB ({{ disk.percent }}%)
+
+            </span>
+        </div>
+
+    </div>
 
     {% for iface in interfaces %}
 
-    <div class="metric-card">
+    <div class="system-section">
 
-        <div class="metric-title">
+        <h3>{{ iface.description }}</h3>
 
-            {{ iface.description }}
+        <div class="system-item">
 
-            ({{ iface.interface }})
+            <span class="system-label">
+
+                Interface
+
+            </span>
+
+            <span class="system-value">
+
+                {{ iface.interface }}
+
+            </span>
 
         </div>
 
-        {% if iface.ssid %}
+        <div class="system-item">
 
-        <div class="metric-subtitle">
+            <span class="system-label">
 
-            {{ iface.ssid }}
+                Endereço IP
 
-        </div>
+            </span>
 
-        {% endif %}
+            <span class="system-value">
 
-        <div class="metric-value">
+                {{ iface.ip }}
 
-            {{ iface.ip }}
+            </span>
 
         </div>
 
         {% if iface.mac %}
 
-        <div class="metric-subtitle">
+        <div class="system-item">
 
-            MAC: {{ iface.mac }}
+            <span class="system-label">
+
+                MAC
+
+            </span>
+
+            <span class="system-value">
+
+                {{ iface.mac }}
+
+            </span>
+
+        </div>
+
+        {% endif %}
+
+        {% if iface.ssid %}
+
+        <div class="system-item">
+
+            <span class="system-label">
+
+                SSID
+
+            </span>
+
+            <span class="system-value">
+
+                {{ iface.ssid }}
+
+            </span>
 
         </div>
 
@@ -80,28 +126,6 @@
     </div>
 
     {% endfor %}
-
-    <div class="metric-card">
-
-        <div class="metric-title">
-
-            Disco
-
-        </div>
-
-        <div class="metric-subtitle">
-
-            {{ disk.used }} GB / {{ disk.total }} GB
-
-        </div>
-
-        <div class="metric-value">
-
-            {{ disk.percent }}%
-
-        </div>
-
-    </div>
 
 </div>
 

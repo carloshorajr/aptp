@@ -6,4 +6,6 @@ DATA_DIR = ROOT_DIR / "data"
 
 SETTINGS_FILE = DATA_DIR / "settings.json"
 
-EVENTS_FILE = DATA_DIR / "events.json"
+RUNTIME_FILE = DATA_DIR / "runtime.json"
+
+DATABASE_FILE = DATA_DIR / "aptp.db"

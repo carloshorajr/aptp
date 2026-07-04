@@ -63,10 +63,48 @@ class EventService:
     @staticmethod
     def list(filters=None):
 
-        events = EventRepository.load()
-
         if filters is None:
-            return events
+
+            filters = {}
+
+        filters_sql = []
+
+        params = []
+
+        level = filters.get("level")
+
+        if level:
+
+            filters_sql.append(
+                "level = ?"
+            )
+
+            params.append(level)
+
+        source = filters.get("source")
+
+        if source:
+
+            filters_sql.append(
+                "source = ?"
+            )
+
+            params.append(source)
+
+        search = filters.get("search")
+
+        if search:
+
+            filters_sql.append(
+                "(message LIKE ? OR source LIKE ?)"
+            )
+
+            texto = f"%{search}%"
+
+            params.extend([
+                texto,
+                texto
+            ])
 
         period = filters.get("period")
 
@@ -79,67 +117,59 @@ class EventService:
                 microsecond=0
             )
 
-            events = [
-                event
-                for event in events
-                if event.timestamp >= limite
-            ]
+            filters_sql.append(
+                "timestamp >= ?"
+            )
+
+            params.append(
+                limite.isoformat()
+            )
 
         elif period == "24h":
 
             limite = now() - timedelta(hours=24)
 
-            events = [
-                event
-                for event in events
-                if event.timestamp >= limite
-            ]
+            filters_sql.append(
+                "timestamp >= ?"
+            )
+
+            params.append(
+                limite.isoformat()
+            )
 
         elif period == "7d":
 
             limite = now() - timedelta(days=7)
 
-            events = [
-                event
-                for event in events
-                if event.timestamp >= limite
-            ]
+            filters_sql.append(
+                "timestamp >= ?"
+            )
 
-        level = filters.get("level")
-
-        if level:
-
-            events = [
-                event
-                for event in events
-                if event.level == level
-            ]
+            params.append(
+                limite.isoformat()
+            )
         
-        source = filters.get("source")
+        limit = filters.get("limit", "20")
 
-        if source:
+        if limit == "all":
 
-            events = [
-                event
-                for event in events
-                if event.source == source
-            ]
+            limit = None
 
-        search = filters.get("search")
+        else:
 
-        if search:
+            limit = int(limit)
 
-            texto = search.lower()
+        events = EventRepository.load(
 
-            events = [
-                event
-                for event in events
-                if (
-                    texto in event.message.lower()
-                    or
-                    texto in event.source.lower()
-                )
-            ]
+            filters_sql=" AND ".join(filters_sql)
+            if filters_sql
+            else None,
+
+            params=params,
+
+            limit=limit
+
+        )
 
         return events
     

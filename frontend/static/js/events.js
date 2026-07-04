@@ -8,7 +8,13 @@ const Events = {
             return;
         }
 
-        form.addEventListener("submit", this.submit);
+        form.addEventListener(
+
+            "submit",
+
+            event => Events.submit(event)
+
+        );
 
     },
 
@@ -99,7 +105,7 @@ const Events = {
 
         PageManager.init("events");
 
-        await this.refreshStatistics();
+        await Events.refreshStatistics();
 
         requestAnimationFrame(() => {
 

@@ -8,9 +8,20 @@ from backend.repositories.sqlite_event_repository import (
 class EventRepository:
 
     @classmethod
-    def load(cls):
+    def load(
+        cls,
+        filters_sql=None,
+        params=None,
+        order_by="timestamp DESC",
+        limit=None
+    ):
 
-        return SQLiteEventRepository.load()
+        return SQLiteEventRepository.load(
+            filters_sql=filters_sql,
+            params=params,
+            order_by=order_by,
+            limit=limit
+        )
 
     @classmethod
     def add(cls, event: Event):

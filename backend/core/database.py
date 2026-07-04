@@ -1,10 +1,9 @@
 import sqlite3
 
-from backend.core.paths import DATA_DIR
-
-
-DATABASE_FILE = DATA_DIR / "aptp.db"
-
+from backend.core.paths import (
+    DATA_DIR,
+    DATABASE_FILE
+)
 
 class Database:
 

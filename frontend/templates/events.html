@@ -147,6 +147,46 @@
 
             </div>
 
+            <div class="filter-item filter-limit">
+
+            <label>Exibir</label>
+
+            <select name="limit">
+
+                <option value="20"
+                    {% if filters.get('limit', '20') == '20' %}selected{% endif %}>
+                    20
+                </option>
+
+                <option value="50"
+                    {% if filters.get('limit') == '50' %}selected{% endif %}>
+                    50
+                </option>
+
+                <option value="100"
+                    {% if filters.get('limit') == '100' %}selected{% endif %}>
+                    100
+                </option>
+
+                <option value="250"
+                    {% if filters.get('limit') == '250' %}selected{% endif %}>
+                    250
+                </option>
+
+                <option value="500"
+                    {% if filters.get('limit') == '500' %}selected{% endif %}>
+                    500
+                </option>
+
+                <option value="all"
+                    {% if filters.get('limit') == 'all' %}selected{% endif %}>
+                    Todos
+                </option>
+
+            </select>
+
+        </div>
+
         <div class="filter-buttons">
 
             {% with
@@ -228,6 +268,22 @@
         </tbody>
 
     </table>
+
+    <div class="table-footer">
+
+        {% set selected_limit = filters.get("limit", "20") %}
+
+        {% if selected_limit == "all" %}
+
+            Exibindo todos os {{ statistics.total }} eventos.
+
+        {% else %}
+
+            Exibindo até {{ selected_limit }} de {{ statistics.total }} eventos.
+
+        {% endif %}
+
+    </div>
 
 </div>
 

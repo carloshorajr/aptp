@@ -1,5 +1,3 @@
-from backend.core.database import Database
-
 from backend.models.event import Event
 
 from backend.utils.datetime_utils import parse_datetime
@@ -47,13 +45,19 @@ class SQLiteEventRepository(BaseRepository):
         connection.close()
 
     @classmethod
-    def load(cls):
+    def load(
+        cls,
+        filters_sql=None,
+        params=None,
+        order_by="timestamp DESC",
+        limit=None
+    ):
 
         connection = cls.connection()
 
         cursor = connection.cursor()
 
-        cursor.execute("""
+        query = """
 
             SELECT
 
@@ -64,9 +68,26 @@ class SQLiteEventRepository(BaseRepository):
 
             FROM events
 
-            ORDER BY timestamp
+        """
 
-        """)
+        parameters = list(params) if params else []
+
+        if filters_sql:
+
+            query += f"\nWHERE {filters_sql}"
+
+        query += f"\nORDER BY {order_by}"
+
+        if limit is not None:
+
+            query += "\nLIMIT ?"
+
+            parameters.append(limit)
+
+        cursor.execute(
+            query,
+            parameters
+        )
 
         rows = cursor.fetchall()
 
@@ -95,7 +116,7 @@ class SQLiteEventRepository(BaseRepository):
             )
 
         return events
-    
+
     @classmethod
     def count(cls):
 
@@ -132,4 +153,4 @@ class SQLiteEventRepository(BaseRepository):
 
         connection.commit()
 
-        connection.close()    
+        connection.close()

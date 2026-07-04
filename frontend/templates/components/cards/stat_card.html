@@ -4,7 +4,12 @@
         {{ title }}
     </span>
 
-    <span class="stat-value">
+    <span
+        class="stat-value"
+        {% if element_id %}
+        id="{{ element_id }}"
+        {% endif %}
+    >
         {{ value }}
     </span>
 

@@ -8,31 +8,61 @@
 
         <div class="stats-panel">
 
-            {% with css_class="stat-total", title="Total", value=statistics.total %}
+            {% with
+                css_class="stat-total",
+                title="Total",
+                value=statistics.total,
+                element_id="stat-total"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-            {% with css_class="stat-info", title="INFO", value=statistics.info %}
+            {% with
+                css_class="stat-info",
+                title="INFO",
+                value=statistics.info,
+                element_id="stat-info"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-            {% with css_class="stat-warning", title="WARNING", value=statistics.warning %}
+            {% with
+                css_class="stat-warning",
+                title="WARNING",
+                value=statistics.warning,
+                element_id="stat-warning"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-            {% with css_class="stat-error", title="ERROR", value=statistics.error %}
+            {% with
+                css_class="stat-error",
+                title="ERROR",
+                value=statistics.error,
+                element_id="stat-error"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-            {% with css_class="stat-24h", title="Últimas 24h", value=statistics.last_24h %}
+            {% with
+                css_class="stat-24h",
+                title="Últimas 24h",
+                value=statistics.last_24h,
+                element_id="stat-24h"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-            {% with css_class="stat-today", title="Hoje", value=statistics.today %}
+            {% with
+                css_class="stat-today",
+                title="Hoje",
+                value=statistics.today,
+                element_id="stat-today"
+            %}
                 {% include "components/cards/stat_card.html" %}
             {% endwith %}
 
-    </div>
+        </div>
 
     <form method="GET">
 

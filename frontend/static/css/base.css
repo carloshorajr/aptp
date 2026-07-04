@@ -18,10 +18,6 @@ body{
     opacity:0;
 }
 
-/* ===========================
-   Page Loader
-=========================== */
-
 #page-loader{
     position:fixed;
     top:0;

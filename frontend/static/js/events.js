@@ -12,6 +12,50 @@ const Events = {
 
     },
 
+    async refreshStatistics() {
+
+        try {
+
+            const response =
+                await fetch("/events/data");
+
+            if (!response.ok) {
+                throw new Error(
+                    `HTTP ${response.status}`
+                );
+            }
+
+            const data = await response.json();
+
+            document.getElementById("stat-total").textContent =
+                data.statistics.total;
+
+            document.getElementById("stat-info").textContent =
+                data.statistics.info;
+
+            document.getElementById("stat-warning").textContent =
+                data.statistics.warning;
+
+            document.getElementById("stat-error").textContent =
+                data.statistics.error;
+
+            document.getElementById("stat-24h").textContent =
+                data.statistics.last_24h;
+
+            document.getElementById("stat-today").textContent =
+                data.statistics.today;
+
+        } catch (error) {
+
+            console.error(
+                "Falha ao atualizar estatísticas.",
+                error
+            );
+
+        }
+
+    },
+
     async submit(event) {
 
         event.preventDefault();
@@ -54,6 +98,8 @@ const Events = {
             newContent.innerHTML;
 
         PageManager.init("events");
+
+        await this.refreshStatistics();
 
         requestAnimationFrame(() => {
 

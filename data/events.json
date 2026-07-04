@@ -1,26 +1,32 @@
 [
     {
-        "timestamp": "2026-07-03T19:00:02.394731-03:00",
+        "timestamp": "2026-07-04T10:09:25.569148-03:00",
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda encerrada."
     },
     {
-        "timestamp": "2026-07-03T19:00:03.409971-03:00",
+        "timestamp": "2026-07-04T10:09:26.464535-03:00",
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda iniciada."
     },
     {
-        "timestamp": "2026-07-03T19:00:31.310946-03:00",
+        "timestamp": "2026-07-04T10:09:44.046170-03:00",
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda encerrada."
     },
     {
-        "timestamp": "2026-07-03T19:00:32.405768-03:00",
+        "timestamp": "2026-07-04T10:09:44.924734-03:00",
         "level": "INFO",
         "source": "Sistema",
         "message": "Sonda iniciada."
+    },
+    {
+        "timestamp": "2026-07-04T10:19:29.474021-03:00",
+        "level": "INFO",
+        "source": "Sistema",
+        "message": "Sonda encerrada."
     }
 ]

@@ -1,32 +1,44 @@
 const PageManager = {
 
+    currentPage: null,
+
+    pages: {
+
+        dashboard: Dashboard,
+
+        system: System,
+
+        events: Events
+
+    },
+
     init(page) {
 
-        switch (page) {
+        const currentModule =
+            this.pages[this.currentPage];
 
-            case "dashboard":
+        if (
+            currentModule &&
+            typeof currentModule.destroy === "function"
+        ) {
 
-                Dashboard.init();
-
-                break;
-
-            case "system":
-
-                System.init();
-
-                break;
-
-            default:
-
-                break;
-            
-            case "events":
-                
-                Events.init();
-
-                break;
+            currentModule.destroy();
 
         }
+
+        const nextModule =
+            this.pages[page];
+
+        if (
+            nextModule &&
+            typeof nextModule.init === "function"
+        ) {
+
+            nextModule.init();
+
+        }
+
+        this.currentPage = page;
 
     }
 

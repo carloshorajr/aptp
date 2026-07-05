@@ -62,18 +62,6 @@ const System = {
 
     },
 
-/*     destroy() {
-
-        if (this.interval) {
-
-            clearInterval(this.interval);
-
-            this.interval = null;
-
-        }
-
-    }, */
-
     init() {
 
         this.update();
@@ -89,6 +77,18 @@ const System = {
             this.update();
 
         }, 60000);
+
+    },
+
+    destroy() {
+
+        if (this.interval) {
+
+            clearInterval(this.interval);
+
+            this.interval = null;
+
+        }
 
     }
 

@@ -1,5 +1,7 @@
 const Events = {
 
+    interval: null,
+
     init() {
 
         const form = document.querySelector("form");
@@ -9,26 +11,48 @@ const Events = {
         }
 
         form.addEventListener(
-
             "submit",
-
-            event => Events.submit(event)
-
+            event => this.submit(event)
         );
+
+        this.update();
+
+        if (this.interval) {
+
+            clearInterval(this.interval);
+
+        }
+
+        this.interval = setInterval(() => {
+
+            this.update();
+
+        }, 60000);
 
     },
 
-    async refreshStatistics() {
+    async update() {
 
         try {
 
-            const response =
-                await fetch("/events/data");
+            const form = document.querySelector("form");
+
+            if (!form) {
+                return;
+            }
+
+            const params = new URLSearchParams(
+                new FormData(form)
+            );
+
+            const response = await fetch(
+                `/events/data?${params.toString()}`
+            );
 
             if (!response.ok) {
-                throw new Error(
-                    `HTTP ${response.status}`
-                );
+
+                throw new Error(`HTTP ${response.status}`);
+
             }
 
             const data = await response.json();
@@ -51,10 +75,91 @@ const Events = {
             document.getElementById("stat-today").textContent =
                 data.statistics.today;
 
+        const tbody = document.getElementById(
+            "events-table-body"
+        );
+
+        if (!tbody) {
+            return;
+        }
+
+        let html = "";
+
+        for (const event of data.events) {
+
+            let badge = "";
+
+            switch (event.level) {
+
+                case "INFO":
+
+                    badge =
+                        '<span class="badge badge-info">INFO</span>';
+
+                    break;
+
+                case "WARNING":
+
+                    badge =
+                        '<span class="badge badge-warning">WARNING</span>';
+
+                    break;
+
+                case "ERROR":
+
+                    badge =
+                        '<span class="badge badge-error">ERROR</span>';
+
+                    break;
+
+            }
+
+            html += `
+
+                <tr>
+
+                    <td>${event.timestamp}</td>
+
+                    <td>${badge}</td>
+
+                    <td>${event.source}</td>
+
+                    <td>${event.message}</td>
+
+                </tr>
+
+            `;
+
+        }
+
+        tbody.innerHTML = html;
+
+            tbody.insertAdjacentHTML(
+
+                "beforeend",
+
+                `
+                <tr>
+
+                    <td>${event.timestamp}</td>
+
+                    <td>${badge}</td>
+
+                    <td>${event.source}</td>
+
+                    <td>${event.message}</td>
+
+                </tr>
+                `
+
+            );
+
+        }
+
         } catch (error) {
 
             console.error(
-                "Falha ao atualizar estatísticas.",
+                "Falha ao atualizar Eventos.",
                 error
             );
 
@@ -62,17 +167,9 @@ const Events = {
 
     },
 
-    async submit(event) {
+    submit(event) {
 
         event.preventDefault();
-
-        const currentContent = document.getElementById("app-content");
-
-        currentContent.classList.add("is-loading");
-
-        showLoader();
-
-        await new Promise(resolve => setTimeout(resolve, 180));
 
         const form = event.target;
 
@@ -80,40 +177,20 @@ const Events = {
             new FormData(form)
         );
 
-        const response = await fetch(
-            `/events?${params.toString()}`
-        );
+        window.location.href =
+            `/events?${params.toString()}`;
 
-        const html = await response.text();
+    },
 
-        const parser = new DOMParser();
+    destroy() {
 
-        const documentHtml = parser.parseFromString(
-            html,
-            "text/html"
-        );
+        if (this.interval) {
 
-        const newContent =
-            documentHtml.getElementById("app-content");
+            clearInterval(this.interval);
 
-        if (!newContent) {
-            return;
+            this.interval = null;
+
         }
-
-        currentContent.innerHTML =
-            newContent.innerHTML;
-
-        PageManager.init("events");
-
-        await Events.refreshStatistics();
-
-        requestAnimationFrame(() => {
-
-            currentContent.classList.remove("is-loading");
-
-            hideLoader();
-
-        });
 
     }
 

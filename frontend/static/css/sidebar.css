@@ -1,12 +1,16 @@
 .sidebar{
     width:280px;
+    height:100vh;
+    flex-shrink:0;
     background:#1f2937;
     color:#fff;
     padding:
-        16px   /* topo */
-        20px   /* direita */
-        20px   /* baixo */
-        10px;  /* esquerda */
+        16px
+        20px
+        20px
+        10px;
+
+    overflow-y:auto;
 }
 
 .sidebar-header{

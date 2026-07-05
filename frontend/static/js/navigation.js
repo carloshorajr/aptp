@@ -33,6 +33,8 @@ async function loadPage(route, link) {
 
     currentContent.innerHTML = newContent.innerHTML;
 
+    history.pushState({}, "", route);
+
     const page = route === "/"
         ? "dashboard"
         : route.substring(1);

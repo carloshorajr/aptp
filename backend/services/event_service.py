@@ -1,9 +1,13 @@
+from datetime import timedelta
+
 from backend.utils.datetime_utils import now
 
 from backend.models.event import Event
+
 from backend.repositories.event_repository import EventRepository
 
-from datetime import timedelta
+from backend.constants.event_constants import EVENT_SOURCES
+
 
 class EventService:
 
@@ -176,14 +180,7 @@ class EventService:
     @staticmethod
     def sources():
 
-        events = EventRepository.load()
-
-        return sorted(
-            {
-                event.source
-                for event in events
-            }
-        )
+        return EVENT_SOURCES
     
     @staticmethod
     def statistics():

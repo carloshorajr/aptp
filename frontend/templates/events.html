@@ -4,65 +4,69 @@
 
 <div class="card">
 
-    <h2>Histórico de Eventos</h2>
+    <div class="stats-panel">
 
-        <div class="stats-panel">
+        {% with
+            css_class="stat-total",
+            category="EVENTOS",
+            title="Total",
+            value=statistics.total,
+            element_id="stat-total"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-total",
-                title="Total",
-                value=statistics.total,
-                element_id="stat-total"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
+        {% with
+            css_class="stat-info",
+            category="EVENTOS",
+            title="INFO",
+            value=statistics.info,
+            element_id="stat-info"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-info",
-                title="INFO",
-                value=statistics.info,
-                element_id="stat-info"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
+        {% with
+            css_class="stat-warning",
+            category="EVENTOS",
+            title="ATENÇÃO",
+            value=statistics.warning,
+            element_id="stat-warning"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-warning",
-                title="WARNING",
-                value=statistics.warning,
-                element_id="stat-warning"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
+        {% with
+            css_class="stat-error",
+            category="EVENTOS",
+            title="ERRO",
+            value=statistics.error,
+            element_id="stat-error"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-error",
-                title="ERROR",
-                value=statistics.error,
-                element_id="stat-error"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
+        {% with
+            css_class="stat-24h",
+            category="EVENTOS",
+            title="Últimas 24h",
+            value=statistics.last_24h,
+            element_id="stat-24h"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-24h",
-                title="Últimas 24h",
-                value=statistics.last_24h,
-                element_id="stat-24h"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
+        {% with
+            css_class="stat-today",
+            category="EVENTOS",
+            title="Hoje",
+            value=statistics.today,
+            element_id="stat-today"
+        %}
+            {% include "components/cards/stat_card.html" %}
+        {% endwith %}
 
-            {% with
-                css_class="stat-today",
-                title="Hoje",
-                value=statistics.today,
-                element_id="stat-today"
-            %}
-                {% include "components/cards/stat_card.html" %}
-            {% endwith %}
-
-        </div>
+    </div>
 
     <form method="GET">
 
@@ -74,10 +78,25 @@
 
                 <select name="period">
 
-                    <option value="">Tudo</option>
-                    <option value="today">Hoje</option>
-                    <option value="24h">Últimas 24h</option>
-                    <option value="7d">Últimos 7 dias</option>
+                    <option value=""
+                        {% if filters.get('period', '') == '' %}selected{% endif %}>
+                        Tudo
+                    </option>
+
+                    <option value="today"
+                        {% if filters.get('period') == 'today' %}selected{% endif %}>
+                        Hoje
+                    </option>
+
+                    <option value="24h"
+                        {% if filters.get('period') == '24h' %}selected{% endif %}>
+                        Últimas 24h
+                    </option>
+
+                    <option value="7d"
+                        {% if filters.get('period') == '7d' %}selected{% endif %}>
+                        Últimos 7 dias
+                    </option>
 
                 </select>
 
@@ -200,9 +219,11 @@
             {% endwith %}
 
             {% with
-                href="/events",
+                href=None,
+                type="button",
                 css_class="btn-outline",
-                label="Limpar"
+                label="Limpar",
+                onclick="clearFilters()"
             %}
             {% include "components/buttons/button.html" %}
             {% endwith %}
@@ -289,18 +310,49 @@
 
 <script>
 
-function clearEvents() {
+async function clearFilters() {
 
-    if (!confirm(
-        "Deseja realmente apagar todo o histórico de eventos?\n\nEsta ação não poderá ser desfeita."
-    )) {
-        return;
-    }
+    const link = document.querySelector(
+        '.menu a[data-route="/events"]'
+    );
 
-    fetch("/events/clear", {
-        method: "POST"
-    })
-    .then(() => window.location.reload());
+    await loadPage(
+        "/events",
+        link
+    );
+
+}
+
+async function clearEvents() {
+
+    showModal({
+
+        title: "Apagar Eventos",
+
+        message:
+            "Deseja realmente apagar todo o histórico de eventos?\n\nEsta ação não poderá ser desfeita.",
+
+        onConfirm: async () => {
+
+            await fetch(
+                "/events/clear",
+                {
+                    method:"POST"
+                }
+            );
+
+            const link = document.querySelector(
+                '.menu a[data-route="/events"]'
+            );
+
+            await loadPage(
+                "/events",
+                link
+            );
+
+        }
+
+    });
 
 }
 

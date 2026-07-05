@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/system.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
 
 </head>
 
@@ -37,6 +38,8 @@
 
 </div>
 
+{% include "components/modal.html" %}
+
 <script src="{{ url_for('static', filename='js/api.js') }}"></script>
 <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
 <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
@@ -44,6 +47,7 @@
 <script src="{{ url_for('static', filename='js/system.js') }}"></script>
 <script src="{{ url_for('static', filename='js/events.js') }}"></script>
 <script src="{{ url_for('static', filename='js/pages.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 </body>

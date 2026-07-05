@@ -1,36 +1,88 @@
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0 6px;
+
+    margin-top:20px;
+
 }
 
-.table th {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 2px solid #e5e7eb;
-    font-weight: 600;
+.table thead th{
+
+    text-align:left;
+
+    padding:12px 14px;
+
+    border-bottom:2px solid #dbe5f3;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    color:#1e3a8a;
+
 }
 
-.table td {
-    padding: 12px;
-    border-bottom: 1px solid #edf0f5;
+.table tbody td{
+
+    padding:14px;
+
+    background:#ffffff;
+
+    border:none;
+
+    vertical-align:middle;
+
 }
 
-.table tbody tr:hover {
-    background: #f8fafc;
+.table tbody tr:nth-child(odd) td{
+
+    background:#edf4ff;
+
+}
+
+.table tbody tr:hover td{
+
+    background:#d7e8ff;
+
+}
+
+.table tbody td:first-child{
+
+    border-radius:8px 0 0 8px;
+
+}
+
+.table tbody td:last-child{
+
+    border-radius:0 8px 8px 0;
+
 }
 
 .table th:nth-child(1),
 .table td:nth-child(1){
+
     width:170px;
+
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2){
+
     width:120px;
+
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3){
+
     width:180px;
+
 }

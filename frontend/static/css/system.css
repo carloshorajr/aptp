@@ -52,13 +52,11 @@
 
     align-items:center;
 
-    width:96%;
-
-    margin:0 auto;
+    width:100%;
 
     padding:13px 18px;
 
-    border-radius:8px;
+    border-radius:6px;
 
     transition:background .15s ease;
 
@@ -67,12 +65,6 @@
 .system-item:nth-child(even){
 
     background:#edf4ff;
-
-}
-
-.system-item:hover{
-
-    background:#e4efff;
 
 }
 

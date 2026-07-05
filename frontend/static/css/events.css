@@ -1,7 +1,11 @@
+/* ==========================================================
+   FILTROS
+========================================================== */
+
 .filters-panel{
     display:flex;
     align-items:flex-end;
-    gap:16px;
+    gap:14px;
     flex-wrap:nowrap;
     width:100%;
 }
@@ -12,74 +16,142 @@
 }
 
 .filter-period{
-    flex:0 0 150px;
+    flex:0 0 145px;
 }
 
 .filter-level{
-    flex:0 0 150px;
+    flex:0 0 145px;
 }
 
 .filter-source{
-    flex:0 0 150px;
+    flex:0 0 145px;
 }
 
 .filter-search{
     flex:1 1 auto;
-    min-width:180px;
+    min-width:220px;
 }
 
 .filter-item label{
-    margin-bottom:6px;
-    font-weight:600;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    color:#1e3a8a;
+
 }
 
 .filter-item input,
 .filter-item select{
+
     width:100%;
-    height:44px;
-    padding:10px 12px;
+
+    height:40px;
+
+    padding:0 12px;
+
     border:1px solid #d7dce5;
+
     border-radius:8px;
+
     box-sizing:border-box;
+
     font-size:14px;
-    background:white;
+
+    background:#fff;
+
     outline:none;
+
+    transition:border-color .2s;
+
+}
+
+.filter-item input:hover,
+.filter-item select:hover{
+
+    border-color:#93c5fd;
+
+    background:#f8fbff;
+
 }
 
 .filter-item input:focus,
 .filter-item select:focus{
+
     border-color:#2563eb;
+
+    background:#ffffff;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
 }
 
 .filter-buttons{
+
     display:flex;
+
     align-items:flex-end;
+
     gap:10px;
+
     flex-shrink:0;
+
 }
 
 .filter-buttons .btn{
-    height:44px;
+
+    height:40px;
+
     padding:0 22px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
 
-.badge-info {
-    background: #dbeafe;
-    color: #1d4ed8;
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.badge-info{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
 }
 
-.badge-warning {
-    background: #fef3c7;
-    color: #92400e;
+.badge-warning{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
 }
 
-.badge-error {
-    background: #fee2e2;
-    color: #b91c1c;
+.badge-error{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
 }
+
+
+/* ==========================================================
+   RODAPÉ DA TABELA
+========================================================== */
 
 .table-footer{
 
@@ -90,5 +162,109 @@
     font-size:13px;
 
     color:#6b7280;
+
+}
+
+
+/* ==========================================================
+   CARDS DE ESTATÍSTICAS
+========================================================== */
+
+.stats-panel{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:16px;
+
+    margin-bottom:28px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:18px 20px;
+
+    min-height:110px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.stat-title{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    margin-bottom:12px;
+
+}
+
+.stat-value{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    line-height:1;
+
+}
+
+
+/* ==========================================================
+   CORES DOS CARDS
+========================================================== */
+
+.stat-total .stat-title{
+
+    color:#64748b;
+
+}
+
+.stat-info .stat-title{
+
+    color:#2563eb;
+
+}
+
+.stat-warning .stat-title{
+
+    color:#d97706;
+
+}
+
+.stat-error .stat-title{
+
+    color:#dc2626;
+
+}
+
+.stat-24h .stat-title{
+
+    color:#7c3aed;
+
+}
+
+.stat-today .stat-title{
+
+    color:#16a34a;
 
 }

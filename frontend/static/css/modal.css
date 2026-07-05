@@ -1,0 +1,200 @@
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(15,23,42,.45);
+
+    z-index:9999;
+
+    animation:fadeIn .18s ease;
+
+}
+
+.modal-overlay.show{
+
+    display:flex;
+
+}
+
+
+/* ==========================================================
+   MODAL
+========================================================== */
+
+.modal{
+
+    width:460px;
+
+    max-width:92vw;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:32px;
+
+    box-shadow:0 24px 60px rgba(15,23,42,.20);
+
+    animation:modalIn .18s ease;
+
+}
+
+
+/* ==========================================================
+   ÍCONE
+========================================================== */
+
+.modal-icon{
+
+    width:64px;
+
+    height:64px;
+
+    margin:0 auto 22px;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+}
+
+
+/* ==========================================================
+   TÍTULO
+========================================================== */
+
+.modal-title{
+
+    text-align:center;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#1e3a8a;
+
+    margin:0;
+
+}
+
+
+/* ==========================================================
+   DIVISOR
+========================================================== */
+
+.modal-divider{
+
+    height:1px;
+
+    background:#e5edf8;
+
+    margin:22px 0;
+
+}
+
+
+/* ==========================================================
+   MENSAGEM
+========================================================== */
+
+.modal-message{
+
+    text-align:center;
+
+    color:#475569;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    margin:0;
+
+}
+
+
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+.modal-actions{
+
+    margin-top:32px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.modal-actions .btn{
+
+    width:125px;
+
+}
+
+
+/* ==========================================================
+   ANIMAÇÕES
+========================================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes modalIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px) scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}

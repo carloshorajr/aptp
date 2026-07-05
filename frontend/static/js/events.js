@@ -75,86 +75,62 @@ const Events = {
             document.getElementById("stat-today").textContent =
                 data.statistics.today;
 
-        const tbody = document.getElementById(
-            "events-table-body"
-        );
+            const tbody = document.getElementById(
+                "events-table-body"
+            );
 
-        if (!tbody) {
-            return;
-        }
+            if (!tbody) {
+                return;
+            }
 
-        let html = "";
+            let html = "";
 
-        for (const event of data.events) {
+            for (const event of data.events) {
 
-            let badge = "";
+                let badge = "";
 
-            switch (event.level) {
+                switch (event.level) {
 
-                case "INFO":
+                    case "INFO":
 
-                    badge =
-                        '<span class="badge badge-info">INFO</span>';
+                        badge =
+                            '<span class="badge badge-info">INFO</span>';
 
-                    break;
+                        break;
 
-                case "WARNING":
+                    case "WARNING":
 
-                    badge =
-                        '<span class="badge badge-warning">WARNING</span>';
+                        badge =
+                            '<span class="badge badge-warning">WARNING</span>';
 
-                    break;
+                        break;
 
-                case "ERROR":
+                    case "ERROR":
 
-                    badge =
-                        '<span class="badge badge-error">ERROR</span>';
+                        badge =
+                            '<span class="badge badge-error">ERROR</span>';
 
-                    break;
+                        break;
+
+                }
+
+                html += `
+                    <tr>
+
+                        <td>${event.timestamp}</td>
+
+                        <td>${badge}</td>
+
+                        <td>${event.source}</td>
+
+                        <td>${event.message}</td>
+
+                    </tr>
+                `;
 
             }
 
-            html += `
-
-                <tr>
-
-                    <td>${event.timestamp}</td>
-
-                    <td>${badge}</td>
-
-                    <td>${event.source}</td>
-
-                    <td>${event.message}</td>
-
-                </tr>
-
-            `;
-
-        }
-
-        tbody.innerHTML = html;
-
-            tbody.insertAdjacentHTML(
-
-                "beforeend",
-
-                `
-                <tr>
-
-                    <td>${event.timestamp}</td>
-
-                    <td>${badge}</td>
-
-                    <td>${event.source}</td>
-
-                    <td>${event.message}</td>
-
-                </tr>
-                `
-
-            );
-
-        }
+            tbody.innerHTML = html;
 
         } catch (error) {
 

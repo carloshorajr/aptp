@@ -1,5 +1,7 @@
 from backend.repositories.runtime_repository import RuntimeRepository
 
+from backend.services.boot_service import BootService
+
 from backend.services.event_service import EventService
 
 from backend.utils.datetime_utils import now
@@ -12,32 +14,24 @@ class RuntimeService:
 
         runtime = RuntimeRepository.load()
 
-        if runtime["running"]:
+        current_boot = BootService.boot_id()
 
-            EventService.warning(
+        current_hostname = BootService.hostname()
+
+        if runtime.get("boot_id") != current_boot:
+
+            EventService.info(
+
                 "Sistema",
-                "Inicialização após desligamento inesperado."
+
+                f"{current_hostname} reiniciado."
+
             )
 
-        runtime["running"] = True
+            runtime["boot_id"] = current_boot
 
-        runtime["last_start"] = now().isoformat()
+            runtime["hostname"] = current_hostname
 
-        RuntimeRepository.save(runtime)
+            runtime["last_boot"] = now().isoformat()
 
-        EventService.system_started()
-
-
-    @staticmethod
-    def application_stopped():
-
-        runtime = RuntimeRepository.load()
-
-        runtime["running"] = False
-
-        RuntimeRepository.save(runtime)
-
-        EventService.info(
-            "Sistema",
-            "Sonda encerrada."
-        )
+            RuntimeRepository.save(runtime)

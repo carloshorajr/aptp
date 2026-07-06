@@ -13,8 +13,9 @@ class RuntimeRepository:
         if not cls.FILE.exists():
 
             return {
-                "running": False,
-                "last_start": None
+                "boot_id": "",
+                "hostname": "",
+                "last_boot": ""
             }
 
         with open(cls.FILE, "r", encoding="utf-8") as f:

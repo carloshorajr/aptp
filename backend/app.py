@@ -1,5 +1,3 @@
-import atexit
-
 from flask import Flask, jsonify
 
 from backend.routes.dashboard import dashboard_bp
@@ -31,7 +29,3 @@ app.register_blueprint(api_bp)
 DatabaseInitializer.initialize()
 
 RuntimeService.application_started()
-
-atexit.register(
-    RuntimeService.application_stopped
-)

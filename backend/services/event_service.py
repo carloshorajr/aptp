@@ -12,22 +12,6 @@ from backend.constants.event_constants import EVENT_SOURCES
 class EventService:
 
     @staticmethod
-    def system_started():
-
-        EventService.info(
-            "Sistema",
-            "Sonda iniciada."
-        )
-
-    @staticmethod
-    def system_stopped():
-
-        EventService.info(
-            "Sistema",
-            "Sonda encerrada."
-        )
-
-    @staticmethod
     def info(source: str, message: str):
 
         EventRepository.add(

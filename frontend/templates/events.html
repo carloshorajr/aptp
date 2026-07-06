@@ -325,6 +325,29 @@ async function clearFilters() {
 
 async function clearEvents() {
 
+const tbody = document.getElementById(
+    "events-table-body"
+    );
+
+    if (!tbody || tbody.rows.length === 0) {
+
+        showModal({
+
+            title: "Nenhum Evento",
+
+            message:
+                "Não há eventos para apagar.",
+
+            showCancel: false,
+
+            confirmText: "OK"
+
+        });
+
+        return;
+
+    }
+
     showModal({
 
         title: "Apagar Eventos",
@@ -337,7 +360,7 @@ async function clearEvents() {
             await fetch(
                 "/events/clear",
                 {
-                    method:"POST"
+                    method: "POST"
                 }
             );
 

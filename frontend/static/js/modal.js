@@ -1,16 +1,32 @@
 let modalCallback = null;
 
-function showModal(options){
+function showModal(options) {
 
-    document
-        .getElementById("modal-title")
-        .textContent = options.title;
+    const title =
+        document.getElementById("modal-title");
 
-    document
-        .getElementById("modal-message")
-        .textContent = options.message;
+    const message =
+        document.getElementById("modal-message");
 
-    modalCallback = options.onConfirm;
+    const cancelButton =
+        document.getElementById("modal-cancel");
+
+    const confirmButton =
+        document.getElementById("modal-confirm");
+
+    title.textContent = options.title;
+
+    message.textContent = options.message;
+
+    modalCallback = options.onConfirm ?? null;
+
+    cancelButton.style.display =
+        options.showCancel === false
+            ? "none"
+            : "";
+
+    confirmButton.textContent =
+        options.confirmText ?? "Confirmar";
 
     document
         .getElementById("modal-overlay")
@@ -18,7 +34,7 @@ function showModal(options){
 
 }
 
-function hideModal(){
+function hideModal() {
 
     document
         .getElementById("modal-overlay")
@@ -42,7 +58,7 @@ window.addEventListener(
 
                 hideModal();
 
-                if(modalCallback){
+                if (modalCallback) {
 
                     await modalCallback();
 
@@ -58,7 +74,7 @@ window.addEventListener(
 
                 event => {
 
-                    if(event.target.id === "modal-overlay"){
+                    if (event.target.id === "modal-overlay") {
 
                         hideModal();
 
@@ -75,7 +91,7 @@ window.addEventListener(
 
                 event => {
 
-                    if(event.key === "Escape"){
+                    if (event.key === "Escape") {
 
                         hideModal();
 

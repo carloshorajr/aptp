@@ -213,6 +213,7 @@
                 type="submit",
                 css_class="btn-primary",
                 label="Aplicar",
+                icon="check",
                 onclick=None
             %}
             {% include "components/buttons/button.html" %}
@@ -223,6 +224,7 @@
                 type="button",
                 css_class="btn-outline",
                 label="Limpar",
+                icon="refresh",
                 onclick="clearFilters()"
             %}
             {% include "components/buttons/button.html" %}
@@ -233,6 +235,7 @@
                 type="button",
                 css_class="btn-danger",
                 label="Apagar",
+                icon="trash",
                 onclick="clearEvents()"
             %}
             {% include "components/buttons/button.html" %}
@@ -350,11 +353,11 @@ async function clearFilters() {
             message:
                 "Não há filtros selecionados para Limpar.",
 
-            icon: "eraser",
+            icon: "refresh",
 
-            iconClass: "neutral",
+            iconClass: "info",
 
-            confirmClass: "btn-outline",
+            confirmClass: "modal-btn-info",
 
             confirmText: "Entendi",
 
@@ -394,9 +397,9 @@ const tbody = document.getElementById(
 
             icon: "trash",
 
-            iconClass: "neutral",
+            iconClass: "info",
 
-            confirmClass: "btn-outline",
+            confirmClass: "modal-btn-info",
 
             confirmText: "Entendi",
 

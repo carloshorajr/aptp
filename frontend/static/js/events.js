@@ -181,11 +181,11 @@ const Events = {
                 message:
                     "Não há filtros selecionados para Aplicar.",
 
-                icon: "filter",
+                icon: "check",
 
-                iconClass: "neutral",
+                iconClass: "info",
 
-                confirmClass: "btn-outline",
+                confirmClass: "modal-btn-info",
 
                 confirmText: "Entendi",
 

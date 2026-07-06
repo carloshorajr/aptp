@@ -78,10 +78,15 @@
 
 .filter-buttons .btn{
     height:40px;
-    padding:0 22px;
+    padding:0 20px;
     display:flex;
     align-items:center;
     justify-content:center;
+    gap:8px;
+}
+
+.filter-buttons .btn i{
+    font-size:.90em;
 }
 
 .badge-info{

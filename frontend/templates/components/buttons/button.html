@@ -4,7 +4,13 @@
     href="{{ href }}"
     class="btn {{ css_class }}"
 >
-    {{ label }}
+
+    {% if icon %}
+        <i class="fa fa-{{ icon }}"></i>
+    {% endif %}
+
+    <span>{{ label }}</span>
+
 </a>
 
 {% else %}
@@ -16,7 +22,13 @@
     onclick="{{ onclick }}"
     {% endif %}
 >
-    {{ label }}
+
+    {% if icon %}
+        <i class="fa fa-{{ icon }}"></i>
+    {% endif %}
+
+    <span>{{ label }}</span>
+
 </button>
 
 {% endif %}

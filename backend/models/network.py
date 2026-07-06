@@ -3,9 +3,9 @@ from dataclasses import dataclass
 @dataclass
 class NetworkInterface:
 
-    interface: str      # eth0, wlan0
+    interface: str
 
-    description: str    # Ethernet, Wi-Fi
+    description: str
 
     ip: str | None
 

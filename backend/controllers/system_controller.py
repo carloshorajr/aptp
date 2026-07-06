@@ -14,8 +14,6 @@ class SystemController:
         settings = SettingsRepository.load()
 
         return {
-            "page_title": "Sistema",
-            "page_subtitle": "Informações da Sonda",
             "hostname": info["hostname"],
             "cpu": info["cpu_percent"],
             "memory": info["memory_percent"],

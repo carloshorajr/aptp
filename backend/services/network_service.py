@@ -13,7 +13,7 @@ class NetworkService:
 
         try:
 
-            result = CommandService.run(
+            line = CommandService.run(
 
                 [
                     "nmcli",
@@ -23,23 +23,18 @@ class NetworkService:
                     "device",
                     "show",
                     interface
-                ],
-
-                capture_output=True,
-
-                text=True,
-
-                check=True
+                ]
 
             )
 
-            line = result.stdout.strip()
+            if not line:
+                return None
 
             if ":" in line:
 
-                return line.split(":", 1)[1]
+                return line.split(":", 1)[1].strip()
 
-            return None
+            return line.strip()
 
         except Exception:
 

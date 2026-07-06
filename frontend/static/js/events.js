@@ -143,18 +143,72 @@ const Events = {
 
     },
 
-    submit(event) {
+    async submit(event) {
 
         event.preventDefault();
 
         const form = event.target;
 
+        const period =
+            form.elements.period.value;
+
+        const level =
+            form.elements.level.value;
+
+        const source =
+            form.elements.source.value;
+
+        const search =
+            form.elements.search.value.trim();
+
+        const limit =
+            form.elements.limit.value;
+
+        const isDefaultFilters =
+
+            period === "" &&
+            level === "" &&
+            source === "" &&
+            search === "" &&
+            limit === "20";
+
+        if (isDefaultFilters) {
+
+            showModal({
+
+                title: "Nenhum Filtro",
+
+                message:
+                    "Não há filtros selecionados para Aplicar.",
+
+                icon: "filter",
+
+                iconClass: "neutral",
+
+                confirmClass: "btn-outline",
+
+                confirmText: "Entendi",
+
+                showCancel: false
+
+            });
+
+            return;
+
+        }
+
         const params = new URLSearchParams(
             new FormData(form)
         );
 
-        window.location.href =
-            `/events?${params.toString()}`;
+        const link = document.querySelector(
+            '.menu a[data-route="/events"]'
+        );
+
+        await loadPage(
+            `/events?${params.toString()}`,
+            link
+        );
 
     },
 

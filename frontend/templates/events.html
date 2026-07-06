@@ -312,6 +312,60 @@
 
 async function clearFilters() {
 
+    const form = document.querySelector("form");
+
+    if (!form) {
+        return;
+    }
+
+    const period =
+        form.elements.period.value;
+
+    const level =
+        form.elements.level.value;
+
+    const source =
+        form.elements.source.value;
+
+    const search =
+        form.elements.search.value.trim();
+
+    const limit =
+        form.elements.limit.value;
+
+    const isDefaultFilters =
+
+        period === "" &&
+        level === "" &&
+        source === "" &&
+        search === "" &&
+        limit === "20";
+
+    if (isDefaultFilters) {
+
+        showModal({
+
+            title: "Nenhum Filtro",
+
+            message:
+                "Não há filtros selecionados para Limpar.",
+
+            icon: "eraser",
+
+            iconClass: "neutral",
+
+            confirmClass: "btn-outline",
+
+            confirmText: "Entendi",
+
+            showCancel: false
+
+        });
+
+        return;
+
+    }
+
     const link = document.querySelector(
         '.menu a[data-route="/events"]'
     );
@@ -336,11 +390,17 @@ const tbody = document.getElementById(
             title: "Nenhum Evento",
 
             message:
-                "Não há eventos para apagar.",
+                "Não há eventos para Apagar.",
 
-            showCancel: false,
+            icon: "trash",
 
-            confirmText: "OK"
+            iconClass: "neutral",
+
+            confirmClass: "btn-outline",
+
+            confirmText: "Entendi",
+
+            showCancel: false
 
         });
 
@@ -354,6 +414,14 @@ const tbody = document.getElementById(
 
         message:
             "Deseja realmente apagar todo o histórico de eventos?\n\nEsta ação não poderá ser desfeita.",
+
+        icon: "trash",
+
+        iconClass: "danger",
+
+        confirmClass: "btn-danger",
+
+        confirmText: "Apagar",
 
         onConfirm: async () => {
 

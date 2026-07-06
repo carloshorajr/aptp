@@ -18,6 +18,16 @@ function showModal(options) {
 
     message.textContent = options.message;
 
+    const modalIcon =
+    document.getElementById("modal-icon");
+
+    const modalIconSymbol =
+    document.getElementById("modal-icon-symbol");
+
+    modalIcon.className = `modal-icon modal-icon-${options.iconClass ?? "danger"}`;
+
+    modalIconSymbol.className = `fa fa-${options.icon ?? "trash"}`;
+
     modalCallback = options.onConfirm ?? null;
 
     cancelButton.style.display =
@@ -25,8 +35,9 @@ function showModal(options) {
             ? "none"
             : "";
 
-    confirmButton.textContent =
-        options.confirmText ?? "Confirmar";
+    confirmButton.textContent = options.confirmText ?? "Confirmar";
+
+    confirmButton.className = `btn ${options.confirmClass ?? "btn-danger"}`;
 
     document
         .getElementById("modal-overlay")

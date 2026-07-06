@@ -80,6 +80,22 @@
 
 }
 
+.modal-icon-danger{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.modal-icon-neutral{
+
+    background:#f3f4f6;
+
+    color:#475569;
+
+}
+
 
 /* ==========================================================
    TÍTULO

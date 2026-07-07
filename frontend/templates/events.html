@@ -225,7 +225,7 @@
                 css_class="btn-outline",
                 label="Limpar",
                 icon="refresh",
-                onclick="clearFilters()"
+                onclick="Events.clearFilters()"
             %}
             {% include "components/buttons/button.html" %}
             {% endwith %}
@@ -236,7 +236,7 @@
                 css_class="btn-danger",
                 label="Apagar",
                 icon="trash",
-                onclick="clearEvents()"
+                onclick="Events.clear()"
             %}
             {% include "components/buttons/button.html" %}
             {% endwith %}
@@ -310,146 +310,5 @@
     </div>
 
 </div>
-
-<script>
-
-async function clearFilters() {
-
-    const form = document.querySelector("form");
-
-    if (!form) {
-        return;
-    }
-
-    const period =
-        form.elements.period.value;
-
-    const level =
-        form.elements.level.value;
-
-    const source =
-        form.elements.source.value;
-
-    const search =
-        form.elements.search.value.trim();
-
-    const limit =
-        form.elements.limit.value;
-
-    const isDefaultFilters =
-
-        period === "" &&
-        level === "" &&
-        source === "" &&
-        search === "" &&
-        limit === "20";
-
-    if (isDefaultFilters) {
-
-        showModal({
-
-            title: "Nada a Limpar",
-
-            message:
-                "Não há filtros selecionados para Limpar.",
-
-            icon: "refresh",
-
-            iconClass: "info",
-
-            confirmClass: "modal-btn-info",
-
-            confirmText: "Entendi",
-
-            showCancel: false
-
-        });
-
-        return;
-
-    }
-
-    const link = document.querySelector(
-        '.menu a[data-route="/events"]'
-    );
-
-    await loadPage(
-        "/events",
-        link
-    );
-
-}
-
-async function clearEvents() {
-
-const tbody = document.getElementById(
-    "events-table-body"
-    );
-
-    if (!tbody || tbody.rows.length === 0) {
-
-        showModal({
-
-            title: "Nada a Apagar",
-
-            message:
-                "Não há eventos para Apagar.",
-
-            icon: "trash",
-
-            iconClass: "info",
-
-            confirmClass: "modal-btn-info",
-
-            confirmText: "Entendi",
-
-            showCancel: false
-
-        });
-
-        return;
-
-    }
-
-    showModal({
-
-        title: "Apagar Eventos",
-
-        message:
-            "Deseja realmente apagar todo o histórico de eventos?\n\nEsta ação não poderá ser desfeita.",
-
-        icon: "trash",
-
-        iconClass: "danger",
-
-        confirmClass: "btn-danger",
-
-        confirmText: "Apagar",
-
-        onConfirm: async () => {
-
-            await fetch(
-                "/events/clear",
-                {
-                    method: "POST"
-                }
-            );
-
-            const link = document.querySelector(
-                '.menu a[data-route="/events"]'
-            );
-
-            await loadPage(
-                "/events",
-                link
-            );
-
-        }
-
-    });
-
-}
-
-</script>
 
 {% endblock %}

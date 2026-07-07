@@ -36,8 +36,12 @@ async function loadPage(route, link, callback = null) {
     history.pushState({}, "", route);
 
     const page = route === "/"
+
         ? "dashboard"
-        : route.substring(1);
+
+        : route
+            .split("?")[0]
+            .substring(1);
 
     PageManager.init(page);
 

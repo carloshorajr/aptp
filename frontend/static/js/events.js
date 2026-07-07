@@ -179,13 +179,13 @@ const Events = {
                 title: "Nada a Aplicar",
 
                 message:
-                    "Não há filtros selecionados para Aplicar.",
+                    "Não há filtros a serem aplicados.",
 
                 icon: "check",
 
                 iconClass: "info",
 
-                confirmClass: "modal-btn-info",
+                confirmClass: "btn-outline",
 
                 confirmText: "Entendi",
 
@@ -207,13 +207,150 @@ const Events = {
 
         await loadPage(
 
-            "/events",
+            `/events?${params.toString()}`,
 
-            link,
-
-            null
+            link
 
         );
+
+    },
+
+    async clearFilters() {
+
+        const form = document.querySelector("form");
+
+        if (!form) {
+
+            return;
+
+        }
+
+        const period = form.elements.period.value;
+
+        const level = form.elements.level.value;
+
+        const source = form.elements.source.value;
+
+        const search = form.elements.search.value.trim();
+
+        const limit = form.elements.limit.value;
+
+        const isDefaultFilters =
+
+            period === "" &&
+            level === "" &&
+            source === "" &&
+            search === "" &&
+            limit === "20";
+
+        if (isDefaultFilters) {
+
+            showModal({
+
+                title: "Nada a Limpar",
+
+                message:
+                    "Não há filtros a serem limpos.",
+
+                icon: "refresh",
+
+                iconClass: "info",
+
+                confirmText: "Entendi",
+
+                confirmClass: "btn-outline",
+
+                showCancel: false
+
+            });
+
+            return;
+
+        }
+
+        const link = document.querySelector(
+            '.menu a[data-route="/events"]'
+        );
+
+        await loadPage(
+            "/events",
+            link
+        );
+
+    },
+
+    async clear() {
+
+        const tbody = document.getElementById(
+            "events-table-body"
+        );
+
+        if (!tbody || tbody.rows.length === 0) {
+
+            showModal({
+
+                title: "Nada a Apagar",
+
+                message:
+                    "Não há eventos a serem apagados.",
+
+                icon: "trash",
+
+                iconClass: "info",
+
+                confirmText: "Entendi",
+
+                confirmClass: "btn-outline",
+
+                showCancel: false
+
+            });
+
+            return;
+
+        }
+
+        showModal({
+
+            title: "Apagar Eventos",
+
+            message:
+                "Você deseja apagar todos os registros de eventos?\nEsta ação não poderá ser desfeita!",
+
+            icon: "trash",
+
+            iconClass: "danger",
+
+            confirmText: "Apagar",
+
+            confirmClass: "btn-danger",
+
+            onConfirm: async () => {
+
+                await fetch(
+
+                    "/events/clear",
+
+                    {
+
+                        method: "POST"
+
+                    }
+
+                );
+
+                const link = document.querySelector(
+                    '.menu a[data-route="/events"]'
+                );
+
+                await loadPage(
+                    "/events",
+                    link
+                );
+
+            }
+
+        });
 
     },
 

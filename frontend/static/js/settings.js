@@ -61,7 +61,7 @@ const Settings = {
                 title: "Nada a Salvar",
 
                 message:
-                    "Não há dados a serem salvos no formulário.",
+                    "Não há dados a serem salvos.",
 
                 icon: "save",
 
@@ -135,7 +135,7 @@ const Settings = {
                 title: "Nada a Apagar",
 
                 message:
-                    "O formulário já está vazio.",
+                    "Não há dados a serem apagados.",
 
                 icon: "trash",
 
@@ -155,10 +155,10 @@ const Settings = {
 
         showModal({
 
-            title: "Apagar Configurações",
+            title: "Apagar Informações",
 
             message:
-                "Deseja realmente apagar todas as informações do cliente?",
+                "Você deseja apagar todas as informações do cliente?\nEsta ação não poderá ser desfeita!",
 
             icon: "trash",
 

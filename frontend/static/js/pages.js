@@ -8,7 +8,9 @@ const PageManager = {
 
         system: System,
 
-        events: Events
+        events: Events,
+
+        settings: Settings
 
     },
 

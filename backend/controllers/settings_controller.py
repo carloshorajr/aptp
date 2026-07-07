@@ -1,6 +1,5 @@
 from backend.repositories.settings_repository import SettingsRepository
 
-from backend.services.event_service import EventService
 from backend.services.system_service import SystemService
 
 from backend.services.application_service import ApplicationService
@@ -30,8 +29,14 @@ class SettingsController:
         settings.update_from_form(form)
 
         SettingsRepository.save(settings)
+  
+    @staticmethod
+    def clear():
 
-        EventService.info(
-            source="Configurações",
-            message="Configurações atualizadas."
-        )
+        settings = SettingsRepository.load()
+
+        settings.cliente = ""
+        settings.local = ""
+        settings.descricao = ""
+
+        SettingsRepository.save(settings)

@@ -1,44 +1,274 @@
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
 .btn{
+
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
+
+    gap:8px;
+
     height:44px;
+
     padding:0 18px;
+
     border-radius:10px;
+
     font-size:15px;
+
     font-weight:600;
+
     cursor:pointer;
+
     text-decoration:none;
+
     box-sizing:border-box;
+
     transition:.2s;
+
 }
 
 .btn-primary{
+
     background:#2563eb;
-    color:white;
+
+    color:#fff;
+
     border:none;
+
 }
 
 .btn-primary:hover{
+
     background:#1d4ed8;
+
 }
 
 .btn-danger{
+
     background:#dc2626;
+
     color:#fff;
+
     border:none;
+
 }
 
 .btn-danger:hover{
+
     background:#b91c1c;
+
 }
 
 .btn-outline{
-    background:white;
+
+    background:#fff;
+
     color:#44536a;
+
     border:1px solid #cfd7e6;
+
 }
 
 .btn-outline:hover{
+
     background:#f4f7fb;
+
+}
+
+
+/* ==========================================================
+   CONFIGURAÇÕES
+========================================================== */
+
+.settings-panel{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:28px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.settings-section{
+
+    margin-bottom:30px;
+
+}
+
+.settings-section h3{
+
+    margin:0 0 22px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #d8e2ef;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    color:#1e3a8a;
+
+}
+
+
+/* ==========================================================
+   FORMULÁRIO
+========================================================== */
+
+.settings-form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.settings-form-group label{
+
+    margin-bottom:8px;
+
+    font-size:15px;
+
+    color:#475569;
+
+}
+
+.settings-form-group input,
+
+.settings-form-group textarea{
+
+    width:100%;
+
+    padding:10px 12px;
+
+    border:1px solid #d7dce5;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+
+    background:#fff;
+
+    outline:none;
+
+    font-size:14px;
+
+    font-family:inherit;
+
+    transition:border-color .2s,
+               background .2s,
+               box-shadow .2s;
+
+}
+
+.settings-form-group input{
+
+    height:40px;
+
+}
+
+.settings-form-group textarea{
+
+    min-height:120px;
+
+    resize:none;
+
+    overflow:hidden;
+
+    line-height:1.5;
+
+}
+
+.settings-form-group input:hover,
+
+.settings-form-group textarea:hover{
+
+    border-color:#93c5fd;
+
+    background:#f8fbff;
+
+}
+
+.settings-form-group input:focus,
+
+.settings-form-group textarea:focus{
+
+    border-color:#2563eb;
+
+    background:#fff;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+}
+
+
+/* ==========================================================
+   AÇÕES
+========================================================== */
+
+.settings-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:flex-end;
+
+    gap:10px;
+
+    margin-top:28px;
+
+}
+
+.settings-actions .btn{
+
+    width:114px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:0;
+
+}
+
+.settings-actions .btn i{
+
+    font-size:.90em;
+
+}
+
+/* ==========================================================
+   RESPONSIVIDADE
+========================================================== */
+
+@media (max-width:768px){
+
+    .settings-panel{
+
+        padding:20px;
+
+    }
+
 }

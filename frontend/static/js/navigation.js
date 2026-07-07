@@ -1,4 +1,4 @@
-async function loadPage(route, link) {
+async function loadPage(route, link, callback = null) {
 
     document
         .querySelectorAll(".menu a")
@@ -46,6 +46,12 @@ async function loadPage(route, link) {
         currentContent.classList.remove("is-loading");
 
         hideLoader();
+
+        if (typeof callback === "function") {
+
+            callback();
+
+        }
 
     });
 

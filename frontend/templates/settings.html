@@ -2,30 +2,20 @@
 
 {% block content %}
 
-<div class="settings-grid">
+<div class="settings-panel">
 
-    <div class="card">
+    <form
+        id="settings-form"
+        method="post"
+    >
 
-        <h2>Informações Gerais</h2>
+        <div class="settings-section">
 
-        <form method="post">
+            <h3>CLIENTE</h3>
 
-            <div class="form-group">
+            <div class="settings-form-group">
 
-                <label>Nome da Sonda</label>
-
-                <input
-                    type="text"
-                    value="{{ hostname }}"
-                    readonly
-                    style="background:#f5f7fb;color:#6b7280;"
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Cliente</label>
+                <label>Nome do Cliente</label>
 
                 <input
                     type="text"
@@ -35,7 +25,7 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="settings-form-group">
 
                 <label>Endereço</label>
 
@@ -47,83 +37,47 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="settings-form-group">
 
-                <label>Descritivo</label>
+                <label>Descrição</label>
 
                 <textarea
-                    rows="4"
+                    id="descricao"
                     name="descricao"
+                    rows="4"
                 >{{ settings.descricao }}</textarea>
 
             </div>
 
-    </div>
+        </div>
 
-    <div class="card">
+        <div class="settings-actions">
 
-        <h2>Comunicação</h2>
+            {% with
+                href=None,
+                type="button",
+                css_class="btn-primary",
+                label="Salvar",
+                icon="save",
+                onclick="Settings.save()"
+            %}
+            {% include "components/buttons/button.html" %}
+            {% endwith %}
 
-        <div class="form-group">
-
-            <label>UUID</label>
-
-                <input
-                    type="text"
-                    name="uuid"
-                    value="{{ settings.uuid }}"
-                    readonly
-                >
+            {% with
+                href=None,
+                type="button",
+                css_class="btn-danger",
+                label="Apagar",
+                icon="trash",
+                onclick="Settings.clear()"
+            %}
+            {% include "components/buttons/button.html" %}
+            {% endwith %}
 
         </div>
 
-        <div class="form-row">
-
-            <div class="form-group">
-
-                <label>Heartbeat (s)</label>
-
-                <input
-                    type="number"
-                    name="heartbeat"
-                    value="{{ settings.heartbeat }}"
-                    min="10"
-                    max="3600"
-                    step="1"
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Coleta (s)</label>
-
-                <input
-                    type="number"
-                    name="coleta"
-                    value="{{ settings.coleta }}"
-                    min="5"
-                    max="3600"
-                    step="1"
-                >
-
-            </div>
-
-        </div>
-
-        {% with
-            href=None,
-            type="submit",
-            css_class="btn-primary",
-            label="Salvar Configurações",
-            onclick=None
-        %}
-        {% include "components/buttons/button.html" %}
-        {% endwith %}
-
-        </form>
-
-    </div>
+    </form>
 
 </div>
 

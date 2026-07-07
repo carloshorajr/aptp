@@ -17,3 +17,10 @@ def settings():
         current_page=request.path,
         **SettingsController.get_page_data()
     )
+
+@settings_bp.route("/settings/clear", methods=["POST"])
+def clear_settings():
+
+    SettingsController.clear()
+
+    return redirect("/settings")

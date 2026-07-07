@@ -206,8 +206,13 @@ const Events = {
         );
 
         await loadPage(
-            `/events?${params.toString()}`,
-            link
+
+            "/events",
+
+            link,
+
+            null
+
         );
 
     },

@@ -15,6 +15,7 @@ class SystemController:
 
         return {
             "hostname": info["hostname"],
+            "uuid": settings.uuid,
             "cpu": info["cpu_percent"],
             "memory": info["memory_percent"],
             "disk": SystemService.get_disk_usage(),

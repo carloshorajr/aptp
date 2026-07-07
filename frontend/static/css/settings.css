@@ -77,12 +77,12 @@
 }
 
 .btn-outline:hover{
-    background:#eff6ff;
-    border-color:#3b82f6;
+    background:#ffffff;
+    border:1px solid #2563eb;
     color:#44536a;
+    box-shadow:0 0 0 3px rgba(37,99,235,.18);
     transform:translateY(-1px);
 }
-
 
 /* ==========================================================
    CONFIGURAÇÕES

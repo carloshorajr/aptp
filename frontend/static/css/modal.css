@@ -39,13 +39,13 @@
 
     max-width:92vw;
 
-    background:#fff;
+    background:#232B38;
 
     border-radius:18px;
 
     padding:32px;
 
-    box-shadow:0 24px 60px rgba(15,23,42,.20);
+    box-shadow:0 24px 60px rgba(15,23,42,.35);
 
     animation:modalIn .18s ease;
 
@@ -111,7 +111,7 @@
 
     font-weight:700;
 
-    color:#1e3a8a;
+    color:#ffffff;
 
     margin:0;
 
@@ -126,7 +126,7 @@
 
     height:1px;
 
-    background:#e5edf8;
+    background:rgba(255,255,255,.12);
 
     margin:22px 0;
 
@@ -141,7 +141,7 @@
 
     text-align:center;
 
-    color:#475569;
+    color:#d7dee9;
 
     font-size:16px;
 

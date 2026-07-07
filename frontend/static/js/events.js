@@ -176,7 +176,7 @@ const Events = {
 
             showModal({
 
-                title: "Nenhum Filtro",
+                title: "Nada a Aplicar",
 
                 message:
                     "Não há filtros selecionados para Aplicar.",

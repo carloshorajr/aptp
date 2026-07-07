@@ -58,7 +58,7 @@ const Settings = {
 
             showModal({
 
-                title: "Formulário Vazio",
+                title: "Nada a Salvar",
 
                 message:
                     "Não há dados a serem salvos no formulário.",
@@ -132,7 +132,7 @@ const Settings = {
 
             showModal({
 
-                title: "Nada para Apagar",
+                title: "Nada a Apagar",
 
                 message:
                     "O formulário já está vazio.",

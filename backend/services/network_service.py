@@ -144,7 +144,11 @@ class NetworkService:
 
             active = parts[0] == "yes"
 
-            ssid = parts[1]
+            ssid = parts[1].strip()
+
+            if not ssid:
+
+                continue
 
             signal = int(parts[2]) if parts[2].isdigit() else 0
 

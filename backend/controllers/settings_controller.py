@@ -4,6 +4,8 @@ from backend.services.system_service import SystemService
 
 from backend.services.application_service import ApplicationService
 
+from backend.services.network_service import NetworkService
+
 class SettingsController:
 
     @staticmethod
@@ -40,3 +42,19 @@ class SettingsController:
         settings.descricao = ""
 
         SettingsRepository.save(settings)
+    
+    @staticmethod
+    def scan_wifi():
+
+        return [
+
+                {
+                    "ssid": network.ssid,
+                    "connected": network.connected,
+                    "signal": network.signal,
+                    "security": network.security
+                }
+
+                for network in NetworkService.scan_wifi()
+
+            ]

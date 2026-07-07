@@ -187,7 +187,7 @@ const Events = {
 
                 confirmClass: "btn-outline",
 
-                confirmText: "Entendi",
+                confirmText: "Cancelar",
 
                 showCancel: false
 
@@ -256,7 +256,7 @@ const Events = {
 
                 iconClass: "info",
 
-                confirmText: "Entendi",
+                confirmText: "Cancelar",
 
                 confirmClass: "btn-outline",
 
@@ -298,7 +298,7 @@ const Events = {
 
                 iconClass: "info",
 
-                confirmText: "Entendi",
+                confirmText: "Cancelar",
 
                 confirmClass: "btn-outline",
 
@@ -315,7 +315,7 @@ const Events = {
             title: "Apagar Eventos",
 
             message:
-                "Você deseja apagar todos os registros de eventos?\nEsta ação não poderá ser desfeita!",
+                "Você deseja apagar todo o registro de eventos?\nEsta ação não poderá ser desfeita!",
 
             icon: "trash",
 

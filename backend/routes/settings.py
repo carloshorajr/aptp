@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, flash
+from flask import Blueprint, render_template, request, redirect, flash, jsonify
 
 from backend.controllers.settings_controller import SettingsController
 
@@ -24,3 +24,15 @@ def clear_settings():
     SettingsController.clear()
 
     return redirect("/settings")
+
+@settings_bp.route(
+    "/settings/wifi/scan",
+    methods=["POST"]
+)
+def scan_wifi():
+
+    return jsonify(
+
+        SettingsController.scan_wifi()
+
+    )

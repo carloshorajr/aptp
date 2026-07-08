@@ -192,3 +192,8 @@ class NetworkService:
     def get_cached_networks():
 
         return NetworkService._cached_networks
+    
+    @staticmethod
+    def clear_cache():
+
+        NetworkService._cached_networks = []

@@ -8,7 +8,29 @@
 
     justify-content:flex-end;
 
+    align-items:center;
+
+    gap:10px;
+
     margin:18px 0 20px;
+
+}
+
+.wifi-toolbar .btn{
+
+    width:124px;
+
+    height:40px;
+
+    padding:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
 
 }
 

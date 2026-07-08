@@ -50,6 +50,64 @@ const Network = {
 
     },
 
+    async clear() {
+
+        const rows =
+            document.querySelectorAll(".wifi-item");
+
+        if (rows.length === 0) {
+
+            showModal({
+
+                title: "Nada a Limpar",
+
+                message:
+                    "Não há redes para limpar.",
+
+                icon: "refresh",
+
+                iconClass: "info",
+
+                confirmText: "Sair",
+
+                confirmClass: "btn-outline",
+
+                showCancel: false
+
+            });
+
+            return;
+
+        }
+
+        await fetch(
+
+            "/network/clear",
+
+            {
+
+                method: "POST"
+
+            }
+
+        );
+
+        const link = document.querySelector(
+
+            '.menu a[data-route="/network"]'
+
+        );
+
+        await loadPage(
+
+            "/network",
+
+            link
+
+        );
+
+    },
+
     renderWifiList(networks) {
 
         const list =

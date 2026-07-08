@@ -26,3 +26,13 @@ def scan_network():
     NetworkController.scan()
 
     return ("", 204)
+
+@network_bp.route(
+    "/network/clear",
+    methods=["POST"]
+)
+def clear_network():
+
+    NetworkController.clear()
+
+    return ("", 204)

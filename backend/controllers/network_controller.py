@@ -16,3 +16,8 @@ class NetworkController:
     def scan():
 
         return NetworkService.scan_and_cache()
+    
+    @staticmethod
+    def clear():
+
+        NetworkService.clear_cache()

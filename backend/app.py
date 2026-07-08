@@ -6,6 +6,7 @@ from backend.routes.metrics import metrics_bp
 from backend.routes.events import events_bp
 from backend.routes.system import system_bp
 from backend.routes.api import api_bp
+from backend.routes.network import network_bp
 
 from backend.services.runtime_service import RuntimeService
 
@@ -25,6 +26,7 @@ app.register_blueprint(metrics_bp)
 app.register_blueprint(events_bp)
 app.register_blueprint(system_bp)
 app.register_blueprint(api_bp)
+app.register_blueprint(network_bp)
 
 DatabaseInitializer.initialize()
 

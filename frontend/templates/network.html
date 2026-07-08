@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="settings-panel">
+
+    <div class="settings-section">
+
+        <h3>WIFI</h3>
+
+            <div class="wifi-toolbar">
+
+                {% with
+                    href=None,
+                    type="button",
+                    css_class="btn-primary",
+                    label="Escanear",
+                    icon="wifi",
+                    onclick="Network.scanWifi()"
+                %}
+                {% include "components/buttons/button.html" %}
+                {% endwith %}
+
+            </div>
+
+            <div class="wifi-table">
+
+                <div class="wifi-header">
+
+                    <span>SSID</span>
+
+                </div>
+
+                <div id="wifi-list">
+
+                    <div class="wifi-empty">
+
+                        Clique em "Escanear" para mostrar as redes WiFi disponíveis.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

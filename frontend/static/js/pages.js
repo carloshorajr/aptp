@@ -6,6 +6,8 @@ const PageManager = {
 
         dashboard: Dashboard,
 
+        network: Network,
+
         system: System,
 
         events: Events,

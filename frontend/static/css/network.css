@@ -98,7 +98,7 @@
 
     color:#334155;
 
-    font-weight:600;
+    font-weight:400;
 
 }
 
@@ -141,5 +141,62 @@
     text-align:center;
 
     color:#64748b;
+
+}
+
+/* ==========================================================
+   ESCANEAMENTO
+========================================================== */
+
+#wifi-list{
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+
+}
+
+#wifi-list.wifi-loading{
+
+    opacity:.35;
+
+    transform:translateY(4px);
+
+}
+
+.wifi-scanning{
+
+    background:#d97706 !important;
+
+    border-color:#d97706 !important;
+
+    color:#ffffff;
+
+    cursor:wait;
+
+    transition:
+        background .20s ease,
+        border-color .20s ease,
+        color .20s ease;
+
+}
+
+.wifi-scanning span{
+
+    display:none;
+
+}
+
+.wifi-scanning i{
+
+    margin:0;
+
+}
+
+#scan-wifi-button{
+
+    width:128px;
+
+    justify-content:center;
 
 }

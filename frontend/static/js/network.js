@@ -1,7 +1,5 @@
 const Network = {
 
-    networks: [],
-
     init() {
 
     },
@@ -12,21 +10,43 @@ const Network = {
 
     async scanWifi() {
 
-        const response = await fetch(
+        this.setScanningState(true);
 
-            "/settings/wifi/scan",
+        try {
 
-            {
+            await fetch(
 
-                method: "POST"
+                "/network/scan",
 
-            }
+                {
 
-        );
+                    method: "POST"
 
-        const networks = await response.json();
+                }
 
-        this.renderWifiList(networks);
+            );
+
+            const link = document.querySelector(
+
+                '.menu a[data-route="/network"]'
+
+            );
+
+            await loadPage(
+
+                "/network",
+
+                link
+
+            );
+
+        }
+
+        finally {
+
+            this.setScanningState(false);
+
+        }
 
     },
 
@@ -35,8 +55,6 @@ const Network = {
         const list =
             document.getElementById("wifi-list");
         
-        this.networks = networks;
-
         list.innerHTML = "";
 
         if (networks.length === 0) {
@@ -107,9 +125,23 @@ const Network = {
 
     },
 
-    showWifiDetails(index) {
+    showWifiDetails(button) {
 
-        const network = this.networks[index];
+        const network = {
+
+            ssid:
+                button.dataset.ssid,
+
+            security:
+                button.dataset.security,
+
+            signal:
+                button.dataset.signal,
+
+            connected:
+                button.dataset.connected === "true"
+
+        };
 
         if (!network) {
 
@@ -128,7 +160,7 @@ const Network = {
 
             iconClass: "info",
 
-            confirmText: "Entendi",
+            confirmText: "Sair",
 
             confirmClass: "btn-outline",
 
@@ -138,15 +170,17 @@ const Network = {
 
     },
 
-    toggleWifi(index) {
+    toggleWifi(button) {
 
-        const network = this.networks[index];
+        const network = {
 
-        if (!network) {
+            ssid:
+                button.dataset.ssid,
 
-            return;
+            connected:
+                button.dataset.connected === "true"
 
-        }
+        };
 
         showModal({
 
@@ -159,13 +193,49 @@ const Network = {
 
             iconClass: "info",
 
-            confirmText: "Entendi",
+            confirmText: "Sair",
 
             confirmClass: "btn-outline",
 
             showCancel: false
 
         });
+
+    },
+
+    destroy() {
+
+    },
+
+    setScanningState(scanning) {
+
+        const button =
+            document.getElementById("scan-wifi-button");
+
+        if (!button) {
+
+            return;
+
+        }
+
+        const icon =
+            button.querySelector("i");
+
+        const label =
+            button.querySelector("span");
+
+        button.classList.toggle(
+            "wifi-scanning",
+            scanning
+        );
+
+        icon.className = scanning
+            ? "fa fa-spinner fa-spin"
+            : "fa fa-wifi";
+
+        label.style.display = "";
+
+        button.disabled = scanning;
 
     },
 

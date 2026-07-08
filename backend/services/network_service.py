@@ -8,6 +8,8 @@ from backend.services.command_service import CommandService
 
 class NetworkService:
 
+    _cached_networks = []
+
     @staticmethod
     def get_wifi_ssid(interface):
 
@@ -175,3 +177,18 @@ class NetworkService:
             )
 
         return networks
+    
+    @staticmethod
+    def scan_and_cache():
+
+        NetworkService._cached_networks = (
+            NetworkService.scan_wifi()
+        )
+
+        return NetworkService._cached_networks
+
+
+    @staticmethod
+    def get_cached_networks():
+
+        return NetworkService._cached_networks

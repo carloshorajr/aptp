@@ -67,7 +67,7 @@ const Settings = {
 
                 iconClass: "info",
 
-                confirmText: "Cancelar",
+                confirmText: "Sair",
 
                 confirmClass: "btn-outline",
 
@@ -141,7 +141,7 @@ const Settings = {
 
                 iconClass: "info",
 
-                confirmText: "Cancelar",
+                confirmText: "Sair",
 
                 confirmClass: "btn-outline",
 

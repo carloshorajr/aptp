@@ -10,16 +10,22 @@
 
             <div class="wifi-toolbar">
 
-                {% with
-                    href=None,
-                    type="button",
-                    css_class="btn-primary",
-                    label="Escanear",
-                    icon="wifi",
-                    onclick="Network.scanWifi()"
-                %}
-                {% include "components/buttons/button.html" %}
-                {% endwith %}
+                <div class="wifi-toolbar">
+
+                    <button
+                        id="scan-wifi-button"
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="Network.scanWifi()"
+                    >
+
+                        <i class="fa fa-wifi"></i>
+
+                        <span>Escanear</span>
+
+                    </button>
+
+                </div>
 
             </div>
 
@@ -33,11 +39,68 @@
 
                 <div id="wifi-list">
 
-                    <div class="wifi-empty">
+                    {% if networks %}
 
-                        Clique em "Escanear" para mostrar as redes WiFi disponíveis.
+                        {% for network in networks %}
 
-                    </div>
+                        <div class="wifi-item">
+
+                            <span class="wifi-ssid">
+
+                                {{ network.ssid }}
+
+                            </span>
+
+                            <div class="wifi-actions">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline wifi-icon-btn"
+                                    title="Detalhes"
+
+                                    data-ssid="{{ network.ssid }}"
+                                    data-security="{{ network.security }}"
+                                    data-signal="{{ network.signal }}"
+                                    data-connected="{{ network.connected|lower }}"
+
+                                    onclick="Network.showWifiDetails(this)"
+                                >
+
+                                    <i class="fa fa-info-circle"></i>
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn {% if network.connected %}btn-danger{% else %}btn-primary{% endif %} wifi-icon-btn"
+
+                                    title="{% if network.connected %}Desconectar{% else %}Conectar{% endif %}"
+
+                                    data-ssid="{{ network.ssid }}"
+                                    data-connected="{{ network.connected|lower }}"
+
+                                    onclick="Network.toggleWifi(this)"
+                                >
+
+                                    <i class="fa fa-{% if network.connected %}chain-broken{% else %}plug{% endif %}"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="wifi-empty">
+
+                            Clique em "Escanear" para mostrar as redes WiFi disponíveis.
+
+                        </div>
+
+                    {% endif %}
 
                 </div>
 

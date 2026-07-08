@@ -187,7 +187,7 @@ const Events = {
 
                 confirmClass: "btn-outline",
 
-                confirmText: "Cancelar",
+                confirmText: "Sair",
 
                 showCancel: false
 
@@ -256,7 +256,7 @@ const Events = {
 
                 iconClass: "info",
 
-                confirmText: "Cancelar",
+                confirmText: "Sair",
 
                 confirmClass: "btn-outline",
 
@@ -298,7 +298,7 @@ const Events = {
 
                 iconClass: "info",
 
-                confirmText: "Cancelar",
+                confirmText: "Sair",
 
                 confirmClass: "btn-outline",
 

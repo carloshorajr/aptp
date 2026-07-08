@@ -62,7 +62,7 @@ const Network = {
                 title: "Nada a Limpar",
 
                 message:
-                    "Não há redes para limpar.",
+                    "Não há redes escaneadas para limpar.",
 
                 icon: "refresh",
 

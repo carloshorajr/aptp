@@ -47,11 +47,21 @@
 
                         <div class="wifi-item">
 
-                            <span class="wifi-ssid">
+                            <div class="wifi-network">
 
-                                {{ network.ssid }}
+                                <span class="wifi-ssid">
 
-                            </span>
+                                    {{ network.ssid }}
+
+                                </span>
+
+                                <span class="wifi-band {% if network.frequency >= 5000 %}wifi-band-5{% else %}wifi-band-24{% endif %}">
+
+                                    {{ network.band }}
+
+                                </span>
+
+                            </div>
 
                             <div class="wifi-actions">
 

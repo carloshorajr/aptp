@@ -122,6 +122,62 @@
 
     font-weight:400;
 
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.wifi-network{
+
+    display:grid;
+
+    grid-template-columns:180px 70px;
+
+    align-items:center;
+
+}
+
+.wifi-band{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:62px;
+
+    height:22px;
+
+    padding:0 8px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    letter-spacing:.02em;
+
+}
+
+.wifi-band-24{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.wifi-band-5{
+
+    background:#ffedd5;
+
+    color:#c2410c;
+
 }
 
 .wifi-actions{
@@ -188,9 +244,9 @@
 
 .wifi-scanning{
 
-    background:#d97706 !important;
+    background:#f0bc13 !important;
 
-    border-color:#d97706 !important;
+    border-color:#f0bc13 !important;
 
     color:#ffffff;
 

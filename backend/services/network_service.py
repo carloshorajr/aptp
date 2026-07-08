@@ -123,7 +123,7 @@ class NetworkService:
                 "nmcli",
                 "-t",
                 "-f",
-                "ACTIVE,SSID,SIGNAL,SECURITY",
+                "ACTIVE,SSID,FREQ,CHAN,SIGNAL,SECURITY",
                 "device",
                 "wifi",
                 "list"
@@ -141,7 +141,7 @@ class NetworkService:
 
             parts = line.split(":")
 
-            if len(parts) < 4:
+            if len(parts) < 6:
                 continue
 
             active = parts[0] == "yes"
@@ -152,9 +152,13 @@ class NetworkService:
 
                 continue
 
-            signal = int(parts[2]) if parts[2].isdigit() else 0
+            frequency = int(parts[2].split()[0])
 
-            security = parts[3]
+            channel = int(parts[3]) if parts[3].isdigit() else 0
+
+            signal = int(parts[4]) if parts[4].isdigit() else 0
+
+            security = parts[5]
 
             networks.append(
 
@@ -166,15 +170,31 @@ class NetworkService:
 
                     security=security,
 
-                    frequency=0,
+                    frequency=frequency,
 
-                    channel=0,
+                    channel=channel,
 
                     connected=active
 
                 )
 
             )
+
+        networks.sort(
+
+            key=lambda network: (
+
+                not network.connected,
+
+                network.ssid.lower(),
+
+                0 if network.frequency >= 5000 else 1,
+
+                -network.signal
+
+            )
+
+        )
 
         return networks
     

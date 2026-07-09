@@ -374,15 +374,11 @@ MODAL CONECTAR WIFI
 
 .wifi-password{
 
-    display:grid;
+    position:relative;
 
-    grid-template-columns:1fr 44px;
+    width:284px;
 
-    align-items:center;
-
-    column-gap:10px;
-
-    width:100%;
+    margin:0 auto;
 
 }
 
@@ -392,7 +388,7 @@ MODAL CONECTAR WIFI
 
     height:40px;
 
-    padding:0 12px;
+    padding:0 44px 0 12px;
 
     border:1px solid #bfdbfe;
 
@@ -406,15 +402,25 @@ MODAL CONECTAR WIFI
 
     outline:none;
 
+    box-sizing:border-box;
+
 }
 
 .wifi-password-toggle{
 
-    width:44px;
+    position:absolute;
 
-    height:40px;
+    top:50%;
 
-    flex-shrink:0;
+    right:10px;
+
+    transform:translateY(-50%);
+
+    width:24px;
+
+    height:24px;
+
+    padding:0;
 
     display:flex;
 
@@ -422,11 +428,9 @@ MODAL CONECTAR WIFI
 
     align-items:center;
 
-    border:1px solid #bfdbfe;
+    border:none;
 
-    border-radius:8px;
-
-    background:#ffffff;
+    background:transparent;
 
     color:#475569;
 

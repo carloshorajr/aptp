@@ -1,5 +1,5 @@
 /* ==========================================================
-   WIFI
+WIFI
 ========================================================== */
 
 .wifi-toolbar{
@@ -38,7 +38,7 @@
 }
 
 /* ==========================================================
-   TABELA WIFI
+TABELA WIFI
 ========================================================== */
 
 .wifi-table{
@@ -226,7 +226,7 @@
 }
 
 /* ==========================================================
-   ESCANEAMENTO
+ESCANEAMENTO
 ========================================================== */
 
 #wifi-list{
@@ -283,7 +283,7 @@
 }
 
 /* ==========================================================
-   MODAL WIFI
+MODAL WIFI
 ========================================================== */
 
 .wifi-details{
@@ -357,5 +357,79 @@
 .settings-panel.network-panel{
 
     padding-bottom:2px;
+
+}
+
+/* ==========================================================
+MODAL CONECTAR WIFI
+========================================================== */
+
+.wifi-connect{
+
+    width:282px;
+
+    margin:8px auto 0;
+
+}
+
+.wifi-password{
+
+    display:grid;
+
+    grid-template-columns:1fr 44px;
+
+    align-items:center;
+
+    column-gap:10px;
+
+    width:100%;
+
+}
+
+.wifi-password input{
+
+    width:100%;
+
+    height:40px;
+
+    padding:0 12px;
+
+    border:1px solid #bfdbfe;
+
+    border-radius:8px;
+
+    background:#ffffff;
+
+    color:#1e293b;
+
+    font-size:14px;
+
+    outline:none;
+
+}
+
+.wifi-password-toggle{
+
+    width:44px;
+
+    height:40px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid #bfdbfe;
+
+    border-radius:8px;
+
+    background:#ffffff;
+
+    color:#475569;
+
+    cursor:pointer;
 
 }

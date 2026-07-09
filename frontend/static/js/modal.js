@@ -20,10 +20,6 @@ function showModal(options) {
 
         message.innerHTML = options.message.trim();
 
-/*         message.style.textAlign = options.allowHtml
-            ? "left"
-            : ""; */
-        
         message.className = "modal-message";
 
         if (options.messageClass){
@@ -64,6 +60,12 @@ function showModal(options) {
         options.showCancel === false
             ? "none"
             : "";
+    
+    cancelButton.textContent =
+        options.cancelText ?? "Cancelar";
+
+    cancelButton.className =
+        `btn ${options.cancelClass ?? "btn-outline"}`;
 
     confirmButton.textContent = options.confirmText ?? "Confirmar";
 

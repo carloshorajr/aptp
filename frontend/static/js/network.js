@@ -167,7 +167,7 @@ const Network = {
                             onclick="Network.toggleWifi(${index})"
                         >
 
-                            <i class="fa fa-${network.connected ? "chain-broken" : "plug"}"></i>
+                            <i class="fa fa-${network.connected ? "unlink" : "plug"}"></i>
 
                         </button>
 
@@ -303,18 +303,48 @@ const Network = {
 
             title: network.ssid,
 
-            message:
-                "A conexão com redes Wi-Fi será implementada no próximo sprint.",
+            allowHtml: true,
+
+            messageClass: "wifi-modal-message",
+
+            message: `
+
+                <div class="wifi-connect">
+
+                    <div class="wifi-password">
+
+                        <input
+                            id="wifi-password"
+                            type="password"
+                            placeholder="Digite a senha">
+
+                        <button
+                            type="button"
+                            class="wifi-password-toggle">
+
+                            <i class="fa fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `,
 
             icon: "wifi",
 
             iconClass: "info",
 
-            confirmText: "Sair",
+            cancelText: "Conectar",
+            
+            cancelClass: "btn-primary",
 
+            confirmText: "Sair",
+            
             confirmClass: "btn-outline",
 
-            showCancel: false
+            showCancel: true
 
         });
 

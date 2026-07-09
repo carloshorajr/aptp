@@ -2,40 +2,13 @@
 
 {% block content %}
 
-<div class="settings-panel">
+<div class="settings-panel network-panel">
 
     <div class="settings-section">
 
-        <h3>WIFI</h3>
+        <h3>AUTOCONEXÃO</h3>
 
-            <div class="wifi-toolbar">
-
-                <button
-                    id="scan-wifi-button"
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="Network.scanWifi()"
-                >
-
-                    <i class="fa fa-wifi"></i>
-
-                    <span>Escanear</span>
-
-                </button>
-
-                <button
-                    type="button"
-                    class="btn btn-outline"
-                    onclick="Network.clear()"
-                >
-
-                    <i class="fa fa-refresh"></i>
-
-                    <span>Limpar</span>
-
-                </button>
-
-            </div>
+        <h3>REDES WIFI</h3>
 
             <div class="wifi-table">
 
@@ -118,6 +91,35 @@
                     {% endif %}
 
                 </div>
+
+            </div>
+
+            <div class="wifi-toolbar">
+
+                <button
+                    id="scan-wifi-button"
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="Network.scanWifi()"
+                >
+
+                    <i class="fa fa-wifi"></i>
+
+                    <span>Escanear</span>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="Network.clear()"
+                >
+
+                    <i class="fa fa-refresh"></i>
+
+                    <span>Limpar</span>
+
+                </button>
 
             </div>
 

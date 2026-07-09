@@ -12,7 +12,10 @@
 
     gap:10px;
 
-    margin:18px 0 20px;
+    margin-top:16px;
+    margin-right:0;
+    margin-bottom:-14px;
+    margin-left:0
 
 }
 
@@ -348,5 +351,11 @@
     line-height: normal;
 
     text-align:center;
+
+}
+
+.settings-panel.network-panel{
+
+    padding-bottom:2px;
 
 }

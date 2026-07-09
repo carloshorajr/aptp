@@ -319,6 +319,7 @@ const Network = {
                             placeholder="Digite a senha">
 
                         <button
+                            id="toggle-password"
                             type="button"
                             class="wifi-password-toggle">
 
@@ -344,7 +345,40 @@ const Network = {
             
             confirmClass: "btn-outline",
 
-            showCancel: true
+            showCancel: true,
+
+            onShow: () => {
+
+                const input =
+                    document.getElementById("wifi-password");
+
+                const toggle =
+                    document.getElementById("toggle-password");
+
+                if (!input || !toggle) {
+
+                    return;
+
+                }
+
+                toggle.onclick = () => {
+
+                    const showing =
+                        input.type === "text";
+
+                    input.type =
+                        showing
+                            ? "password"
+                            : "text";
+
+                    toggle.innerHTML =
+                        showing
+                            ? '<i class="fa fa-eye"></i>'
+                            : '<i class="fa fa-eye-slash"></i>';
+
+                };
+
+            }
 
         });
 

@@ -75,6 +75,11 @@ function showModal(options) {
         .getElementById("modal-overlay")
         .classList.add("show");
 
+    if (options.onShow) {
+
+        options.onShow();
+
+    }
 }
 
 function hideModal() {

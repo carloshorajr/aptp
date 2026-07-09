@@ -128,7 +128,7 @@
 
     background:rgba(255,255,255,.12);
 
-    margin:22px 0;
+    margin:18px 0 12px;
 
 }
 
@@ -160,7 +160,7 @@
 
 .modal-actions{
 
-    margin-top:32px;
+    margin-top:18px;
 
     display:flex;
 

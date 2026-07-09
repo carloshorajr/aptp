@@ -28,7 +28,6 @@ class WifiNetwork:
 
     connected: bool
 
-    @property
-    def band(self):
+    saved: bool
 
-        return "5 GHz" if self.frequency >= 5000 else "2.4 GHz"
+    band: str

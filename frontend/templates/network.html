@@ -71,8 +71,11 @@
                                     title="Detalhes"
 
                                     data-ssid="{{ network.ssid }}"
-                                    data-security="{{ network.security }}"
+                                    data-frequency="{{ network.band }}"
+                                    data-channel="{{ network.channel }}"
                                     data-signal="{{ network.signal }}"
+                                    data-security="{{ network.security }}"
+                                    data-saved="{{ network.saved|lower }}"
                                     data-connected="{{ network.connected|lower }}"
 
                                     onclick="Network.showWifiDetails(this)"
@@ -108,7 +111,7 @@
 
                         <div class="wifi-empty">
 
-                            Clique em "Escanear" para mostrar as redes WiFi disponíveis.
+                            Clique em "Escanear" para mostrar as redes WiFi disponíveis para associação.
 
                         </div>
 

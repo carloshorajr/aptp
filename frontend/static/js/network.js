@@ -68,9 +68,9 @@ const Network = {
 
                 iconClass: "info",
 
-                confirmText: "Sair",
+                messageClass: "wifi-modal-message",
 
-                confirmClass: "btn-outline",
+                confirmText: "Sair",
 
                 showCancel: false
 
@@ -121,7 +121,7 @@ const Network = {
 
             <div class="wifi-empty">
 
-                Clique em "Escanear" para mostrar as redes WiFi disponíveis.
+                Clique em "Escanear" para mostrar as redes WiFi disponíveis para associação.
 
             </div>
 
@@ -187,17 +187,19 @@ const Network = {
 
         const network = {
 
-            ssid:
-                button.dataset.ssid,
+            ssid: button.dataset.ssid,
 
-            security:
-                button.dataset.security,
+            frequency: button.dataset.frequency,
 
-            signal:
-                button.dataset.signal,
+            channel: button.dataset.channel,
 
-            connected:
-                button.dataset.connected === "true"
+            signal: button.dataset.signal,
+
+            security: button.dataset.security,
+
+            saved: button.dataset.saved === "true",
+
+            connected: button.dataset.connected === "true"
 
         };
 
@@ -211,12 +213,69 @@ const Network = {
 
             title: network.ssid,
 
-            message:
-                "Os detalhes desta rede serão implementados no próximo sprint.",
+            message: `
+
+            <div class="wifi-details">
+
+                <div class="wifi-detail">
+
+                    <span>Frequência</span>
+
+                    <strong>${network.frequency}</strong>
+
+                </div>
+
+                <div class="wifi-detail">
+
+                    <span>Canal</span>
+
+                    <strong>${network.channel}</strong>
+
+                </div>
+
+                <div class="wifi-detail">
+
+                    <span>Sinal</span>
+
+                    <strong>${network.signal}%</strong>
+
+                </div>
+
+                <div class="wifi-detail">
+
+                    <span>Criptografia</span>
+
+                    <strong>${network.security || "-"}</strong>
+
+                </div>
+
+                <div class="wifi-detail">
+
+                    <span>Perfil salvo</span>
+
+                    <strong>${network.saved ? "Sim" : "Não"}</strong>
+
+                </div>
+
+                <div class="wifi-detail">
+
+                    <span>Conectada</span>
+
+                    <strong>${network.connected ? "Sim" : "Não"}</strong>
+
+                </div>
+
+            </div>
+
+            `,
+
+            allowHtml: true,
 
             icon: "info-circle",
 
             iconClass: "info",
+
+            messageClass: "wifi-modal-message",
 
             confirmText: "Sair",
 

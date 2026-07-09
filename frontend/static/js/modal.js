@@ -16,7 +16,37 @@ function showModal(options) {
 
     title.textContent = options.title;
 
-    message.textContent = options.message;
+    if (options.allowHtml) {
+
+        message.innerHTML = options.message.trim();
+
+/*         message.style.textAlign = options.allowHtml
+            ? "left"
+            : ""; */
+        
+        message.className = "modal-message";
+
+        if (options.messageClass){
+
+            message.classList.add(options.messageClass);
+
+        }
+
+    }
+
+    else {
+
+        message.textContent = options.message;
+
+        message.className = "modal-message";
+
+        if (options.messageClass){
+
+            message.classList.add(options.messageClass);
+
+        }
+
+    }
 
     const modalIcon =
     document.getElementById("modal-icon");

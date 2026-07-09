@@ -43,6 +43,38 @@ class NetworkService:
             return None
     
     @staticmethod
+    def get_saved_ssids():
+
+        output = CommandService.run(
+
+            [
+                "nmcli",
+                "-t",
+                "-f",
+                "NAME",
+                "connection",
+                "show"
+            ]
+
+        )
+
+        if not output:
+
+            return set()
+
+        saved = set()
+
+        for line in output.splitlines():
+
+            line = line.strip()
+
+            if line:
+
+                saved.add(line)
+
+        return saved
+    
+    @staticmethod
     def get_network_interfaces():
 
         interfaces = []
@@ -134,6 +166,8 @@ class NetworkService:
         if not output:
 
             return []
+        
+        saved_ssids = NetworkService.get_saved_ssids()
 
         networks = []
 
@@ -152,13 +186,25 @@ class NetworkService:
 
                 continue
 
-            frequency = int(parts[2].split()[0])
+            frequency_text = parts[2].replace(" MHz", "").strip()
+
+            frequency = int(frequency_text) if frequency_text.isdigit() else 0
 
             channel = int(parts[3]) if parts[3].isdigit() else 0
 
             signal = int(parts[4]) if parts[4].isdigit() else 0
 
-            security = parts[5]
+            security = parts[5].strip()
+
+            saved = ssid in saved_ssids
+
+            if frequency >= 5000:
+
+                band = "5 GHz"
+
+            else:
+
+                band = "2.4 GHz"
 
             networks.append(
 
@@ -174,7 +220,11 @@ class NetworkService:
 
                     channel=channel,
 
-                    connected=active
+                    connected=active,
+
+                    saved=saved,
+
+                    band=band
 
                 )
 

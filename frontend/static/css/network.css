@@ -278,3 +278,75 @@
     justify-content:center;
 
 }
+
+/* ==========================================================
+   MODAL WIFI
+========================================================== */
+
+.wifi-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:0px;
+
+    margin-top:0;
+
+}
+
+.wifi-detail{
+
+    display:grid;
+
+    grid-template-columns:150px 1fr;
+
+    align-items:center;
+
+    padding:8px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.wifi-detail:last-child{
+
+    border-bottom:none;
+
+}
+
+.wifi-detail span{
+
+    color:#aeb8c8;
+
+    font-size:14px;
+
+    line-height:1;
+
+    text-align:left;
+
+}
+
+.wifi-detail strong{
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    line-height:1;
+
+    text-align:right;
+
+}
+
+.wifi-modal-message{
+
+    white-space: normal;
+
+    line-height: normal;
+
+    text-align:center;
+
+}

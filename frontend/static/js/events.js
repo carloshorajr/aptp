@@ -179,7 +179,7 @@ const Events = {
                 title: "Nada a Aplicar",
 
                 message:
-                    "Não há filtros a serem aplicados.",
+                    "Não há filtros para aplicar.",
 
                 icon: "check",
 
@@ -250,7 +250,7 @@ const Events = {
                 title: "Nada a Limpar",
 
                 message:
-                    "Não há filtros a serem limpos.",
+                    "Não há filtros para limpar.",
 
                 icon: "refresh",
 
@@ -292,7 +292,7 @@ const Events = {
                 title: "Nada a Apagar",
 
                 message:
-                    "Não há eventos a serem apagados.",
+                    "Não há eventos para apagar.",
 
                 icon: "trash",
 

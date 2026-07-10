@@ -323,7 +323,7 @@ const Network = {
                             type="button"
                             class="wifi-password-toggle">
 
-                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-eye-slash"></i>
 
                         </button>
 
@@ -373,8 +373,8 @@ const Network = {
 
                     toggle.innerHTML =
                         showing
-                            ? '<i class="fa fa-eye"></i>'
-                            : '<i class="fa fa-eye-slash"></i>';
+                            ? '<i class="fa fa-eye-slash"></i>'
+                            : '<i class="fa fa-eye"></i>';
 
                 };
 

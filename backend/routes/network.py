@@ -36,3 +36,11 @@ def clear_network():
     NetworkController.clear()
 
     return ("", 204)
+
+@network_bp.route(
+    "/network/connect",
+    methods=["POST"]
+)
+def connect_network():
+
+    return NetworkController.connect()

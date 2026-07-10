@@ -1,5 +1,7 @@
 let modalCallback = null;
 
+let modalCancelCallback = null;
+
 function showModal(options) {
 
     const title =
@@ -56,6 +58,9 @@ function showModal(options) {
 
     modalCallback = options.onConfirm ?? null;
 
+    modalCancelCallback =
+        options.onCancel ?? null;
+
     cancelButton.style.display =
         options.showCancel === false
             ? "none"
@@ -98,7 +103,17 @@ window.addEventListener(
 
         document
             .getElementById("modal-cancel")
-            .onclick = hideModal;
+            .onclick = async () => {
+
+                hideModal();
+
+                if (modalCancelCallback) {
+
+                    await modalCancelCallback();
+
+                }
+
+            };
 
         document
             .getElementById("modal-confirm")

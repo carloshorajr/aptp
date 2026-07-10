@@ -1,5 +1,4 @@
-import psutil
-import socket
+import psutil, socket, time
 
 from backend.models.network import NetworkInterface
 from backend.models.network import WifiNetwork
@@ -73,6 +72,45 @@ class NetworkService:
                 saved.add(line)
 
         return saved
+    
+    @staticmethod
+    def connect_saved_network(ssid):
+
+        result = CommandService.run_raw(
+
+            [
+                "nmcli",
+                "connection",
+                "up",
+                "id",
+                ssid
+            ]
+
+        )
+
+        return result
+
+    @staticmethod
+    def connection_exists(ssid):
+
+        output = CommandService.run(
+
+            [
+                "nmcli",
+                "-t",
+                "-f",
+                "NAME",
+                "connection",
+                "show"
+            ]
+
+        )
+
+        if not output:
+
+            return False
+
+        return ssid in output.splitlines()
     
     @staticmethod
     def get_network_interfaces():
@@ -249,6 +287,38 @@ class NetworkService:
         return networks
     
     @staticmethod
+    def is_network_available(ssid):
+
+        networks = NetworkService.scan_wifi()
+
+        for network in networks:
+
+            if network.ssid == ssid:
+
+                return True
+
+        return False
+
+    @staticmethod
+    def wait_for_network(
+        ssid,
+        attempts=3,
+        interval=10
+    ):
+
+        for attempt in range(attempts):
+
+            if NetworkService.is_network_available(ssid):
+
+                return True
+
+            if attempt < attempts - 1:
+
+                time.sleep(interval)
+
+        return False
+    
+    @staticmethod
     def scan_and_cache():
 
         NetworkService._cached_networks = (
@@ -262,7 +332,74 @@ class NetworkService:
     def get_cached_networks():
 
         return NetworkService._cached_networks
-    
+
+    @staticmethod
+    def connect(ssid, password):
+
+        if not NetworkService.wait_for_network(ssid):
+
+            return {
+
+                "success": False,
+
+                "message":
+                    "Rede WiFi não encontrada.\nClique em \"Escanear\" e tente novamente."
+
+            }
+
+        if NetworkService.connection_exists(ssid):
+
+            result = NetworkService.connect_saved_network(ssid)
+
+            if result.returncode == 0:
+
+                return {
+
+                    "success": True,
+
+                    "message": 
+                        f"Conectado à rede '{ssid}'."
+
+                }
+
+            return {
+
+                "success": False,
+
+                "message": result.stderr.strip()
+
+            }
+
+        result = CommandService.run_raw(
+
+            [
+                "nmcli",
+                "device",
+                "wifi",
+                "connect",
+                ssid,
+                "password",
+                password
+            ]
+
+        )
+
+        return {
+
+            "success": result.returncode == 0,
+
+            "message": (
+
+                result.stdout.strip()
+
+                if result.returncode == 0
+
+                else result.stderr.strip()
+
+            )
+
+        }
+
     @staticmethod
     def clear_cache():
 

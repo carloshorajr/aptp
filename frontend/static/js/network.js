@@ -378,6 +378,110 @@ const Network = {
 
                 };
 
+            },
+
+            onCancel: async () => {
+
+                const password =
+                    document
+                        .getElementById("wifi-password")
+                        .value;
+
+                const response =
+                    await fetch(
+
+                        "/network/connect",
+
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                ssid: network.ssid,
+
+                                password
+
+                            })
+
+                        }
+
+                    );
+
+                const result =
+                    await response.json();
+
+                hideModal();
+
+                showModal({
+
+                    title:
+                        result.success
+                            ? "Conectado"
+
+                            : "Erro",
+
+                    message:
+                        result.message,
+
+                    icon:
+                        result.success
+                            ? "check-circle"
+
+                            : "times-circle",
+
+                    iconClass:
+                        result.success
+                            ? "success"
+
+                            : "danger",
+
+                    confirmText:"Sair",
+
+                    confirmClass:"btn-outline",
+
+                    showCancel:false
+
+                });
+
+                if (result.success) {
+
+                    await fetch(
+
+                        "/network/scan",
+
+                        {
+
+                            method:"POST"
+
+                        }
+
+                    );
+
+                    const link =
+                        document.querySelector(
+
+                            '.menu a[data-route="/network"]'
+
+                        );
+
+                    await loadPage(
+
+                        "/network",
+
+                        link
+
+                    );
+
+                }
+
             }
 
         });

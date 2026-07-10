@@ -1,3 +1,5 @@
+from flask import request
+
 from backend.services.network_service import NetworkService
 
 
@@ -7,8 +9,6 @@ class NetworkController:
     def get_page_data():
 
         return {
-            "page_title": "Redes",
-            "page_subtitle": "Gerenciamento de Rede",
             "networks": NetworkService.get_cached_networks()
         }
 
@@ -21,3 +21,15 @@ class NetworkController:
     def clear():
 
         NetworkService.clear_cache()
+    
+    @staticmethod
+    def connect():
+
+        data = request.get_json()
+
+        return NetworkService.connect(
+
+            data["ssid"],
+            data["password"]
+
+        )

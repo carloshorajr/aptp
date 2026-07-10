@@ -382,10 +382,34 @@ const Network = {
 
             onCancel: async () => {
 
+                const connectButton =
+                    document.getElementById("modal-cancel");
+
+                const exitButton =
+                    document.getElementById("modal-confirm");
+                
+                const input =
+                    document.getElementById("wifi-password");
+
+                const toggle =
+                    document.getElementById("toggle-password");                
+
                 const password =
                     document
                         .getElementById("wifi-password")
                         .value;
+                
+                connectButton.disabled = true;
+
+                exitButton.disabled = true;
+
+                input.disabled = true;
+
+                toggle.disabled = true;
+
+                connectButton.innerHTML =
+
+                    '<i class="fa fa-spinner fa-spin"></i> Conectando...';
 
                 const response =
                     await fetch(
@@ -417,6 +441,14 @@ const Network = {
 
                 const result =
                     await response.json();
+
+                connectButton.disabled = false;
+
+                exitButton.disabled = false;
+
+                input.disabled = false;
+
+                toggle.disabled = false;
 
                 hideModal();
 

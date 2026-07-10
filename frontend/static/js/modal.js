@@ -15,6 +15,12 @@ function showModal(options) {
 
     const confirmButton =
         document.getElementById("modal-confirm");
+    
+    modalCallback = null;
+    modalCancelCallback = null;
+
+    cancelButton.disabled = false;
+    confirmButton.disabled = false;
 
     title.textContent = options.title;
 
@@ -69,10 +75,14 @@ function showModal(options) {
     cancelButton.textContent =
         options.cancelText ?? "Cancelar";
 
+    cancelButton.innerHTML =
+        options.cancelText ?? "Cancelar";
+
     cancelButton.className =
         `btn ${options.cancelClass ?? "btn-outline"}`;
 
-    confirmButton.textContent = options.confirmText ?? "Confirmar";
+    confirmButton.innerHTML =
+        options.confirmText ?? "Confirmar";
 
     confirmButton.className = `btn ${options.confirmClass ?? "btn-danger"}`;
 
@@ -105,11 +115,15 @@ window.addEventListener(
             .getElementById("modal-cancel")
             .onclick = async () => {
 
-                hideModal();
-
                 if (modalCancelCallback) {
 
                     await modalCancelCallback();
+
+                }
+
+                else {
+
+                    hideModal();
 
                 }
 

@@ -106,9 +106,9 @@ const Metrics = {
 
     },
 
-    async save() {
+    async save(force = false) {
 
-        if (!this.isDirty()) {
+        if (!force && !this.isDirty()) {
 
             showModal({
 
@@ -218,7 +218,7 @@ const Metrics = {
             this.interval.value =
                 this.DEFAULT_INTERVAL;
 
-            await this.save();
+            await this.save(true);
 
         },
 

@@ -2,4 +2,88 @@
 
 {% block content %}
 
+<div class="metrics-panel">
+
+    <div class="metrics-section">
+
+        <h3>MÉTRICAS - WIFI</h3>
+
+        <div class="metric-item">
+
+            <span class="metric-label">
+
+                Conectividade
+
+            </span>
+
+            <span class="metric-actions">
+
+                <input
+
+                    id="connectivity-interval"
+
+                    data-value="{{ settings.connectivity.interval_seconds }}"
+
+                    class="metric-interval"
+
+                    type="number"
+
+                    min="1"
+
+                    value="{{ settings.connectivity.interval_seconds }}"
+
+                >
+
+                <button
+
+                    id="connectivity-enabled"
+
+                    data-enabled="{{ 'true' if settings.connectivity.enabled else 'false' }}"
+
+                    type="button"
+
+                    class="btn {% if settings.connectivity.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
+
+                >
+
+                    <i class="fa fa-check"></i>
+
+                </button>
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="metrics-toolbar">
+
+        <button
+            id="save-button"
+            type="button"
+            class="btn btn-primary"
+        >
+
+            <i class="fa fa-floppy-o"></i>
+
+            <span>Salvar</span>
+
+        </button>
+
+        <button
+            id="clear-button"
+            type="button"
+            class="btn btn-outline"
+        >
+
+            <i class="fa fa-refresh"></i>
+
+            <span>Limpar</span>
+
+        </button>
+
+    </div>
+
+</div>
+
 {% endblock %}

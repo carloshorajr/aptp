@@ -10,6 +10,10 @@ class DatabaseInitializer:
 
         cursor = connection.cursor()
 
+        #
+        # Eventos
+        #
+
         cursor.execute("""
 
             CREATE TABLE IF NOT EXISTS events (
@@ -23,6 +27,52 @@ class DatabaseInitializer:
                 source TEXT NOT NULL,
 
                 message TEXT NOT NULL
+
+            )
+
+        """)
+
+        #
+        # Configuração das métricas
+        #
+
+        cursor.execute("""
+
+            CREATE TABLE IF NOT EXISTS wifi_metric_settings (
+
+                metric TEXT PRIMARY KEY,
+
+                enabled INTEGER NOT NULL,
+
+                interval_seconds INTEGER NOT NULL
+
+            )
+
+        """)
+
+        #
+        # Valor padrão
+        #
+
+        cursor.execute("""
+
+            INSERT OR IGNORE INTO wifi_metric_settings (
+
+                metric,
+
+                enabled,
+
+                interval_seconds
+
+            )
+
+            VALUES (
+
+                'connectivity',
+
+                1,
+
+                60
 
             )
 

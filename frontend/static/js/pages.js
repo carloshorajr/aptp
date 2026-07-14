@@ -12,9 +12,11 @@ const PageManager = {
 
         events: Events,
 
-        settings: Settings
+        settings: Settings,
 
-    },
+        metrics: Metrics
+
+},
 
     init(page) {
 

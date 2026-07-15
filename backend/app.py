@@ -10,6 +10,8 @@ from backend.routes.network import network_bp
 
 from backend.services.runtime_service import RuntimeService
 
+from backend.services.scheduler_service import SchedulerService
+
 from backend.core.database_initializer import DatabaseInitializer
 
 app = Flask(
@@ -31,3 +33,5 @@ app.register_blueprint(network_bp)
 DatabaseInitializer.initialize()
 
 RuntimeService.application_started()
+
+SchedulerService.start()

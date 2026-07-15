@@ -287,7 +287,7 @@ const Network = {
 
     },
 
-    toggleWifi(button) {
+    async toggleWifi(button) {
 
         const network = {
 
@@ -298,6 +298,76 @@ const Network = {
                 button.dataset.connected === "true"
 
         };
+
+        if (network.connected) {
+
+            const response = await fetch(
+
+                "/network/disconnect",
+
+                {
+
+                    method: "POST"
+
+                }
+
+            );
+
+            const result = await response.json();
+
+            if (!result.success) {
+
+                showModal({
+
+                    title: "Erro",
+
+                    message: result.message,
+
+                    icon: "times-circle",
+
+                    iconClass: "danger",
+
+                    confirmText: "Sair",
+
+                    confirmClass: "btn-outline",
+
+                    showCancel: false
+
+                });
+
+                return;
+
+            }
+
+            await fetch(
+
+                "/network/scan",
+
+                {
+
+                    method: "POST"
+
+                }
+
+            );
+
+            const link = document.querySelector(
+
+                '.menu a[data-route="/network"]'
+
+            );
+
+            await loadPage(
+
+                "/network",
+
+                link
+
+            );
+
+            return;
+
+        }
 
         showModal({
 

@@ -50,6 +50,32 @@ class DatabaseInitializer:
 
         """)
 
+                #
+        # Estado atual da conectividade
+        #
+
+        cursor.execute("""
+
+            CREATE TABLE IF NOT EXISTS wifi_connectivity (
+
+                id INTEGER PRIMARY KEY,
+
+                connected INTEGER NOT NULL,
+
+                ssid TEXT,
+
+                bssid TEXT,
+
+                started_at TEXT,
+
+                last_seen TEXT,
+
+                connected_time INTEGER
+
+            )
+
+        """)
+
         #
         # Valor padrão
         #

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from backend.models.wifi import Wifi
 
 from backend.repositories.base_repository import (
@@ -21,6 +23,7 @@ class WifiConnectivityRepository(BaseRepository):
             SELECT
                 connected,
                 ssid,
+                bssid,
                 started_at,
                 last_seen,
                 connected_time
@@ -44,14 +47,28 @@ class WifiConnectivityRepository(BaseRepository):
 
             ssid=row["ssid"],
 
-            started_at=row["started_at"],
+            bssid=row["bssid"],
 
-            last_seen=row["last_seen"],
+            started_at=(
+
+                datetime.fromisoformat(row["started_at"])
+
+                if row["started_at"] else None
+
+            ),
+
+            last_seen=(
+
+                datetime.fromisoformat(row["last_seen"])
+
+                if row["last_seen"] else None
+
+            ),
 
             connected_time=row["connected_time"]
 
         )
-    
+            
     @classmethod
     def save(cls, wifi: Wifi):
 
@@ -61,31 +78,22 @@ class WifiConnectivityRepository(BaseRepository):
 
         cursor.execute(
 
-            "DELETE FROM wifi_connectivity"
-
-        )
-
-        cursor.execute(
-
             """
-
-            INSERT INTO wifi_connectivity (
-
+            INSERT OR REPLACE INTO wifi_connectivity (
+                id,
                 connected,
-
                 ssid,
-
+                bssid,
                 started_at,
-
                 last_seen,
-
                 connected_time
-
             )
 
             VALUES (
 
-                ?, ?, ?, ?, ?
+                1,
+
+                ?, ?, ?, ?, ?, ?
 
             )
 
@@ -93,9 +101,11 @@ class WifiConnectivityRepository(BaseRepository):
 
             (
 
-                wifi.connected,
+                int(wifi.connected),
 
                 wifi.ssid,
+
+                wifi.bssid,
 
                 wifi.started_at,
 
@@ -109,21 +119,4 @@ class WifiConnectivityRepository(BaseRepository):
 
         connection.commit()
 
-        connection.close()
-    
-    @classmethod
-    def clear(cls):
-
-        connection = cls.connection()
-
-        cursor = connection.cursor()
-
-        cursor.execute(
-
-            "DELETE FROM wifi_connectivity"
-
-        )
-
-        connection.commit()
-
-        connection.close()
+        connection.close()        

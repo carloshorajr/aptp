@@ -30,6 +30,18 @@
         </a>
 
         <a
+            href="/settings"
+            data-route="/settings"
+            class="{% if current_page == '/settings' %}active{% endif %}"
+        >
+            <span class="icon">
+                <i class="fa fa-user-circle-o"></i>
+            </span>
+            <span class="label">Clientes</span>
+        </a>
+
+
+        <a
             href="/network"
             data-route="/network"
             class="{% if current_page == '/network' %}active{% endif %}"
@@ -44,23 +56,12 @@
         </a>
 
         <a
-            href="/settings"
-            data-route="/settings"
-            class="{% if current_page == '/settings' %}active{% endif %}"
-        >
-            <span class="icon">
-                <i class="fa fa-cog"></i>
-            </span>
-            <span class="label">Configurações</span>
-        </a>
-
-        <a
             href="/metrics"
             data-route="/metrics"
             class="{% if current_page == '/metrics' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-bar-chart"></i>
+                <i class="fa fa-line-chart"></i>
             </span>
             <span class="label">Métricas</span>
         </a>

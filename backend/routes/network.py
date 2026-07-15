@@ -44,3 +44,11 @@ def clear_network():
 def connect_network():
 
     return NetworkController.connect()
+
+@network_bp.route(
+    "/network/disconnect",
+    methods=["POST"]
+)
+def disconnect_network():
+
+    return NetworkController.disconnect()

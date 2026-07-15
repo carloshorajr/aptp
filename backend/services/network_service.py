@@ -89,6 +89,36 @@ class NetworkService:
         )
 
         return result
+    
+    @staticmethod
+    def disconnect():
+
+        result = CommandService.run_raw(
+
+            [
+                "nmcli",
+                "device",
+                "disconnect",
+                "wlan0"
+            ]
+
+        )
+
+        return {
+
+            "success": result.returncode == 0,
+
+            "message": (
+
+                "Desconectado da rede WiFi."
+
+                if result.returncode == 0
+
+                else result.stderr.strip()
+
+            )
+
+        }
 
     @staticmethod
     def connection_exists(ssid):

@@ -9,6 +9,8 @@ class Wifi:
 
     ssid: str | None
 
+    bssid: str | None
+
     started_at: datetime | None
 
     last_seen: datetime | None

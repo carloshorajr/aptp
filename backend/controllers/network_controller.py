@@ -33,3 +33,8 @@ class NetworkController:
             data["password"]
 
         )
+    
+    @staticmethod
+    def disconnect():
+
+        return NetworkService.disconnect()

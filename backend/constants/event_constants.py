@@ -5,5 +5,6 @@ EVENT_LEVELS = [
 ]
 
 EVENT_SOURCES = [
-    "Sistema"
+    "Sistema",
+    "WiFi"
 ]

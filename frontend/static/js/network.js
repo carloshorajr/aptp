@@ -164,7 +164,11 @@ const Network = {
                             type="button"
                             class="btn ${network.connected ? "btn-danger" : "btn-primary"} wifi-icon-btn"
                             title="${network.connected ? "Desconectar" : "Conectar"}"
-                            onclick="Network.toggleWifi(${index})"
+
+                            data-ssid="${network.ssid}"
+                            data-connected="${network.connected}"
+
+                            onclick="Network.toggleWifi(this)"
                         >
 
                             <i class="fa fa-${network.connected ? "unlink" : "plug"}"></i>
@@ -301,69 +305,93 @@ const Network = {
 
         if (network.connected) {
 
-            const response = await fetch(
+            this.setDisconnectingState(
 
-                "/network/disconnect",
+                button,
 
-                {
-
-                    method: "POST"
-
-                }
+                true
 
             );
 
-            const result = await response.json();
+            try {
 
-            if (!result.success) {
+                const response = await fetch(
 
-                showModal({
+                    "/network/disconnect",
 
-                    title: "Erro",
+                    {
 
-                    message: result.message,
+                        method: "POST"
 
-                    icon: "times-circle",
+                    }
 
-                    iconClass: "danger",
+                );
 
-                    confirmText: "Sair",
+                const result = await response.json();
 
-                    confirmClass: "btn-outline",
+                if (!result.success) {
 
-                    showCancel: false
+                    showModal({
 
-                });
+                        title: "Erro",
 
-                return;
+                        message: result.message,
+
+                        icon: "times-circle",
+
+                        iconClass: "danger",
+
+                        confirmText: "Sair",
+
+                        confirmClass: "btn-outline",
+
+                        showCancel: false
+
+                    });
+
+                    return;
+
+                }
+
+                await fetch(
+
+                    "/network/scan",
+
+                    {
+
+                        method: "POST"
+
+                    }
+
+                );
+
+                const link = document.querySelector(
+
+                    '.menu a[data-route="/network"]'
+
+                );
+
+                await loadPage(
+
+                    "/network",
+
+                    link
+
+                );
 
             }
 
-            await fetch(
+            finally {
 
-                "/network/scan",
+                this.setDisconnectingState(
 
-                {
+                    button,
 
-                    method: "POST"
+                    false
 
-                }
+                );
 
-            );
-
-            const link = document.querySelector(
-
-                '.menu a[data-route="/network"]'
-
-            );
-
-            await loadPage(
-
-                "/network",
-
-                link
-
-            );
+            }
 
             return;
 
@@ -623,6 +651,35 @@ const Network = {
         label.style.display = "";
 
         button.disabled = scanning;
+
+    },
+
+    setDisconnectingState(button, disconnecting) {
+
+        if (!button) {
+
+            return;
+
+        }
+
+        const icon =
+            button.querySelector("i");
+
+        button.classList.toggle(
+
+            "wifi-scanning",
+
+            disconnecting
+
+        );
+
+        icon.className = disconnecting
+
+            ? "fa fa-spinner fa-spin"
+
+            : "fa fa-chain-broken";
+
+        button.disabled = disconnecting;
 
     },
 

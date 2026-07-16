@@ -2,6 +2,10 @@ from flask import request
 
 from backend.services.network_service import NetworkService
 
+from backend.services.application_service import (
+    ApplicationService
+)
+
 
 class NetworkController:
 
@@ -9,7 +13,11 @@ class NetworkController:
     def get_page_data():
 
         return {
-            "networks": NetworkService.get_cached_networks()
+
+            "networks": NetworkService.get_cached_networks(),
+
+            "application": ApplicationService.get_application_info()
+
         }
 
     @staticmethod

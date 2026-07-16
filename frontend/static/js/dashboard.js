@@ -6,11 +6,7 @@ const Dashboard = {
 
     init() {
 
-        const canvas = document.getElementById(
-
-            "wifi-connectivity-chart"
-
-        );
+        const canvas = document.getElementById("wifi-connectivity-chart");
 
         if (!canvas) {
 

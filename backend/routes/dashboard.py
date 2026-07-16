@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 
 from backend.controllers.dashboard_controller import DashboardController
 
@@ -11,4 +11,19 @@ def dashboard():
         "dashboard.html",
         current_page=request.path,
         **DashboardController.get_page_data()
+    )
+
+@dashboard_bp.route(
+
+    "/dashboard/wifi-connectivity",
+
+    methods=["GET"]
+
+)
+def wifi_connectivity():
+
+    return jsonify(
+
+        DashboardController.get_wifi_connectivity()
+
     )

@@ -2,4 +2,30 @@
 
 {% block content %}
 
+<h3 class="section-title">
+
+    Gráficos - WiFi
+
+</h3>
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <div class="dashboard-card-body">
+
+            <canvas id="wifi-connectivity-chart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const wifiConnectivity = {{ wifi_connectivity | tojson }};
+
+</script>
+
 {% endblock %}

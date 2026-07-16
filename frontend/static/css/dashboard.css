@@ -1,0 +1,59 @@
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card-body{
+
+    position:relative;
+
+    width:100%;
+
+    height:220px;
+
+}
+
+#wifi-connectivity-chart{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+.section-title{
+
+    margin:0 0 18px 0;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #d8e2ef;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    color:#1e3a8a;
+
+}

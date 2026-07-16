@@ -18,8 +18,8 @@ class NetworkController:
 
             "application": ApplicationService.get_application_info()
 
-        }
-
+    }
+    
     @staticmethod
     def scan():
 

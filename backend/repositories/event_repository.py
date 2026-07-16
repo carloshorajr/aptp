@@ -32,3 +32,8 @@ class EventRepository:
     def clear(cls):
 
         return SQLiteEventRepository.clear()
+
+    @classmethod
+    def wifi_connectivity(cls):
+
+        return SQLiteEventRepository.wifi_connectivity()

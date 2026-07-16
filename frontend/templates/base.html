@@ -1,63 +1,65 @@
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
-<head>
+    <head>
 
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
-<title>{{ application.hostname }}</title>
+    <title>{{ application.hostname }}</title>
 
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon-light.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon-light.png') }}">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/design-system.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/cards.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/system.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/network.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/metrics.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/design-system.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/system.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/network.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/metrics.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<div id="page-loader"></div>
+    <div id="page-loader"></div>
 
-<div class="layout">
+    <div class="layout">
 
-    {% include "components/layout/sidebar.html" %}
+        {% include "components/layout/sidebar.html" %}
 
-    <main class="content" id="app-content">
+        <main class="content" id="app-content">
 
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
-{% include "components/modal.html" %}
+    {% include "components/modal.html" %}
 
-<script src="{{ url_for('static', filename='js/api.js') }}"></script>
-<script src="{{ url_for('static', filename='js/loader.js') }}"></script>
-<script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
-<script src="{{ url_for('static', filename='js/network.js') }}"></script>
-<script src="{{ url_for('static', filename='js/metrics.js') }}"></script>
-<script src="{{ url_for('static', filename='js/system.js') }}"></script>
-<script src="{{ url_for('static', filename='js/events.js') }}"></script>
-<script src="{{ url_for('static', filename='js/pages.js') }}"></script>
-<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
-
-</body>
-</html>
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/network.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/metrics.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/system.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/events.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  
+    </body>
+    </html>

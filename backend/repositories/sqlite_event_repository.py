@@ -117,6 +117,68 @@ class SQLiteEventRepository(BaseRepository):
 
         return events
 
+
+    @classmethod
+    def wifi_connectivity(cls):
+
+        connection = cls.connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                DATE(timestamp) AS day,
+                SUM(
+                    CASE
+                        WHEN source = 'WiFi'
+                        AND level = 'INFO'
+                        AND message LIKE 'Associado%'
+                        THEN 1
+                        ELSE 0
+                    END
+                ) AS associations,
+                SUM(
+                    CASE
+                        WHEN source = 'WiFi'
+                        AND level = 'WARNING'
+                        AND message LIKE 'Desassociado%'
+                        THEN 1
+                        ELSE 0
+                    END
+                ) AS disassociations
+            FROM events
+            GROUP BY DATE(timestamp)
+            ORDER BY DATE(timestamp)
+            """
+        )
+
+        rows = cursor.fetchall()
+
+        connection.close()
+
+        data = []
+
+        for row in rows:
+
+            year, month, day = row["day"].split("-")
+
+            data.append(
+
+                {
+
+                    "day": f"{day}/{month}/{year}",
+
+                    "associations": row["associations"],
+
+                    "disassociations": row["disassociations"]
+
+                }
+
+            )
+
+        return data
+
     @classmethod
     def count(cls):
 

@@ -14,9 +14,29 @@
 
     border-radius:16px;
 
-    padding:20px;
+    padding:18px;
 
     box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card-header{
+
+    margin-bottom:10px;
+
+    padding-bottom:8px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:#64748b;
 
 }
 
@@ -26,7 +46,7 @@
 
     width:100%;
 
-    height:220px;
+    height:170px;
 
 }
 
@@ -55,5 +75,103 @@
     letter-spacing:.04em;
 
     color:#1e3a8a;
+
+}
+
+.dashboard-status{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    gap:18px;
+
+    padding:6px 2px;
+
+}
+
+.dashboard-status-indicator{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#16a34a;
+
+}
+
+.dashboard-status-connected{
+
+    color:#16a34a;
+
+}
+
+.dashboard-status-disconnected{
+
+    color:#dc2626;
+
+}
+
+.dashboard-status-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:currentColor;
+
+}
+
+.dashboard-status-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.dashboard-status-label{
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.05em;
+
+    color:#64748b;
+
+}
+
+.dashboard-status-text{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#2563eb;
+
+}
+
+.dashboard-status-time{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    font-family:Consolas, Monaco, monospace;
+
+    color:#111827;
 
 }

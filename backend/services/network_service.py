@@ -42,6 +42,66 @@ class NetworkService:
             return None
     
     @staticmethod
+    def get_wifi_connected_time(interface="wlan0"):
+
+        ssid = NetworkService.get_wifi_ssid(interface)
+
+        if not ssid:
+
+            return {
+
+                "ssid": None,
+
+                "seconds": None
+
+            }
+
+        timestamp = CommandService.run(
+
+            [
+                "nmcli",
+                "-g",
+                "connection.timestamp",
+                "connection",
+                "show",
+                ssid
+            ]
+
+        )
+
+        if not timestamp:
+
+            return {
+
+                "ssid": ssid,
+
+                "seconds": None
+
+            }
+
+        try:
+
+            connected_since = int(timestamp)
+
+        except ValueError:
+
+            return {
+
+                "ssid": ssid,
+
+                "seconds": None
+
+            }
+
+        return {
+
+            "ssid": ssid,
+
+            "seconds": int(time.time()) - connected_since
+
+        }
+
+    @staticmethod
     def get_saved_ssids():
 
         output = CommandService.run(

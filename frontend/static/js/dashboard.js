@@ -4,6 +4,12 @@ const Dashboard = {
 
     interval: null,
 
+    connectedTime: null,
+
+    connectedSSID: null,
+
+    connectedTimeInterval: null,
+
     init() {
 
         const canvas = document.getElementById("wifi-connectivity-chart");
@@ -60,14 +66,6 @@ const Dashboard = {
 
                     plugins: {
 
-                        title: {
-
-                            display: true,
-
-                            text: "Conectividade"
-
-                        },
-
                         legend: {
 
                             position: "bottom"
@@ -99,6 +97,8 @@ const Dashboard = {
         );
 
         this.update();
+
+        this.startConnectedTimeCounter();
 
         this.interval = setInterval(
 
@@ -132,9 +132,73 @@ const Dashboard = {
 
             const data = await response.json();
 
+            const chart = data.chart;
+
+            this.connectedSSID = data.connected_time.ssid;
+
+            this.connectedTime = data.connected_time.seconds;
+
+            const indicator = document.getElementById(
+
+                "wifi-status-indicator"
+
+            );
+
+            const statusText = document.getElementById(
+
+                "wifi-status-text"
+
+            );
+
+            if (
+
+                this.connectedTime !== null
+
+            ) {
+
+                indicator.classList.remove(
+
+                    "dashboard-status-disconnected"
+
+                );
+
+                indicator.classList.add(
+
+                    "dashboard-status-connected"
+
+                );
+
+                statusText.textContent =
+
+                    "Conectado";
+
+            }
+
+            else {
+
+                indicator.classList.remove(
+
+                    "dashboard-status-connected"
+
+                );
+
+                indicator.classList.add(
+
+                    "dashboard-status-disconnected"
+
+                );
+
+                statusText.textContent =
+
+                    "Desconectado";
+
+            }
+
+            this.renderConnectedTime();
+
             this.chart.data.labels =
 
-                data.map(
+                chart.map(
 
                     item => item.day
 
@@ -142,7 +206,7 @@ const Dashboard = {
 
             this.chart.data.datasets[0].data =
 
-                data.map(
+                chart.map(
 
                     item => item.associations
 
@@ -150,7 +214,7 @@ const Dashboard = {
 
             this.chart.data.datasets[1].data =
 
-                data.map(
+                chart.map(
 
                     item => item.disassociations
 
@@ -172,7 +236,97 @@ const Dashboard = {
 
         }
 
-    },    
+    },
+
+    renderConnectedTime() {
+
+        const element = document.getElementById(
+
+            "wifi-connected-time"
+
+        );
+
+        const ssid = document.getElementById(
+
+            "wifi-connected-ssid"
+
+        );
+
+        if (!element) {
+
+            return;
+
+        }
+
+        ssid.textContent = this.connectedSSID || "—";
+
+        if (
+
+            this.connectedTime === null
+
+        ) {
+
+            element.textContent =
+
+                "--:--:--";
+
+            return;
+
+        }
+
+        const hours = Math.floor(
+
+            this.connectedTime / 3600
+
+        );
+
+        const minutes = Math.floor(
+
+            (this.connectedTime % 3600) / 60
+
+        );
+
+        const seconds = this.connectedTime % 60;
+
+        element.textContent =
+
+            String(hours).padStart(2, "0")
+
+            + ":"
+
+            + String(minutes).padStart(2, "0")
+
+            + ":"
+
+            + String(seconds).padStart(2, "0");
+
+    },
+
+    startConnectedTimeCounter() {
+
+        this.connectedTimeInterval = setInterval(
+
+            () => {
+
+                if (
+
+                    this.connectedTime !== null
+
+                ) {
+
+                    this.connectedTime++;
+
+                    this.renderConnectedTime();
+
+                }
+
+            },
+
+            1000
+
+        );
+
+    },
 
     destroy() {
 
@@ -189,6 +343,22 @@ const Dashboard = {
             );
 
             this.interval = null;
+
+        }
+
+        if (
+
+            this.connectedTimeInterval
+
+        ) {
+
+            clearInterval(
+
+                this.connectedTimeInterval
+
+            );
+
+            this.connectedTimeInterval = null;
 
         }
 

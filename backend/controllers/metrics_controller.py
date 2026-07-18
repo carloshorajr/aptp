@@ -12,7 +12,13 @@ class MetricsController:
     @staticmethod
     def get_page_data():
 
-        settings = WifiMetricSettingsRepository.load("connectivity")
+        connectivity = WifiMetricSettingsRepository.load(
+            "connectivity"
+        )
+
+        signal = WifiMetricSettingsRepository.load(
+            "signal"
+        )
 
         return {
             "page_title": "Métricas",
@@ -20,8 +26,18 @@ class MetricsController:
             "application": ApplicationService.get_application_info(),
             "settings": {
                 "connectivity": {
-                "enabled": bool(settings["enabled"]),
-                "interval_seconds": settings["interval_seconds"]
+                    "enabled": bool(
+                        connectivity["enabled"]
+                    ),
+                    "interval_seconds":
+                        connectivity["interval_seconds"]
+                },
+                "signal": {
+                    "enabled": bool(
+                        signal["enabled"]
+                    ),
+                    "interval_seconds":
+                        signal["interval_seconds"]
                 }
 
             }
@@ -31,7 +47,29 @@ class MetricsController:
     def save(data):
 
         WifiMetricSettingsRepository.save(
+
             metric="connectivity",
-            enabled=int(data["enabled"]),
-            interval_seconds=int(data["interval_seconds"])
+
+            enabled=int(
+                data["connectivity"]["enabled"]
+            ),
+
+            interval_seconds=int(
+                data["connectivity"]["interval_seconds"]
+            )
+
+        )
+
+        WifiMetricSettingsRepository.save(
+
+            metric="signal",
+
+            enabled=int(
+                data["signal"]["enabled"]
+            ),
+
+            interval_seconds=int(
+                data["signal"]["interval_seconds"]
+            )
+
         )

@@ -134,9 +134,20 @@ const Dashboard = {
 
             const chart = data.chart;
 
-            this.connectedSSID = data.connected_time.ssid;
+            if (data.connected_time) {
 
-            this.connectedTime = data.connected_time.seconds;
+                this.connectedSSID = data.connected_time.ssid;
+
+                this.connectedTime = data.connected_time.seconds;
+
+            }
+            else {
+
+                this.connectedSSID = null;
+
+                this.connectedTime = null;
+
+            }
 
             const indicator = document.getElementById(
 

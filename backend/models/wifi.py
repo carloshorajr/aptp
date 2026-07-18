@@ -11,6 +11,8 @@ class Wifi:
 
     bssid: str | None
 
+    signal_dbm: int | None
+
     started_at: datetime | None
 
     last_seen: datetime | None

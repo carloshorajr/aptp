@@ -27,3 +27,18 @@ def wifi_connectivity():
         DashboardController.get_wifi_connectivity()
 
     )
+
+@dashboard_bp.route(
+
+    "/dashboard/wifi-signal",
+
+    methods=["GET"]
+
+)
+def wifi_signal():
+
+    return jsonify(
+
+        DashboardController.get_wifi_signal()
+
+    )

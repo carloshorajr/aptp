@@ -49,6 +49,8 @@ class WifiConnectivityRepository(BaseRepository):
 
             bssid=row["bssid"],
 
+            signal_dbm=None,
+
             started_at=(
 
                 datetime.fromisoformat(row["started_at"])

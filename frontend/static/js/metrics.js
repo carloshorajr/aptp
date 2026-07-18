@@ -4,19 +4,37 @@ const Metrics = {
 
     DEFAULT_ENABLED: false,
 
-    button: null,
-
-    interval: null,
+    metrics: {},
 
     init() {
 
-        this.button = document.getElementById(
-            "connectivity-enabled"
-        );
+        this.metrics = {
 
-        this.interval = document.getElementById(
-            "connectivity-interval"
-        );
+            connectivity: {
+
+                button: document.getElementById(
+                    "connectivity-enabled"
+                ),
+
+                interval: document.getElementById(
+                    "connectivity-interval"
+                )
+
+            },
+
+            signal: {
+
+                button: document.getElementById(
+                    "signal-enabled"
+                ),
+
+                interval: document.getElementById(
+                    "signal-interval"
+                )
+
+            }
+
+        };
 
         const saveButton = document.getElementById(
             "save-button"
@@ -26,11 +44,15 @@ const Metrics = {
             "clear-button"
         );
 
-        if (this.button) {
+        Object.values(this.metrics).forEach(metric => {
 
-            this.button.onclick = () => this.toggle();
+            if (metric.button) {
 
-        }
+                metric.button.onclick = () => this.toggle(metric);
+
+            }
+
+        });
 
         if (saveButton) {
 
@@ -46,13 +68,13 @@ const Metrics = {
 
     },
 
-    toggle() {
+    toggle(metric) {
 
-        this.button.classList.toggle(
+        metric.button.classList.toggle(
             "metric-enabled"
         );
 
-        this.button.classList.toggle(
+        metric.button.classList.toggle(
             "metric-disabled"
         );
 
@@ -60,31 +82,47 @@ const Metrics = {
 
     buildPayload() {
 
-        return {
+        const payload = {};
 
-            enabled: this.button.classList.contains(
-                "metric-enabled"
-            ),
+        Object.entries(this.metrics).forEach(
 
-            interval_seconds: Number(
-                this.interval.value
-            )
+            ([name, metric]) => {
 
-        };
+                payload[name] = {
+
+                    enabled: metric.button.classList.contains(
+                        "metric-enabled"
+                    ),
+
+                    interval_seconds: Number(
+                        metric.interval.value
+                    )
+
+                };
+
+            }
+
+        );
+
+        return payload;
 
     },
 
     isDirty() {
 
-        return (
+        const payload = this.buildPayload();
 
-            this.buildPayload().enabled !==
-            (this.button.dataset.enabled === "true")
+        return Object.entries(this.metrics).some(
 
-            ||
+            ([name, metric]) =>
 
-            this.buildPayload().interval_seconds !==
-            Number(this.interval.dataset.value)
+                payload[name].enabled !==
+                (metric.button.dataset.enabled === "true")
+
+                ||
+
+                payload[name].interval_seconds !==
+                Number(metric.interval.dataset.value)
 
         );
 
@@ -92,15 +130,19 @@ const Metrics = {
 
     isDefault() {
 
-        return (
+        const payload = this.buildPayload();
 
-            this.buildPayload().enabled ===
-            this.DEFAULT_ENABLED
+        return Object.keys(this.metrics).every(
 
-            &&
+            name =>
 
-            this.buildPayload().interval_seconds ===
-            this.DEFAULT_INTERVAL
+                payload[name].enabled ===
+                this.DEFAULT_ENABLED
+
+                &&
+
+                payload[name].interval_seconds ===
+                this.DEFAULT_INTERVAL
 
         );
 
@@ -193,30 +235,34 @@ const Metrics = {
 
             }
 
-            if (this.DEFAULT_ENABLED) {
+            Object.values(this.metrics).forEach(metric => {
 
-                this.button.classList.add(
-                    "metric-enabled"
-                );
+                if (this.DEFAULT_ENABLED) {
 
-                this.button.classList.remove(
-                    "metric-disabled"
-                );
+                    metric.button.classList.add(
+                        "metric-enabled"
+                    );
 
-            } else {
+                    metric.button.classList.remove(
+                        "metric-disabled"
+                    );
 
-                this.button.classList.add(
-                    "metric-disabled"
-                );
+                } else {
 
-                this.button.classList.remove(
-                    "metric-enabled"
-                );
+                    metric.button.classList.add(
+                        "metric-disabled"
+                    );
 
-            }
+                    metric.button.classList.remove(
+                        "metric-enabled"
+                    );
 
-            this.interval.value =
-                this.DEFAULT_INTERVAL;
+                }
+
+                metric.interval.value =
+                    this.DEFAULT_INTERVAL;
+
+            });
 
             await this.save(true);
 
@@ -224,11 +270,15 @@ const Metrics = {
 
     destroy() {
 
-        if (this.button) {
+        Object.values(this.metrics).forEach(metric => {
 
-            this.button.onclick = null;
+            if (metric.button) {
 
-        }
+                metric.button.onclick = null;
+
+            }
+
+        });
 
         const saveButton = document.getElementById(
             "save-button"
@@ -250,9 +300,7 @@ const Metrics = {
 
         }
 
-        this.button = null;
-
-        this.interval = null;
+        this.metrics = {};
 
     }
 

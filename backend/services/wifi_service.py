@@ -18,6 +18,8 @@ class WifiService:
 
         connected_time = None
 
+        signal_dbm = None
+
         output = CommandService.run(
 
             "iw dev wlan0 link"
@@ -61,6 +63,32 @@ class WifiService:
                         ""
 
                     ).strip()
+                
+                elif line.startswith("signal:"):
+
+                    signal_dbm = int(
+
+                        line
+
+                        .replace(
+
+                            "signal:",
+
+                            ""
+
+                        )
+
+                        .replace(
+
+                            "dBm",
+
+                            ""
+
+                        )
+
+                        .strip()
+
+                    )
 
                 elif line.startswith("connected time:"):
 
@@ -87,6 +115,8 @@ class WifiService:
             ssid=ssid,
 
             bssid=bssid,
+
+            signal_dbm=signal_dbm,
 
             connected_time=connected_time,
 

@@ -22,6 +22,9 @@ class DashboardController:
 
             "wifi_connectivity":
                 DashboardService.get_wifi_connectivity(),
+            
+            "wifi_signal":
+                DashboardService.get_wifi_signal(),
 
             "application":
                 ApplicationService.get_application_info()
@@ -32,3 +35,8 @@ class DashboardController:
     def get_wifi_connectivity():
 
         return DashboardService.get_wifi_connectivity()
+    
+    @staticmethod
+    def get_wifi_signal():
+
+        return DashboardService.get_wifi_signal()

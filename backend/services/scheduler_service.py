@@ -4,6 +4,10 @@ from backend.services.wifi_connectivity_service import (
     WifiConnectivityService
 )
 
+from backend.services.wifi_signal_service import (
+    WifiSignalService
+)
+
 
 class SchedulerService:
 
@@ -38,6 +42,8 @@ class SchedulerService:
             try:
 
                 WifiConnectivityService.collect()
+
+                WifiSignalService.collect()
 
             except Exception as e:
 

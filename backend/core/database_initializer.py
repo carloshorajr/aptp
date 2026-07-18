@@ -50,7 +50,7 @@ class DatabaseInitializer:
 
         """)
 
-                #
+        #
         # Estado atual da conectividade
         #
 
@@ -77,6 +77,26 @@ class DatabaseInitializer:
         """)
 
         #
+        # Estado atual da qualidade do sinal WiFi
+        #
+
+        cursor.execute("""
+
+            CREATE TABLE IF NOT EXISTS wifi_signal (
+
+                id INTEGER PRIMARY KEY,
+
+                ssid TEXT,
+
+                signal_dbm INTEGER,
+
+                last_seen TEXT
+
+            )
+
+        """)
+
+        #
         # Valor padrão
         #
 
@@ -95,6 +115,30 @@ class DatabaseInitializer:
             VALUES (
 
                 'connectivity',
+
+                1,
+
+                60
+
+            )
+
+        """)
+
+        cursor.execute("""
+
+            INSERT OR IGNORE INTO wifi_metric_settings (
+
+                metric,
+
+                enabled,
+
+                interval_seconds
+
+            )
+
+            VALUES (
+
+                'signal',
 
                 1,
 

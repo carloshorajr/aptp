@@ -24,47 +24,7 @@ class WifiSignalService:
     WARNING_DBM = -71
 
     @classmethod
-    def collect(cls):
-
-        settings = WifiMetricSettingsRepository.load(
-            "signal"
-        )
-
-        if settings is None:
-
-            return None
-
-        if not settings["enabled"]:
-
-            return None
-
-        if (
-
-            settings["interval_seconds"] < 1
-
-            or
-
-            settings["interval_seconds"] > 86400
-
-        ):
-
-            return None
-
-        current = now()
-
-        if cls._last_execution is not None:
-
-            elapsed = (
-
-                current - cls._last_execution
-
-            ).total_seconds()
-
-            if elapsed < settings["interval_seconds"]:
-
-                return None
-
-        cls._last_execution = current
+    def _collect_internal(cls):
 
         current = WifiService.collect()
 
@@ -109,6 +69,56 @@ class WifiSignalService:
             )
 
         return current
+
+    @classmethod
+    def collect(cls):
+
+        settings = WifiMetricSettingsRepository.load(
+            "signal"
+        )
+
+        if settings is None:
+
+            return None
+
+        if not settings["enabled"]:
+
+            return None
+
+        if (
+
+            settings["interval_seconds"] < 1
+
+            or
+
+            settings["interval_seconds"] > 86400
+
+        ):
+
+            return None
+
+        current = now()
+
+        if cls._last_execution is not None:
+
+            elapsed = (
+
+                current - cls._last_execution
+
+            ).total_seconds()
+
+            if elapsed < settings["interval_seconds"]:
+
+                return None
+
+        cls._last_execution = current
+
+        return cls._collect_internal()
+    
+    @classmethod
+    def collect_now(cls):
+
+        return cls._collect_internal()
     
     @classmethod
     def current(cls):

@@ -5,6 +5,15 @@ from backend.models.network import WifiNetwork
 
 from backend.services.command_service import CommandService
 
+from backend.services.wifi_connectivity_service import (
+    WifiConnectivityService
+)
+
+from backend.services.wifi_signal_service import (
+    WifiSignalService
+)
+
+
 class NetworkService:
 
     _cached_networks = []
@@ -163,6 +172,12 @@ class NetworkService:
             ]
 
         )
+
+        if result.returncode == 0:
+
+            WifiConnectivityService.collect()
+
+            WifiSignalService.collect_now()
 
         return {
 
@@ -439,15 +454,21 @@ class NetworkService:
 
         if NetworkService.connection_exists(ssid):
 
-            result = NetworkService.connect_saved_network(ssid)
+            result = NetworkService.connect_saved_network(
+                ssid
+            )
 
             if result.returncode == 0:
+
+                WifiConnectivityService.collect()
+
+                WifiSignalService.collect_now()
 
                 return {
 
                     "success": True,
 
-                    "message": 
+                    "message":
                         f"Conectado à rede '{ssid}'."
 
                 }
@@ -473,6 +494,12 @@ class NetworkService:
             ]
 
         )
+
+        if result.returncode == 0:
+
+            WifiConnectivityService.collect()
+
+            WifiSignalService.collect_now()
 
         return {
 

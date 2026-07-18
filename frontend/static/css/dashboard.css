@@ -187,3 +187,117 @@ CARD: ESTADO DA CONEXÃO
     color:#111827;
 
 }
+
+/* ==========================================================
+CARD: QUALIDADE DO SINAL
+========================================================== */
+
+.dashboard-signal{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:22px;
+
+    padding:10px;
+
+}
+
+.dashboard-signal-icon{
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    gap:6px;
+
+    height:64px;
+
+}
+
+.signal-bar{
+
+    width:12px;
+
+    border-radius:4px;
+
+    background:#2563eb;
+
+    opacity:.25;
+
+}
+
+.signal-bar:nth-child(1){
+
+    height:18px;
+
+}
+
+.signal-bar:nth-child(2){
+
+    height:30px;
+
+}
+
+.signal-bar:nth-child(3){
+
+    height:44px;
+
+}
+
+.signal-bar:nth-child(4){
+
+    height:58px;
+
+}
+
+.signal-bar.active{
+
+    opacity:1;
+
+}
+
+.dashboard-signal-quality{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#475569;
+
+}
+
+.dashboard-signal-value{
+
+    text-align:center;
+
+    font-size:26px;
+
+    font-weight:600;
+
+    color:#374151;
+
+    font-family:Consolas, Monaco, monospace;
+
+}
+
+.dashboard-signal-value{
+
+    text-align:center;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    font-family:Consolas, Monaco, monospace;
+
+}

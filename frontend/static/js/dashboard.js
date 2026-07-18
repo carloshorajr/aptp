@@ -8,6 +8,8 @@ const Dashboard = {
 
     connectedSSID: null,
 
+    signalDbm: null,
+
     connectedTimeInterval: null,
 
     init() {
@@ -132,6 +134,26 @@ const Dashboard = {
 
             const data = await response.json();
 
+            const signalResponse = await fetch(
+
+                "/dashboard/wifi-signal"
+
+            );
+
+            if (!signalResponse.ok) {
+
+                throw new Error(
+
+                    `HTTP ${signalResponse.status}`
+
+                );
+
+            }
+
+            const signal = await signalResponse.json();
+
+            this.signalDbm = signal.signal_dbm;
+
             const chart = data.chart;
 
             if (data.connected_time) {
@@ -206,6 +228,8 @@ const Dashboard = {
             }
 
             this.renderConnectedTime();
+
+            this.renderSignal();
 
             this.chart.data.labels =
 
@@ -310,6 +334,90 @@ const Dashboard = {
             + ":"
 
             + String(seconds).padStart(2, "0");
+
+    },
+
+    renderSignal() {
+
+        const value = document.getElementById(
+
+            "wifi-signal-value"
+
+        );
+
+        const quality = document.getElementById(
+
+            "wifi-signal-quality"
+
+        );
+
+        const bars = document.querySelectorAll(
+
+            "#wifi-signal-icon .signal-bar"
+
+        );
+
+        bars.forEach(
+
+            bar => bar.classList.remove("active")
+
+        );
+
+        if (
+
+            this.signalDbm === null
+
+        ) {
+
+            value.textContent = "--";
+
+            quality.textContent = "--";
+
+            return;
+
+        }
+
+        value.textContent =
+
+            `${this.signalDbm} dBm`;
+
+        quality.textContent = "RSSI";
+
+        const level = Math.max(
+
+            1,
+
+            Math.min(
+
+                4,
+
+                Math.round(
+
+                    (this.signalDbm + 100) / 15
+
+                )
+
+            )
+
+        );
+
+        for (
+
+            let i = 0;
+
+            i < level;
+
+            i++
+
+        ) {
+
+            bars[i].classList.add(
+
+                "active"
+
+            );
+
+        }
 
     },
 

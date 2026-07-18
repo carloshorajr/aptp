@@ -10,6 +10,43 @@
 
         <h3>REDES WIFI</h3>
 
+            <div class="wifi-toolbar">
+
+                <button
+                    id="scan-wifi-button"
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="Network.scanWifi()"
+                >
+
+                    <img
+                        src="{{ url_for('static', filename='icons/wifi_find.svg') }}"
+                        class="wifi-icon"
+                        alt="Escanear"
+                    >
+
+                    <span>Escanear</span>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="Network.clear()"
+                >
+
+                    <img
+                        src="{{ url_for('static', filename='icons/cached.svg') }}"
+                        class="wifi-icon"
+                        alt="Limpar"
+                    >
+
+                    <span>Limpar</span>
+
+                </button>
+
+            </div>
+
             <div class="wifi-table">
 
                 <div id="wifi-list">
@@ -64,7 +101,11 @@
                                     onclick="Network.showWifiDetails(this)"
                                 >
 
-                                    <i class="fa fa-info-circle"></i>
+                                    <img
+                                        src="{{ url_for('static', filename='icons/info.svg') }}"
+                                        class="wifi-icon"
+                                        alt="Informações"
+                                    >
 
                                 </button>
 
@@ -80,7 +121,23 @@
                                     onclick="Network.toggleWifi(this)"
                                 >
 
-                                    <i class="fa fa-{% if network.connected %}chain-broken{% else %}plug{% endif %}"></i>
+                                    {% if network.connected %}
+
+                                        <img
+                                            src="{{ url_for('static', filename='icons/wifi_disconnect.svg') }}"
+                                            class="wifi-icon"
+                                            alt="Desconectar"
+                                        >
+
+                                        {% else %}
+
+                                        <img
+                                            src="{{ url_for('static', filename='icons/wifi_connect.svg') }}"
+                                            class="wifi-icon"
+                                            alt="Conectar"
+                                        >
+
+                                    {% endif %}
 
                                 </button>
 
@@ -101,35 +158,6 @@
                     {% endif %}
 
                 </div>
-
-            </div>
-
-            <div class="wifi-toolbar">
-
-                <button
-                    id="scan-wifi-button"
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="Network.scanWifi()"
-                >
-
-                    <i class="fa fa-wifi"></i>
-
-                    <span>Escanear</span>
-
-                </button>
-
-                <button
-                    type="button"
-                    class="btn btn-outline"
-                    onclick="Network.clear()"
-                >
-
-                    <i class="fa fa-refresh"></i>
-
-                    <span>Limpar</span>
-
-                </button>
 
             </div>
 

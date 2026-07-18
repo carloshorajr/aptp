@@ -634,19 +634,36 @@ const Network = {
         }
 
         const icon =
-            button.querySelector("i");
+            button.querySelector(".wifi-icon");
 
         const label =
             button.querySelector("span");
 
         button.classList.toggle(
+
             "wifi-scanning",
+
             scanning
+
         );
 
-        icon.className = scanning
-            ? "fa fa-spinner fa-spin"
-            : "fa fa-wifi";
+        if (icon) {
+
+            icon.src = scanning
+
+                ? "/static/icons/progress_activity.svg"
+
+                : "/static/icons/wifi_find.svg";
+
+            icon.classList.toggle(
+
+                "wifi-rotating",
+
+                scanning
+
+            );
+
+        }
 
         label.style.display = "";
 
@@ -663,23 +680,38 @@ const Network = {
         }
 
         const icon =
-            button.querySelector("i");
+            button.querySelector(".wifi-icon");
 
-        button.classList.toggle(
+        button.disabled =
+            disconnecting;
 
-            "wifi-scanning",
+        if (disconnecting) {
 
-            disconnecting
+            button.classList.add("wifi-scanning");
 
-        );
+        } else {
 
-        icon.className = disconnecting
+            button.classList.remove("wifi-scanning");
 
-            ? "fa fa-spinner fa-spin"
+        }
 
-            : "fa fa-chain-broken";
+        if (icon) {
 
-        button.disabled = disconnecting;
+            icon.src = disconnecting
+
+                ? "/static/icons/progress_activity.svg"
+
+                : "/static/icons/wifi_disconnect.svg";
+
+            icon.classList.toggle(
+
+                "wifi-rotating",
+
+                disconnecting
+
+            );
+
+        }
 
     },
 

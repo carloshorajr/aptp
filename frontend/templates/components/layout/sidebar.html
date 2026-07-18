@@ -24,7 +24,12 @@
             class="{% if current_page == '/' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-home"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/dashboard.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
+
             </span>
             <span class="label">Dashboard</span>
         </a>
@@ -35,7 +40,12 @@
             class="{% if current_page == '/settings' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-user-circle-o"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/account_box.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
+
             </span>
             <span class="label">Cliente</span>
         </a>
@@ -46,9 +56,12 @@
             data-route="/network"
             class="{% if current_page == '/network' %}active{% endif %}"
         >
-
             <span class="icon">
-                <i class="fa fa-sitemap"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/network_node.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
 
             </span>
             <span class="label">Redes</span>
@@ -61,7 +74,12 @@
             class="{% if current_page == '/metrics' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-line-chart"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/monitoring.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
+
             </span>
             <span class="label">Métricas</span>
         </a>
@@ -72,7 +90,12 @@
             class="{% if current_page == '/events' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-list-alt"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/event_note.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
+
             </span>
             <span class="label">Eventos</span>
         </a>
@@ -83,7 +106,12 @@
             class="{% if current_page == '/system' %}active{% endif %}"
         >
             <span class="icon">
-                <i class="fa fa-desktop"></i>
+                <img
+                    src="{{ url_for('static', filename='icons/dns.svg') }}"
+                    class="sidebar-icon"
+                    alt=""
+                >
+
             </span>
             <span class="label">Sistema</span>
         </a>

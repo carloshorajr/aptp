@@ -16,7 +16,11 @@
                 class="btn btn-primary"
             >
 
-                <i class="fa fa-floppy-o"></i>
+                <img
+                    class="metric-icon"
+                    src="/static/icons/save.svg"
+                    alt=""
+                >
 
                 <span>Salvar</span>
 
@@ -28,11 +32,31 @@
                 class="btn btn-outline"
             >
 
-                <i class="fa fa-refresh"></i>
+                <img
+                    class="metric-icon"
+                    src="/static/icons/cached.svg"
+                    alt=""
+                >
 
                 <span>Limpar</span>
 
             </button>
+
+            <label
+            
+                class="metric-switch"
+                id="metrics-enabled-all"
+                title="Habilitar ou desabilitar todas as métricas"
+            >
+
+                <input
+                    id="metrics-enabled-all-input"
+                    type="checkbox"
+                >
+
+                <span class="metric-slider"></span>
+
+        </label>
 
         </div>
 
@@ -48,7 +72,11 @@
 
                         <span class="metric-tooltip">
 
-                            <i class="fa fa-info-circle"></i>
+                            <img
+                                class="metric-info-icon"
+                                src="/static/icons/info.svg"
+                                alt=""
+                            >
 
                             <span class="metric-tooltip-text">
 
@@ -75,16 +103,19 @@
                             value="{{ settings.connectivity.interval_seconds }}"
                         >
 
-                        <button
-                            id="connectivity-enabled"
-                            data-enabled="{{ 'true' if settings.connectivity.enabled else 'false' }}"
-                            type="button"
-                            class="btn {% if settings.connectivity.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
-                        >
+                        <label class="metric-switch">
 
-                            <i class="fa fa-check"></i>
+                            <input
+                                id="connectivity-enabled"
+                                type="checkbox"
+                                {% if settings.connectivity.enabled %}
+                                checked
+                                {% endif %}
+                            >
 
-                        </button>
+                            <span class="metric-slider"></span>
+
+                        </label>
 
                     </span>
 
@@ -98,7 +129,11 @@
 
                         <span class="metric-tooltip">
 
-                            <i class="fa fa-info-circle"></i>
+                            <img
+                                class="metric-info-icon"
+                                src="/static/icons/info.svg"
+                                alt=""
+                            >
 
                             <span class="metric-tooltip-text">
 
@@ -125,16 +160,19 @@
                             value="{{ settings.signal.interval_seconds }}"
                         >
 
-                        <button
-                            id="signal-enabled"
-                            data-enabled="{{ 'true' if settings.signal.enabled else 'false' }}"
-                            type="button"
-                            class="btn {% if settings.signal.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
-                        >
+                        <label class="metric-switch">
 
-                            <i class="fa fa-check"></i>
+                            <input
+                                id="signal-enabled"
+                                type="checkbox"
+                                {% if settings.signal.enabled %}
+                                checked
+                                {% endif %}
+                            >
 
-                        </button>
+                            <span class="metric-slider"></span>
+
+                        </label>
 
                     </span>
 

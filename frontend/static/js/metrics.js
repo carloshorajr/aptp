@@ -18,7 +18,12 @@ const Metrics = {
 
                 interval: document.getElementById(
                     "connectivity-interval"
-                )
+                ),
+
+                initialEnabled:
+                    document.getElementById(
+                        "connectivity-enabled"
+                    ).checked
 
             },
 
@@ -30,9 +35,14 @@ const Metrics = {
 
                 interval: document.getElementById(
                     "signal-interval"
-                )
+                ),
 
-            }
+                initialEnabled:
+                    document.getElementById(
+                        "signal-enabled"
+                    ).checked
+
+            },
 
         };
 
@@ -44,11 +54,27 @@ const Metrics = {
             "clear-button"
         );
 
+        const globalToggle = document.getElementById(
+            "metrics-enabled-all-input"
+        );
+
+        if (globalToggle) {
+
+            globalToggle.checked =
+
+                Object.values(this.metrics).every(
+
+                    metric => metric.button.checked
+
+                );
+
+        }
+
         Object.values(this.metrics).forEach(metric => {
 
             if (metric.button) {
 
-                metric.button.onclick = () => this.toggle(metric);
+                metric.button.onchange = () => {};
 
             }
 
@@ -66,17 +92,20 @@ const Metrics = {
 
         }
 
-    },
+        if (globalToggle) {
 
-    toggle(metric) {
+            globalToggle.onchange = () => {
 
-        metric.button.classList.toggle(
-            "metric-enabled"
-        );
+                Object.values(this.metrics).forEach(metric => {
 
-        metric.button.classList.toggle(
-            "metric-disabled"
-        );
+                    metric.button.checked =
+                        globalToggle.checked;
+
+                });
+
+            };
+
+        }
 
     },
 
@@ -90,9 +119,7 @@ const Metrics = {
 
                 payload[name] = {
 
-                    enabled: metric.button.classList.contains(
-                        "metric-enabled"
-                    ),
+                    enabled: metric.button.checked,
 
                     interval_seconds: Number(
                         metric.interval.value
@@ -117,7 +144,7 @@ const Metrics = {
             ([name, metric]) =>
 
                 payload[name].enabled !==
-                (metric.button.dataset.enabled === "true")
+                    metric.initialEnabled
 
                 ||
 
@@ -237,32 +264,22 @@ const Metrics = {
 
             Object.values(this.metrics).forEach(metric => {
 
-                if (this.DEFAULT_ENABLED) {
-
-                    metric.button.classList.add(
-                        "metric-enabled"
-                    );
-
-                    metric.button.classList.remove(
-                        "metric-disabled"
-                    );
-
-                } else {
-
-                    metric.button.classList.add(
-                        "metric-disabled"
-                    );
-
-                    metric.button.classList.remove(
-                        "metric-enabled"
-                    );
-
-                }
+                metric.button.checked = this.DEFAULT_ENABLED;
 
                 metric.interval.value =
                     this.DEFAULT_INTERVAL;
 
             });
+
+            const globalToggle = document.getElementById(
+                "metrics-enabled-all-input"
+            );
+
+            if (globalToggle) {
+
+                globalToggle.checked = false;
+
+            }
 
             await this.save(true);
 
@@ -274,7 +291,7 @@ const Metrics = {
 
             if (metric.button) {
 
-                metric.button.onclick = null;
+                metric.button.onchange = null;
 
             }
 

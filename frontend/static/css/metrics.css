@@ -186,6 +186,20 @@ TABELA DE MÉTRICAS
 
 }
 
+.metric-icon{
+
+    width:18px;
+
+    height:18px;
+
+    display:block;
+
+    user-select:none;
+
+    pointer-events:none;
+
+}
+
 .metric-actions .btn:hover{
 
     transform:translateY(-1px);
@@ -230,20 +244,23 @@ BARRA DE FERRAMENTAS
 
 .metrics-toolbar{
 
-    display:flex;
+    display:grid;
 
-    justify-content:flex-end;
+    grid-template-columns:124px 124px 46px;
+
+    justify-content:end;
 
     align-items:center;
 
-    gap:10px;
+    column-gap:14px;
 
     margin-top:-10px;
 
     margin-bottom:12px;
 
-}
+    margin-right:19px;
 
+}
 .metrics-toolbar .btn{
 
     width:124px;
@@ -278,19 +295,29 @@ TOOLTIP DAS MÉTRICAS
 
 }
 
-.metric-tooltip i{
+.metric-info-icon{
 
-    color:#64748b;
+    width:14px;
 
-    font-size:13px;
+    height:14px;
 
-    transition:color .18s ease;
+    display:block;
+
+    opacity:.75;
+
+    transition:opacity .18s ease;
 
 }
 
-.metric-tooltip:hover i{
+.metric-tooltip .metric-info-icon{
 
-    color:#2563eb;
+    transition:opacity .18s ease;
+
+}
+
+.metric-tooltip:hover .metric-info-icon{
+
+    opacity:1;
 
 }
 
@@ -341,5 +368,83 @@ TOOLTIP DAS MÉTRICAS
     opacity:1;
 
     visibility:visible;
+
+}
+
+/* ==========================================================
+TOGGLE
+========================================================== */
+
+.metric-switch{
+
+    position:relative;
+
+    display:inline-block;
+
+    width:46px;
+
+    height:26px;
+
+}
+
+.metric-switch input{
+
+    display:none;
+
+}
+
+.metric-slider{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:999px;
+
+    background:#cbd5e1;
+
+    cursor:pointer;
+
+    transition:background .20s ease;
+
+}
+
+.metric-slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:20px;
+
+    height:20px;
+
+    left:3px;
+
+    top:3px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    transition:transform .20s ease;
+
+}
+
+.metric-switch input:checked + .metric-slider{
+
+    background:#2563eb;
+
+}
+
+.metric-switch input:checked + .metric-slider::before{
+
+    transform:translateX(20px);
+
+}
+
+.metrics-toolbar .metric-switch{
+
+    margin-right:18px;
 
 }

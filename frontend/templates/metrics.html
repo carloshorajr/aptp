@@ -2,163 +2,147 @@
 
 {% block content %}
 
-<div class="metrics-panel">
+<div class="settings-panel metrics-panel">
 
-    <div class="metrics-section">
+    <div class="settings-section">
 
         <h3>MÉTRICAS - WIFI</h3>
 
-        <div class="metric-item">
-
-            <span class="metric-label">
-
-                Conectividade
-
-                <span class="metric-tooltip">
-
-                    <i class="fa fa-info-circle"></i>
-
-                    <span class="metric-tooltip-text">
-
-                        <ul style="margin:6px 0 0 16px;padding:0;">
-                            <li>monitora os eventos de associação e desassociação da interface de rede WiFi.</li>
-                            <br>
-                            <li>monitora o tempo atual de associação com uma rede WiFi.</li>
-                        </ul>
-
-                    </span>
-
-                </span>
-
-            </span>
-
-            <span class="metric-actions">
-
-                <input
-
-                    id="connectivity-interval"
-
-                    data-value="{{ settings.connectivity.interval_seconds }}"
-
-                    class="metric-interval"
-
-                    type="number"
-
-                    min="1"
-
-                    value="{{ settings.connectivity.interval_seconds }}"
-
-                >
-
-                <button
-
-                    id="connectivity-enabled"
-
-                    data-enabled="{{ 'true' if settings.connectivity.enabled else 'false' }}"
-
-                    type="button"
-
-                    class="btn {% if settings.connectivity.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
-
-                >
-
-                    <i class="fa fa-check"></i>
-
-                </button>
-
-            </span>
-
-    </div>
-
-    <div class="metric-item">
-
-        <span class="metric-label">
-
-            Qualidade do Sinal
-
-            <span class="metric-tooltip">
-
-                <i class="fa fa-info-circle"></i>
-
-                <span class="metric-tooltip-text">
-
-                    <ul style="margin:6px 0 0 16px;padding:0;">
-                        <li>monitora a intensidade do sinal WiFi (RSSI).</li>
-                        <br>
-                        <li>monitora alterações na qualidade do enlace e gera eventos quando o sinal estiver abaixo do limite configurado.</li>
-                    </ul>
-
-                </span>
-
-            </span>
-
-        </span>
-
-        <span class="metric-actions">
-
-            <input
-
-                id="signal-interval"
-
-                data-value="{{ settings.signal.interval_seconds }}"
-
-                class="metric-interval"
-
-                type="number"
-
-                min="1"
-
-                value="{{ settings.signal.interval_seconds }}"
-
-            >
+        <div class="metrics-toolbar">
 
             <button
-
-                id="signal-enabled"
-
-                data-enabled="{{ 'true' if settings.signal.enabled else 'false' }}"
-
+                id="save-button"
                 type="button"
-
-                class="btn {% if settings.signal.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
-
+                class="btn btn-primary"
             >
 
-                <i class="fa fa-check"></i>
+                <i class="fa fa-floppy-o"></i>
+
+                <span>Salvar</span>
 
             </button>
 
-            </span>
+            <button
+                id="clear-button"
+                type="button"
+                class="btn btn-outline"
+            >
+
+                <i class="fa fa-refresh"></i>
+
+                <span>Limpar</span>
+
+            </button>
 
         </div>
 
-    </div>
+        <div class="metrics-table">
 
-    <div class="metrics-toolbar">
+            <div id="metrics-list">
 
-        <button
-            id="save-button"
-            type="button"
-            class="btn btn-primary"
-        >
+                <div class="metric-item">
 
-            <i class="fa fa-floppy-o"></i>
+                    <span class="metric-label">
 
-            <span>Salvar</span>
+                        Conectividade
 
-        </button>
+                        <span class="metric-tooltip">
 
-        <button
-            id="clear-button"
-            type="button"
-            class="btn btn-outline"
-        >
+                            <i class="fa fa-info-circle"></i>
 
-            <i class="fa fa-refresh"></i>
+                            <span class="metric-tooltip-text">
 
-            <span>Limpar</span>
+                                <ul style="margin:6px 0 0 16px;padding:0;">
+                                    <li>monitora os eventos de associação e desassociação da interface de rede WiFi.</li>
+                                    <br>
+                                    <li>monitora o tempo atual de associação com uma rede WiFi.</li>
+                                </ul>
 
-        </button>
+                            </span>
+
+                        </span>
+
+                    </span>
+
+                    <span class="metric-actions">
+
+                        <input
+                            id="connectivity-interval"
+                            data-value="{{ settings.connectivity.interval_seconds }}"
+                            class="metric-interval"
+                            type="number"
+                            min="1"
+                            value="{{ settings.connectivity.interval_seconds }}"
+                        >
+
+                        <button
+                            id="connectivity-enabled"
+                            data-enabled="{{ 'true' if settings.connectivity.enabled else 'false' }}"
+                            type="button"
+                            class="btn {% if settings.connectivity.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
+                        >
+
+                            <i class="fa fa-check"></i>
+
+                        </button>
+
+                    </span>
+
+                </div>
+
+                <div class="metric-item">
+
+                    <span class="metric-label">
+
+                        Qualidade do Sinal
+
+                        <span class="metric-tooltip">
+
+                            <i class="fa fa-info-circle"></i>
+
+                            <span class="metric-tooltip-text">
+
+                                <ul style="margin:6px 0 0 16px;padding:0;">
+                                    <li>monitora a intensidade do sinal WiFi (RSSI).</li>
+                                    <br>
+                                    <li>monitora alterações na qualidade do enlace e gera eventos quando o sinal estiver abaixo do limite configurado.</li>
+                                </ul>
+
+                            </span>
+
+                        </span>
+
+                    </span>
+
+                    <span class="metric-actions">
+
+                        <input
+                            id="signal-interval"
+                            data-value="{{ settings.signal.interval_seconds }}"
+                            class="metric-interval"
+                            type="number"
+                            min="1"
+                            value="{{ settings.signal.interval_seconds }}"
+                        >
+
+                        <button
+                            id="signal-enabled"
+                            data-enabled="{{ 'true' if settings.signal.enabled else 'false' }}"
+                            type="button"
+                            class="btn {% if settings.signal.enabled %}metric-enabled{% else %}metric-disabled{% endif %}"
+                        >
+
+                            <i class="fa fa-check"></i>
+
+                        </button>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

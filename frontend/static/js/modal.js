@@ -72,14 +72,34 @@ function showModal(options) {
             ? "none"
             : "";
     
-    cancelButton.textContent =
-        options.cancelText ?? "Cancelar";
-
-    cancelButton.innerHTML =
-        options.cancelText ?? "Cancelar";
-
     cancelButton.className =
         `btn ${options.cancelClass ?? "btn-outline"}`;
+
+    const cancelText =
+        options.cancelText ?? "Cancelar";
+
+    if (cancelText === "Conectar") {
+
+        cancelButton.innerHTML = `
+
+            <img
+                src="/static/icons/wifi_connect.svg"
+                class="wifi-icon"
+                alt="Conectar"
+            >
+
+            <span>Conectar</span>
+
+        `;
+
+    }
+
+    else {
+
+        cancelButton.textContent =
+            cancelText;
+
+    }
 
     confirmButton.innerHTML =
         options.confirmText ?? "Confirmar";

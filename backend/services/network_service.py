@@ -160,6 +160,27 @@ class NetworkService:
         return result
     
     @staticmethod
+    def update_saved_password(
+        ssid,
+        password
+    ):
+
+        result = CommandService.run_raw(
+
+            [
+                "nmcli",
+                "connection",
+                "modify",
+                ssid,
+                "wifi-sec.psk",
+                password
+            ]
+
+        )
+
+        return result
+
+    @staticmethod
     def disconnect():
 
         result = CommandService.run_raw(
@@ -441,6 +462,18 @@ class NetworkService:
     @staticmethod
     def connect(ssid, password):
 
+        password = password.strip()
+
+        if not password:
+
+            return {
+
+                "success": False,
+
+                "message": "Informe a senha da rede Wi-Fi."
+
+            }
+
         if not NetworkService.wait_for_network(ssid):
 
             return {
@@ -454,8 +487,28 @@ class NetworkService:
 
         if NetworkService.connection_exists(ssid):
 
+            result = NetworkService.update_saved_password(
+
+                ssid,
+
+                password
+
+            )
+
+            if result.returncode != 0:
+
+                return {
+
+                    "success": False,
+
+                    "message": "Senha inválida."
+
+                }
+
             result = NetworkService.connect_saved_network(
+
                 ssid
+
             )
 
             if result.returncode == 0:
@@ -473,11 +526,25 @@ class NetworkService:
 
                 }
 
+            error = result.stderr.strip()
+
+            if (
+
+                "Secrets were required" in error
+
+                or
+
+                "802-11-wireless-security" in error
+
+            ):
+
+                error = "Senha inválida. Digite uma senha válida."
+
             return {
 
                 "success": False,
 
-                "message": result.stderr.strip()
+                "message": error
 
             }
 
@@ -501,19 +568,31 @@ class NetworkService:
 
             WifiSignalService.collect_now()
 
+        if result.returncode == 0:
+
+            message = result.stdout.strip()
+
+        else:
+
+            message = result.stderr.strip()
+
+            if (
+
+                "Secrets were required" in message
+
+                or
+
+                "802-11-wireless-security" in message
+
+            ):
+
+                message = "Senha inválida. Digite uma senha válida."
+
         return {
 
             "success": result.returncode == 0,
 
-            "message": (
-
-                result.stdout.strip()
-
-                if result.returncode == 0
-
-                else result.stderr.strip()
-
-            )
+            "message": message
 
         }
 

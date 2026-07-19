@@ -10,6 +10,8 @@
 
         <h3>REDES WIFI</h3>
 
+{# Barra de ações para escanear e limpar redes Wi-Fi #}
+
             <div class="wifi-toolbar">
 
                 <button
@@ -47,11 +49,15 @@
 
             </div>
 
+{# Lista de redes Wi-Fi disponíveis e respectivos controles #}
+
             <div class="wifi-table">
 
                 <div id="wifi-list">
 
                     {% if networks %}
+
+{# Renderiza cada rede Wi-Fi encontrada no último escaneamento #}
 
                         {% for network in networks %}
 
@@ -82,6 +88,8 @@
                                 {% endif %}
 
                             </div>
+
+{# Ações disponíveis para a rede selecionada #}
 
                             <div class="wifi-actions">
 
@@ -128,6 +136,8 @@
                                             class="wifi-icon"
                                             alt="Desconectar"
                                         >
+
+{# Exibido quando ainda não existem redes escaneadas #}
 
                                         {% else %}
 

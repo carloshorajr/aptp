@@ -8,6 +8,8 @@ const Network = {
 
     },
 
+// Escaneia as redes Wi-Fi disponíveis e atualiza a listagem.
+
     async scanWifi() {
 
         this.setScanningState(true);
@@ -49,6 +51,8 @@ const Network = {
         }
 
     },
+
+// Limpa a lista de redes atualmente exibida na interface.
 
     async clear() {
 
@@ -107,6 +111,8 @@ const Network = {
         );
 
     },
+
+// Renderiza dinamicamente a lista de redes Wi-Fi (legado).
 
     renderWifiList(networks) {
 
@@ -186,6 +192,8 @@ const Network = {
         }
 
     },
+
+// Exibe as informações detalhadas da rede selecionada.
 
     showWifiDetails(button) {
 
@@ -290,6 +298,8 @@ const Network = {
         });
 
     },
+
+// Conecta ou desconecta a rede Wi-Fi selecionada.
 
     async toggleWifi(button) {
 
@@ -453,6 +463,18 @@ const Network = {
                 const toggle =
                     document.getElementById("toggle-password");
 
+                const connectButton =
+                    document.getElementById("modal-cancel");
+
+                connectButton.disabled = true;
+
+                input.addEventListener("input", () => {
+
+                    connectButton.disabled =
+                        input.value.trim() === "";
+
+                });
+
                 if (!input || !toggle) {
 
                     return;
@@ -490,7 +512,10 @@ const Network = {
                     document.getElementById("wifi-password");
 
                 const toggle =
-                    document.getElementById("toggle-password");                
+                    document.getElementById("toggle-password");
+                
+                const connectIcon =
+                    connectButton.querySelector(".wifi-icon");
 
                 const password =
                     document
@@ -505,9 +530,20 @@ const Network = {
 
                 toggle.disabled = true;
 
-                connectButton.innerHTML =
+                connectButton.classList.add(
+                    "wifi-scanning"
+                );
 
-                    '<i class="fa fa-spinner fa-spin"></i> Conectando...';
+                if (connectIcon) {
+
+                    connectIcon.src =
+                        "/static/icons/progress_activity.svg";
+
+                    connectIcon.classList.add(
+                        "wifi-rotating"
+                    );
+
+                }
 
                 const response =
                     await fetch(
@@ -547,6 +583,21 @@ const Network = {
                 input.disabled = false;
 
                 toggle.disabled = false;
+
+                connectButton.classList.remove(
+                    "wifi-scanning"
+                );
+
+                if (connectIcon) {
+
+                    connectIcon.src =
+                        "/static/icons/wifi_connect.svg";
+
+                    connectIcon.classList.remove(
+                        "wifi-rotating"
+                    );
+
+                }
 
                 hideModal();
 
@@ -622,6 +673,8 @@ const Network = {
 
     },
 
+// Atualiza o estado visual do botão de escaneamento.
+
     setScanningState(scanning) {
 
         const button =
@@ -670,6 +723,8 @@ const Network = {
         button.disabled = scanning;
 
     },
+
+// Atualiza o estado visual do botão de desconexão.
 
     setDisconnectingState(button, disconnecting) {
 

@@ -1,55 +1,31 @@
-/* ==========================================================
-WIFI
-========================================================== */
+/* Barra de ferramentas da página de redes Wi-Fi */
 
 .wifi-toolbar{
-
     display:flex;
-
     justify-content:flex-end;
-
     align-items:center;
-
     gap:10px;
-
     margin-top:-10px;
-
     margin-bottom:12px;
-
 }
 
 .wifi-toolbar .btn{
-
     width:124px;
-
     height:40px;
-
     padding:0;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:8px;
-
 }
 
-/* ==========================================================
-TABELA WIFI
-========================================================== */
+/* Estrutura visual da lista de redes Wi-Fi */
 
 .wifi-table{
-
     border:1px solid #d7dce5;
-
     border-radius:10px;
-
     overflow:hidden;
-
     background:#fff;
-
 }
 
 .wifi-header{
@@ -132,6 +108,8 @@ TABELA WIFI
 
 }
 
+/* Layout das informações exibidas para cada rede */
+
 .wifi-network{
 
     display:grid;
@@ -143,6 +121,8 @@ TABELA WIFI
     column-gap:40px;
 
 }
+
+/* Indicador de rede atualmente conectada */
 
 .wifi-band{
 
@@ -246,13 +226,7 @@ TABELA WIFI
 
 }
 
-.wifi-icon-btn i{
-
-    margin:0;
-
-    font-size:15px;
-
-}
+/* Configuração padrão dos ícones SVG da interface */
 
 .wifi-icon{
 
@@ -267,6 +241,8 @@ TABELA WIFI
     pointer-events:none;
 
 }
+
+/* Animação aplicada aos ícones durante operações em andamento */
 
 .wifi-rotating{
 
@@ -290,6 +266,8 @@ TABELA WIFI
 
 }
 
+/* Mensagem exibida quando nenhuma rede foi escaneada */
+
 .wifi-empty{
 
     padding:22px;
@@ -299,10 +277,6 @@ TABELA WIFI
     color:#64748b;
 
 }
-
-/* ==========================================================
-ESCANEAMENTO
-========================================================== */
 
 #wifi-list{
 
@@ -319,6 +293,8 @@ ESCANEAMENTO
     transform:translateY(4px);
 
 }
+
+/* Aparência dos botões durante operações de rede */
 
 .wifi-scanning{
 
@@ -343,12 +319,6 @@ ESCANEAMENTO
 
 }
 
-.wifi-scanning i{
-
-    margin:0;
-
-}
-
 #scan-wifi-button{
 
     width:128px;
@@ -357,9 +327,7 @@ ESCANEAMENTO
 
 }
 
-/* ==========================================================
-MODAL WIFI
-========================================================== */
+/* Layout do modal de detalhes da rede Wi-Fi */
 
 .wifi-details{
 
@@ -435,9 +403,7 @@ MODAL WIFI
 
 }
 
-/* ==========================================================
-MODAL CONECTAR WIFI
-========================================================== */
+/* Campo de entrada e controle da senha da rede Wi-Fi */
 
 .wifi-password{
 

@@ -6,6 +6,8 @@ const Metrics = {
 
     metrics: {},
 
+// Inicialização
+
     init() {
 
         this.metrics = {
@@ -109,6 +111,8 @@ const Metrics = {
 
     },
 
+// Construção do Payload
+
     buildPayload() {
 
         const payload = {};
@@ -135,6 +139,8 @@ const Metrics = {
 
     },
 
+// Verificação de Alterações
+
     isDirty() {
 
         const payload = this.buildPayload();
@@ -155,6 +161,8 @@ const Metrics = {
 
     },
 
+// Verificação do Estado Padrão
+
     isDefault() {
 
         const payload = this.buildPayload();
@@ -174,6 +182,8 @@ const Metrics = {
         );
 
     },
+
+// Salvamento das Configurações
 
     async save(force = false) {
 
@@ -235,6 +245,8 @@ const Metrics = {
 
     },
 
+// Restauração dos Valores Padrão
+
         async clear() {
 
             if (this.isDefault()) {
@@ -284,6 +296,8 @@ const Metrics = {
             await this.save(true);
 
         },
+
+// Liberação de Recursos
 
     destroy() {
 

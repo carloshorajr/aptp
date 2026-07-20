@@ -196,7 +196,7 @@ const Metrics = {
                 message:
                     "Não há alterações para salvar.",
 
-                icon: "save",
+                icon: "save_dark",
 
                 iconClass: "info",
 

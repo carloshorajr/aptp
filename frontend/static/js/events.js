@@ -181,7 +181,7 @@ const Events = {
                 message:
                     "Não há filtros para aplicar.",
 
-                icon: "check",
+                icon: "check_dark",
 
                 iconClass: "info",
 
@@ -294,7 +294,7 @@ const Events = {
                 message:
                     "Não há eventos para apagar.",
 
-                icon: "delete",
+                icon: "delete_dark",
 
                 iconClass: "info",
 
@@ -317,7 +317,7 @@ const Events = {
             message:
                 "Você deseja apagar todo o registro de eventos?\nEsta ação não poderá ser desfeita!",
 
-            icon: "delete",
+            icon: "delete_dark",
 
             iconClass: "danger",
 

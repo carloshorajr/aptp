@@ -76,6 +76,8 @@ const Network = {
 
                 confirmText: "Sair",
 
+                confirmClass: "btn-outline",
+
                 showCancel: false
 
             });
@@ -447,7 +449,7 @@ const Network = {
 
             `,
 
-            icon: "wifi_connect",
+            icon: "wifi_connect_dark",
 
             iconClass: "info",
 

@@ -60,7 +60,7 @@ function showModal(options) {
 
     modalIcon.className = `modal-icon modal-icon-${options.iconClass ?? "danger"}`;
 
-    modalIconSymbol.className = `fa fa-${options.icon ?? "trash"}`;
+    modalIconSymbol.src = `/static/icons/${options.icon ?? "delete"}.svg`;
 
     modalCallback = options.onConfirm ?? null;
 

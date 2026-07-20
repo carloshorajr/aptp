@@ -68,7 +68,7 @@ const Network = {
                 message:
                     "Não há redes escaneadas para limpar.",
 
-                icon: "refresh",
+                icon: "cached",
 
                 iconClass: "info",
 
@@ -283,7 +283,7 @@ const Network = {
 
             allowHtml: true,
 
-            icon: "info-circle",
+            icon: "info",
 
             iconClass: "info",
 
@@ -347,7 +347,7 @@ const Network = {
 
                         message: result.message,
 
-                        icon: "times-circle",
+                        icon: "delete",
 
                         iconClass: "danger",
 
@@ -429,9 +429,15 @@ const Network = {
                         <button
                             id="toggle-password"
                             type="button"
-                            class="wifi-password-toggle">
+                            class="wifi-password-toggle"
+                        >
 
-                            <i class="fa fa-eye-slash"></i>
+                            <img
+                                id="toggle-password-icon"
+                                class="wifi-password-icon"
+                                src="/static/icons/visibility_off.svg"
+                                alt="Mostrar senha"
+                            >
 
                         </button>
 
@@ -441,7 +447,7 @@ const Network = {
 
             `,
 
-            icon: "wifi",
+            icon: "wifi_connect",
 
             iconClass: "info",
 
@@ -491,10 +497,13 @@ const Network = {
                             ? "password"
                             : "text";
 
-                    toggle.innerHTML =
+                    const toggleIcon =
+                        document.getElementById("toggle-password-icon");
+
+                    toggleIcon.src =
                         showing
-                            ? '<i class="fa fa-eye-slash"></i>'
-                            : '<i class="fa fa-eye"></i>';
+                            ? "/static/icons/visibility_off.svg"
+                            : "/static/icons/visibility.svg";
 
                 };
 
@@ -614,9 +623,9 @@ const Network = {
 
                     icon:
                         result.success
-                            ? "check-circle"
+                            ? "check"
 
-                            : "times-circle",
+                            : "delete",
 
                     iconClass:
                         result.success

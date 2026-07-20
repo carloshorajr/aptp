@@ -66,67 +66,69 @@
 
         <div class="metrics-table">
 
-            <div id="metrics-list">
+            <div class="metrics-table-content">
+
+                <div id="metrics-list">
 
 <!-- Métrica: Conectividade -->
 
-                <div class="metric-item">
+                    <div class="metric-item">
 
-                    <span class="metric-label">
+                        <span class="metric-label">
 
-                        Conectividade
+                            Conectividade
 
-                        <span class="metric-tooltip">
+                            <span class="metric-tooltip">
 
-                            <img
-                                class="metric-info-icon"
-                                src="/static/icons/info.svg"
-                                alt=""
-                            >
+                                <img
+                                    class="metric-info-icon"
+                                    src="/static/icons/info.svg"
+                                    alt=""
+                                >
 
-                            <span class="metric-tooltip-text">
+                                <span class="metric-tooltip-text">
 
-                                <ul style="margin:6px 0 0 16px;padding:0;">
-                                    <li>monitora os eventos de associação e desassociação da interface de rede WiFi.</li>
-                                    <br>
-                                    <li>monitora o tempo atual de associação com uma rede WiFi.</li>
-                                </ul>
+                                    <ul style="margin:6px 0 0 16px;padding:0;">
+                                        <li>monitora os eventos de associação e desassociação da interface de rede WiFi.</li>
+                                        <br>
+                                        <li>monitora o tempo atual de associação com uma rede WiFi.</li>
+                                    </ul>
+
+                                </span>
 
                             </span>
 
                         </span>
 
-                    </span>
-
-                    <span class="metric-actions">
-
-                        <input
-                            id="connectivity-interval"
-                            data-value="{{ settings.connectivity.interval_seconds }}"
-                            class="metric-interval"
-                            type="number"
-                            min="1"
-                            value="{{ settings.connectivity.interval_seconds }}"
-                        >
-
-                        <label class="metric-switch">
+                        <span class="metric-actions">
 
                             <input
-                                id="connectivity-enabled"
-                                type="checkbox"
-                                {% if settings.connectivity.enabled %}
-                                checked
-                                {% endif %}
+                                id="connectivity-interval"
+                                data-value="{{ settings.connectivity.interval_seconds }}"
+                                class="metric-interval"
+                                type="number"
+                                min="1"
+                                value="{{ settings.connectivity.interval_seconds }}"
                             >
 
-                            <span class="metric-slider"></span>
+                            <label class="metric-switch">
 
-                        </label>
+                                <input
+                                    id="connectivity-enabled"
+                                    type="checkbox"
+                                    {% if settings.connectivity.enabled %}
+                                    checked
+                                    {% endif %}
+                                >
 
-                    </span>
+                                <span class="metric-slider"></span>
 
-                </div>
+                            </label>
 
+                        </span>
+
+                    </div>
+            
 <!-- Métrica: Qualidade do Sinal -->
 
                 <div class="metric-item">

@@ -258,7 +258,7 @@ const Metrics = {
                     message:
                         "Todas as métricas já estão no padrão.",
 
-                    icon: "refresh",
+                    icon: "cached",
 
                     iconClass: "info",
 

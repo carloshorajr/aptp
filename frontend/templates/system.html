@@ -4,62 +4,78 @@
 
 <div class="system-panel">
 
+<!-- Sistema -->
+
     <div class="system-section">
 
         <h3>Sistema</h3>
 
-        <div class="system-item">
-            <span class="system-label">Hostname</span>
-            <span class="system-value">{{ hostname }}</span>
-        </div>
+        <div class="system-list">
 
-        <div class="system-item">
-            <span class="system-label">
-                UUID
-            </span>
-            <span class="system-value">
-                {{ uuid }}
-            </span>
-        </div>
+            <div class="system-item">
+                <span class="system-label">Hostname</span>
+                <span class="system-value">{{ hostname }}</span>
+            </div>
 
-        <div class="system-item">
-            <span class="system-label">Uptime</span>
-            <span class="system-value" id="system-uptime">{{ uptime }}</span>
-        </div>
+            <div class="system-item">
+                <span class="system-label">
+                    UUID
+                </span>
+                <span class="system-value">
+                    {{ uuid }}
+                </span>
+            </div>
 
+            <div class="system-item">
+                <span class="system-label">Uptime</span>
+                <span class="system-value" id="system-uptime">{{ uptime }}</span>
+            </div>
+            
+        </div>
+        
     </div>
+
+<!-- Hardware -->
 
     <div class="system-section">
 
         <h3>Hardware</h3>
 
-        <div class="system-item">
-            <span class="system-label">CPU</span>
-            <span class="system-value" id="system-cpu">{{ cpu }}%</span>
+        <div class="system-list">
+
+            <div class="system-item">
+                <span class="system-label">CPU</span>
+                <span class="system-value" id="system-cpu">{{ cpu }}%</span>
+            </div>
+
+            <div class="system-item">
+                <span class="system-label">Memória</span>
+                <span class="system-value" id="system-memory">{{ memory }}%</span>
+            </div>
+
+            <div class="system-item">
+                <span class="system-label">Disco</span>
+                <span class="system-value">
+
+                    {{ disk.used }} GB de {{ disk.total }} GB ({{ disk.percent }}%)
+
+                </span>
+            </div>
         </div>
-
-        <div class="system-item">
-            <span class="system-label">Memória</span>
-            <span class="system-value" id="system-memory">{{ memory }}%</span>
-        </div>
-
-        <div class="system-item">
-            <span class="system-label">Disco</span>
-            <span class="system-value">
-
-                {{ disk.used }} GB de {{ disk.total }} GB ({{ disk.percent }}%)
-
-            </span>
-        </div>
-
     </div>
+
+<!-- Interfaces de Rede -->
 
     {% for iface in interfaces %}
 
     <div class="system-section">
 
         <h3>{{ iface.description }}</h3>
-    
+
+        <div class="system-list">
+
+<!-- SSID -->
+
         {% if iface.ssid %}
 
         <div class="system-item">
@@ -76,6 +92,8 @@
 
         {% endif %}
 
+<!-- Interface -->
+
         <div class="system-item">
 
             <span class="system-label">
@@ -87,6 +105,8 @@
             </span>
 
         </div>
+
+<!-- Endereço IP -->
 
         <div class="system-item">
 
@@ -103,6 +123,8 @@
             </span>
 
         </div>
+
+<!-- Endereço MAC -->
 
         {% if iface.mac %}
 
@@ -125,6 +147,8 @@
         {% endif %}
 
     </div>
+
+</div>
 
     {% endfor %}
 

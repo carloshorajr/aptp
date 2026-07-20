@@ -1,8 +1,25 @@
+/* Painel */
+
+.events-panel{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* Conteúdo */
+
+.events-section{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* Filtros */
+
 .filters-panel{
     display:flex;
     align-items:flex-end;
     gap:14px;
-    flex-wrap:nowrap;
     width:100%;
 }
 
@@ -24,8 +41,8 @@
 }
 
 .filter-search{
-    flex:1 1 0;
-    min-width:0;
+    flex:1;
+    min-width:260px;
 }
 
 .filter-limit{
@@ -85,85 +102,94 @@
     gap:8px;
 }
 
-.filter-buttons .btn i{
-    font-size:.90em;
+.event-icon{
+
+    width:18px;
+
+    height:18px;
+
+    display:block;
+
+    user-select:none;
+
+    pointer-events:none;
+
 }
+
+/* Tabela */
+
+.events-table{
+    border:1px solid #d7dce5;
+    border-radius:10px;
+    overflow:hidden;
+    background:#fff;
+    padding:0 8px;
+
+}
+
+.events-table .table{
+
+    margin-top:-8px;
+
+}
+
+.events-table .table tbody td{
+
+    padding:8px 14px;
+
+}
+
+.events-section h3{
+
+    margin:0;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #d8e2ef;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    color:#1e3a8a;
+
+}
+
+.events-section form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* Badges */
 
 .badge-info{
     background:#dbeafe;
     color:#1d4ed8;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
 }
 
 .badge-warning{
     background:#fef3c7;
     color:#92400e;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
 }
 
 .badge-error{
     background:#fee2e2;
     color:#b91c1c;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
 }
+/* Footer */
 
 .table-footer{
-    margin-top:16px;
+    margin-top:8px;
+    margin-bottom:0px;
     text-align:right;
     font-size:13px;
     color:#6b7280;
-}
-
-.stats-panel{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:16px;
-    margin-bottom:28px;
-}
-
-.stat-card{
-    background:#fff;
-    border-radius:16px;
-    padding:18px 20px;
-    min-height:110px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 2px 12px rgba(0,0,0,.08);
-}
-
-.stat-title{
-    font-size:13px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:12px;
-}
-
-.stat-value{
-    font-size:42px;
-    font-weight:700;
-    line-height:1;
-}
-
-.stat-total .stat-title{
-    color:#64748b;
-}
-
-.stat-info .stat-title{
-    color:#2563eb;
-}
-
-.stat-warning .stat-title{
-    color:#d97706;
-}
-
-.stat-error .stat-title{
-    color:#dc2626;
-}
-
-.stat-24h .stat-title{
-    color:#7c3aed;
-}
-
-.stat-today .stat-title{
-    color:#16a34a;
 }

@@ -2,296 +2,254 @@
 
 {% block content %}
 
-<div class="card">
+<div class="settings-panel events-panel">
 
-    <div class="stats-panel">
+    <div class="events-section">
 
-        {% with
-            css_class="stat-total",
-            category="EVENTOS",
-            title="Total",
-            value=statistics.total,
-            element_id="stat-total"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+        <h3>EVENTOS</h3>
 
-        {% with
-            css_class="stat-info",
-            category="EVENTOS",
-            title="INFO",
-            value=statistics.info,
-            element_id="stat-info"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+        <form method="GET">
 
-        {% with
-            css_class="stat-warning",
-            category="EVENTOS",
-            title="ATENÇÃO",
-            value=statistics.warning,
-            element_id="stat-warning"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+            <div class="filters-panel">
 
-        {% with
-            css_class="stat-error",
-            category="EVENTOS",
-            title="ERRO",
-            value=statistics.error,
-            element_id="stat-error"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+                <div class="filter-item filter-period">
 
-        {% with
-            css_class="stat-24h",
-            category="EVENTOS",
-            title="Últimas 24h",
-            value=statistics.last_24h,
-            element_id="stat-24h"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+                    <label>Período</label>
 
-        {% with
-            css_class="stat-today",
-            category="EVENTOS",
-            title="Hoje",
-            value=statistics.today,
-            element_id="stat-today"
-        %}
-            {% include "components/cards/stat_card.html" %}
-        {% endwith %}
+                    <select name="period">
 
-    </div>
-
-    <form method="GET">
-
-        <div class="filters-panel">
-
-            <div class="filter-item filter-period">
-
-                <label>Período</label>
-
-                <select name="period">
-
-                    <option value=""
-                        {% if filters.get('period', '') == '' %}selected{% endif %}>
-                        Tudo
-                    </option>
-
-                    <option value="today"
-                        {% if filters.get('period') == 'today' %}selected{% endif %}>
-                        Hoje
-                    </option>
-
-                    <option value="24h"
-                        {% if filters.get('period') == '24h' %}selected{% endif %}>
-                        Últimas 24h
-                    </option>
-
-                    <option value="7d"
-                        {% if filters.get('period') == '7d' %}selected{% endif %}>
-                        Últimos 7 dias
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="filter-item filter-level">
-
-                <label>Nível</label>
-
-                <select name="level">
-
-                    <option value="">Todos</option>
-
-                    <option value="INFO"
-                        {% if filters.get('level') == 'INFO' %}selected{% endif %}>
-                        INFO
-                    </option>
-
-                    <option value="WARNING"
-                        {% if filters.get('level') == 'WARNING' %}selected{% endif %}>
-                        WARNING
-                    </option>
-
-                    <option value="ERROR"
-                        {% if filters.get('level') == 'ERROR' %}selected{% endif %}>
-                        ERROR
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="filter-item filter-source">
-
-                <label>Origem</label>
-
-                <select name="source">
-
-                    <option value="">Todas</option>
-
-                    {% for source in sources %}
-
-                        <option
-                            value="{{ source }}"
-                            {% if filters.get("source") == source %}selected{% endif %}
-                        >
-                            {{ source }}
+                        <option value=""
+                            {% if filters.get('period', '') == '' %}selected{% endif %}>
+                            Tudo
                         </option>
 
-                    {% endfor %}
+                        <option value="today"
+                            {% if filters.get('period') == 'today' %}selected{% endif %}>
+                            Hoje
+                        </option>
 
-                </select>
+                        <option value="24h"
+                            {% if filters.get('period') == '24h' %}selected{% endif %}>
+                            Últimas 24h
+                        </option>
 
-            </div>
+                        <option value="7d"
+                            {% if filters.get('period') == '7d' %}selected{% endif %}>
+                            Últimos 7 dias
+                        </option>
 
-            <div class="filter-item filter-search">
+                    </select>
 
-                <label>Pesquisar</label>
+                </div>
 
-                <input
-                    type="text"
-                    name="search"
-                    value="{{ filters.get('search', '') }}"
-                    style="width:100%;"
-                    placeholder="Mensagem ou origem..."
-                >
+                <div class="filter-item filter-level">
 
-            </div>
+                    <label>Nível</label>
 
-            <div class="filter-item filter-limit">
+                    <select name="level">
 
-            <label>Exibir</label>
+                        <option value="">Todos</option>
 
-            <select name="limit">
+                        <option value="INFO"
+                            {% if filters.get('level') == 'INFO' %}selected{% endif %}>
+                            INFO
+                        </option>
 
-                <option value="20"
-                    {% if filters.get('limit', '20') == '20' %}selected{% endif %}>
-                    20
-                </option>
+                        <option value="WARNING"
+                            {% if filters.get('level') == 'WARNING' %}selected{% endif %}>
+                            WARNING
+                        </option>
 
-                <option value="50"
-                    {% if filters.get('limit') == '50' %}selected{% endif %}>
-                    50
-                </option>
+                        <option value="ERROR"
+                            {% if filters.get('level') == 'ERROR' %}selected{% endif %}>
+                            ERROR
+                        </option>
 
-                <option value="100"
-                    {% if filters.get('limit') == '100' %}selected{% endif %}>
-                    100
-                </option>
+                    </select>
 
-                <option value="250"
-                    {% if filters.get('limit') == '250' %}selected{% endif %}>
-                    250
-                </option>
+                </div>
 
-                <option value="500"
-                    {% if filters.get('limit') == '500' %}selected{% endif %}>
-                    500
-                </option>
+                <div class="filter-item filter-source">
 
-                <option value="all"
-                    {% if filters.get('limit') == 'all' %}selected{% endif %}>
-                    Todos
-                </option>
+                    <label>Origem</label>
 
-            </select>
+                    <select name="source">
+
+                        <option value="">Todas</option>
+
+                        {% for source in sources %}
+
+                            <option
+                                value="{{ source }}"
+                                {% if filters.get("source") == source %}selected{% endif %}
+                            >
+                                {{ source }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="filter-item filter-search">
+
+                    <label>Pesquisar</label>
+
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ filters.get('search', '') }}"
+                        style="width:100%;"
+                        placeholder="Mensagem ou origem..."
+                    >
+
+                </div>
+
+                <div class="filter-item filter-limit">
+
+                    <label>Exibir</label>
+
+                    <select name="limit">
+
+                        <option value="20"
+                            {% if filters.get('limit', '20') == '20' %}selected{% endif %}>
+                            20
+                        </option>
+
+                        <option value="50"
+                            {% if filters.get('limit') == '50' %}selected{% endif %}>
+                            50
+                        </option>
+
+                        <option value="100"
+                            {% if filters.get('limit') == '100' %}selected{% endif %}>
+                            100
+                        </option>
+
+                        <option value="250"
+                            {% if filters.get('limit') == '250' %}selected{% endif %}>
+                            250
+                        </option>
+
+                        <option value="500"
+                            {% if filters.get('limit') == '500' %}selected{% endif %}>
+                            500
+                        </option>
+
+                        <option value="all"
+                            {% if filters.get('limit') == 'all' %}selected{% endif %}>
+                            Todos
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="filter-buttons">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+
+                        <img
+                            class="event-icon"
+                            src="/static/icons/check.svg"
+                            alt=""
+                        >
+
+                        <span>Aplicar</span>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="Events.clearFilters()"
+                    >
+
+                        <img
+                            class="event-icon"
+                            src="/static/icons/cached.svg"
+                            alt=""
+                        >
+
+                        <span>Limpar</span>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        onclick="Events.clear()"
+                    >
+
+                        <img
+                            class="event-icon"
+                            src="/static/icons/delete.svg"
+                            alt=""
+                        >
+
+                        <span>Apagar</span>
+
+                    </button>
+
+                </div>
 
         </div>
-
-        <div class="filter-buttons">
-
-            {% with
-                href=None,
-                type="submit",
-                css_class="btn-primary",
-                label="Aplicar",
-                icon="check",
-                onclick=None
-            %}
-            {% include "components/buttons/button.html" %}
-            {% endwith %}
-
-            {% with
-                href=None,
-                type="button",
-                css_class="btn-outline",
-                label="Limpar",
-                icon="refresh",
-                onclick="Events.clearFilters()"
-            %}
-            {% include "components/buttons/button.html" %}
-            {% endwith %}
-
-            {% with
-                href=None,
-                type="button",
-                css_class="btn-danger",
-                label="Apagar",
-                icon="trash",
-                onclick="Events.clear()"
-            %}
-            {% include "components/buttons/button.html" %}
-            {% endwith %}
-
-        </div>
-
-    </div>
 
     </form>
 
-    <table class="table">
+    <div class="events-table">
 
-        <thead>
-            <tr>
-                <th>Data/Hora</th>
-                <th>Nível</th>
-                <th>Origem</th>
-                <th>Mensagem</th>
-            </tr>
-        </thead>
+        <table class="table">
 
-        <tbody id="events-table-body">
+            <thead>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Nível</th>
+                    <th>Origem</th>
+                    <th>Mensagem</th>
+                </tr>
+            </thead>
 
-        {% for event in events %}
+            <tbody id="events-table-body">
 
-            <tr>
+            {% for event in events %}
 
-                <td>{{ event.timestamp.strftime("%d/%m/%y %H:%M") }}</td>
+                <tr>
 
-                <td>
+                    <td>{{ event.timestamp.strftime("%d/%m/%y %H:%M") }}</td>
 
-                {% if event.level == "INFO" %}
-                <span class="badge badge-info">INFO</span>
+                    <td>
 
-                {% elif event.level == "WARNING" %}
-                <span class="badge badge-warning">WARNING</span>
+                    {% if event.level == "INFO" %}
+                    <span class="badge badge-info">INFO</span>
 
-                {% elif event.level == "ERROR" %}
-                <span class="badge badge-error">ERROR</span>
+                    {% elif event.level == "WARNING" %}
+                    <span class="badge badge-warning">WARNING</span>
 
-                {% endif %}
+                    {% elif event.level == "ERROR" %}
+                    <span class="badge badge-error">ERROR</span>
 
-                </td>
+                    {% endif %}
 
-                <td>{{ event.source }}</td>
+                    </td>
 
-                <td>{{ event.message }}</td>
+                    <td>{{ event.source }}</td>
 
-            </tr>
+                    <td>{{ event.message }}</td>
 
-        {% endfor %}
+                </tr>
 
-        </tbody>
+            {% endfor %}
 
-    </table>
+            </tbody>
+
+        </table>
+    
+    </div>
 
     <div class="table-footer">
 
@@ -306,6 +264,8 @@
             Exibindo até {{ selected_limit }} de {{ statistics.total }} eventos.
 
         {% endif %}
+
+    </div>
 
     </div>
 

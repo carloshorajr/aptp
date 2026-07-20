@@ -470,3 +470,17 @@
     cursor:pointer;
 
 }
+
+.wifi-password-icon{
+
+    width:18px;
+
+    height:18px;
+
+    display:block;
+
+    pointer-events:none;
+
+    user-select:none;
+
+}

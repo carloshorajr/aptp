@@ -252,7 +252,7 @@ const Events = {
                 message:
                     "Não há filtros para limpar.",
 
-                icon: "refresh",
+                icon: "cached",
 
                 iconClass: "info",
 
@@ -294,7 +294,7 @@ const Events = {
                 message:
                     "Não há eventos para apagar.",
 
-                icon: "trash",
+                icon: "delete",
 
                 iconClass: "info",
 
@@ -317,7 +317,7 @@ const Events = {
             message:
                 "Você deseja apagar todo o registro de eventos?\nEsta ação não poderá ser desfeita!",
 
-            icon: "trash",
+            icon: "delete",
 
             iconClass: "danger",
 

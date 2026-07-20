@@ -1,5 +1,7 @@
 const System = {
 
+/* Estado */
+
     lastData: {
         cpu: null,
         memory: null,
@@ -7,6 +9,8 @@ const System = {
     },
 
     interval: null,
+
+/* Atualização */
 
     async update() {
 
@@ -62,6 +66,8 @@ const System = {
 
     },
 
+/* Inicialização */
+
     init() {
 
         this.update();
@@ -79,6 +85,8 @@ const System = {
         }, 60000);
 
     },
+
+/* Finalização */
 
     destroy() {
 

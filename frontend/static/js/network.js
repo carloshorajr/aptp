@@ -625,7 +625,7 @@ const Network = {
 
                     icon:
                         result.success
-                            ? "check"
+                            ? "check_dark"
 
                             : "delete",
 

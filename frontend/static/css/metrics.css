@@ -287,18 +287,6 @@
 
 /* Tooltip das Métricas */
 
-.metric-tooltip{
-
-    position:relative;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    cursor:help;
-
-}
-
 .metric-info-icon{
 
     width:14px;
@@ -309,87 +297,25 @@
 
     opacity:.75;
 
-    transition:opacity .18s ease;
-
-}
-
-.metric-tooltip .metric-info-icon{
-
-    transition:opacity .18s ease;
-
-}
-
-.metric-tooltip:hover .metric-info-icon{
-
-    opacity:1;
-
-}
-
-.metric-tooltip-text{
-
-    position:absolute;
-
-    left:22px;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    min-width:280px;
-
-    max-width:340px;
-    
-    padding:10px 14px;
-
-    border-radius:8px;
-
-    background:#1f2937;
-
-    color:#fff;
-
-    font-size:13px;
-
-    line-height:1.45;
-
-    opacity:0;
-
-    visibility:hidden;
+    cursor:help;
 
     transition:
-        opacity .20s ease,
-        visibility .20s ease;
-
-    pointer-events:none;
-
-    z-index:1000;
-
-    box-shadow:0 4px 18px rgba(0,0,0,.25);
+        opacity .18s ease,
+        transform .18s ease,
+        filter .18s ease;
 
 }
 
-.metric-tooltip:hover .metric-tooltip-text{
+.metric-info-icon:hover{
 
     opacity:1;
 
-    visibility:visible;
+    transform:scale(1.15);
 
-}
-
-.metric-item:first-child .metric-tooltip-text{
-
-    top:12px;
-
-    transform:none;
-
-}
-
-.metric-item:last-child .metric-tooltip-text{
-
-    top:auto;
-
-    bottom:12px;
-
-    transform:none;
+    filter:brightness(0) saturate(100%)
+           invert(33%) sepia(92%)
+           saturate(2015%) hue-rotate(214deg)
+           brightness(94%) contrast(96%);
 
 }
 

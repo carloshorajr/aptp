@@ -37,3 +37,47 @@ body{
     width:100%;
     opacity:1;
 }
+
+/* Tooltip Global */
+
+.tooltip-popup{
+
+    position:fixed;
+
+    max-width:340px;
+
+    padding:10px 14px;
+
+    border-radius:8px;
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    font-size:13px;
+
+    line-height:1.45;
+
+    box-shadow:0 4px 18px rgba(0,0,0,.25);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .18s ease,
+        visibility .18s ease;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+}
+
+.tooltip-popup.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}

@@ -10,6 +10,8 @@
 
 <div class="dashboard-grid">
 
+{% if widgets.connectivity %}
+
     <div class="dashboard-card">
 
         <div class="dashboard-card-header">
@@ -93,6 +95,10 @@
 
     </div>
 
+    {% endif %}
+
+    {% if widgets.signal %}
+
     <div class="dashboard-card">
 
     <div class="dashboard-card-header">
@@ -134,6 +140,8 @@
         </div>
 
     </div>
+
+    {% endif %}
 
 </div>
 

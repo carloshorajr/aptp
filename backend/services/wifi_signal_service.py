@@ -123,4 +123,14 @@ class WifiSignalService:
     @classmethod
     def current(cls):
 
+        current = WifiService.collect()
+
+        if (
+
+            current.signal_dbm is None
+
+        ):
+
+            return None
+
         return WifiSignalRepository.load()

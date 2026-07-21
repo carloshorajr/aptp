@@ -16,75 +16,73 @@ const Dashboard = {
 
         const canvas = document.getElementById("wifi-connectivity-chart");
 
-        if (!canvas) {
+        if (canvas) {
 
-            return;
+            this.chart = new Chart(
 
-        }
+                canvas,
 
-        this.chart = new Chart(
+                {
 
-            canvas,
+                    type: "bar",
 
-            {
+                    data: {
 
-                type: "bar",
+                        labels: [],
 
-                data: {
+                        datasets: [
 
-                    labels: [],
+                            {
 
-                    datasets: [
+                                label: "Associações",
 
-                        {
+                                data: [],
 
-                            label: "Associações",
+                                backgroundColor: "#2563eb"
 
-                            data: [],
+                            },
 
-                            backgroundColor: "#2563eb"
+                            {
 
-                        },
+                                label: "Desassociações",
 
-                        {
+                                data: [],
 
-                            label: "Desassociações",
+                                backgroundColor: "#dc2626"
 
-                            data: [],
+                            }
 
-                            backgroundColor: "#dc2626"
-
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    maintainAspectRatio: false,
-
-                    plugins: {
-
-                        legend: {
-
-                            position: "bottom"
-
-                        }
+                        ]
 
                     },
 
-                    scales: {
+                    options: {
 
-                        y: {
+                        responsive: true,
 
-                            beginAtZero: true,
+                        maintainAspectRatio: false,
 
-                            ticks: {
+                        plugins: {
 
-                                precision: 0
+                            legend: {
+
+                                position: "bottom"
+
+                            }
+
+                        },
+
+                        scales: {
+
+                            y: {
+
+                                beginAtZero: true,
+
+                                ticks: {
+
+                                    precision: 0
+
+                                }
 
                             }
 
@@ -94,9 +92,9 @@ const Dashboard = {
 
                 }
 
-            }
+            );
 
-        );
+        }
 
         this.update();
 
@@ -185,6 +183,14 @@ const Dashboard = {
 
             if (
 
+                indicator &&
+
+                statusText
+
+            ) {
+
+            if (
+
                 this.connectedTime !== null
 
             ) {
@@ -226,37 +232,43 @@ const Dashboard = {
                     "Desconectado";
 
             }
+        
+        }
 
             this.renderConnectedTime();
 
             this.renderSignal();
 
-            this.chart.data.labels =
+            if (this.chart) {
 
-                chart.map(
+                this.chart.data.labels =
 
-                    item => item.day
+                    chart.map(
 
-                );
+                        item => item.day
 
-            this.chart.data.datasets[0].data =
+                    );
 
-                chart.map(
+                this.chart.data.datasets[0].data =
 
-                    item => item.associations
+                    chart.map(
 
-                );
+                        item => item.associations
 
-            this.chart.data.datasets[1].data =
+                    );
 
-                chart.map(
+                this.chart.data.datasets[1].data =
 
-                    item => item.disassociations
+                    chart.map(
 
-                );
+                        item => item.disassociations
 
-            this.chart.update();
+                    );
 
+                this.chart.update();
+
+            }
+        
         }
 
         catch (error) {
@@ -356,6 +368,20 @@ const Dashboard = {
             "#wifi-signal-icon .signal-bar"
 
         );
+
+        if (
+
+            !value ||
+
+            !quality ||
+
+            bars.length === 0
+
+        ) {
+
+            return;
+
+        }
 
         bars.forEach(
 

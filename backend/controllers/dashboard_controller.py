@@ -20,6 +20,9 @@ class DashboardController:
 
             "hostname": info["hostname"],
 
+            "widgets":
+                DashboardService.get_widgets(),
+
             "wifi_connectivity":
                 DashboardService.get_wifi_connectivity(),
             

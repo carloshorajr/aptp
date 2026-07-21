@@ -18,6 +18,23 @@ from backend.services.wifi_signal_service import (
 class DashboardService:
 
     @staticmethod
+    def get_widgets():
+
+        return {
+
+            "connectivity":
+                WifiMetricSettingsRepository.load(
+                    "connectivity"
+                )["enabled"],
+
+            "signal":
+                WifiMetricSettingsRepository.load(
+                    "signal"
+                )["enabled"]
+
+        }
+
+    @staticmethod
     def get_wifi_connectivity():
 
         settings = WifiMetricSettingsRepository.load(

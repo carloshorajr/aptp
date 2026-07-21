@@ -128,7 +128,7 @@
 
                     <span class="metric-label">
 
-                        Qualidade do Sinal
+                        Qualidade do Sinal WiFi
 
                         <img
                             class="metric-info-icon"
@@ -136,7 +136,7 @@
                             alt=""
                             data-tooltip="
                         <ul style='margin:6px 0 0 16px;padding:0;'>
-                        <li>monitora a intensidade do sinal WiFi (RSSI).</li>
+                        <li>monitora a qualidade do sinal WiFi (RSSI).</li>
                         "
                         />
 
@@ -159,6 +159,56 @@
                                 id="signal-enabled"
                                 type="checkbox"
                                 {% if settings.signal.enabled %}
+                                checked
+                                {% endif %}
+                            >
+
+                            <span class="metric-slider"></span>
+
+                        </label>
+
+                    </span>
+
+                </div>
+
+<!-- Métrica: Latência -->
+
+                <div class="metric-item">
+
+                    <span class="metric-label">
+
+                        Latência para o Gateway
+
+                        <img
+                            class="metric-info-icon"
+                            src="/static/icons/info.svg"
+                            alt=""
+                            data-tooltip="
+                        <ul style='margin:6px 0 0 16px;padding:0;'>
+                        <li>monitora a latência e a perda de pacotes entre a interface WiFi e o gateway.</li>
+                        </ul>
+                        "
+                        />
+
+                    </span>
+
+                    <span class="metric-actions">
+
+                        <input
+                            id="latency-interval"
+                            data-value="{{ settings.latency.interval_seconds }}"
+                            class="metric-interval"
+                            type="number"
+                            min="1"
+                            value="{{ settings.latency.interval_seconds }}"
+                        >
+
+                        <label class="metric-switch">
+
+                            <input
+                                id="latency-enabled"
+                                type="checkbox"
+                                {% if settings.latency.enabled %}
                                 checked
                                 {% endif %}
                             >

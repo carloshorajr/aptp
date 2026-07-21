@@ -42,3 +42,18 @@ def wifi_signal():
         DashboardController.get_wifi_signal()
 
     )
+
+@dashboard_bp.route(
+
+    "/dashboard/wifi-latency",
+
+    methods=["GET"]
+
+)
+def wifi_latency():
+
+    return jsonify(
+
+        DashboardController.get_wifi_latency()
+
+    )

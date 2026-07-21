@@ -118,3 +118,123 @@ class WifiSignalRepository(BaseRepository):
         connection.commit()
 
         connection.close()
+
+    @classmethod
+    def load_latency(cls):
+
+        connection = cls.connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+
+            """
+
+            SELECT
+
+                gateway,
+
+                rtt_avg_ms,
+
+                loss_percent,
+
+                last_seen
+
+            FROM wifi_latency
+
+            LIMIT 1
+
+            """
+
+        )
+
+        row = cursor.fetchone()
+
+        connection.close()
+
+        if row is None:
+
+            return None
+
+        return {
+
+            "gateway": row["gateway"],
+
+            "rtt_avg_ms": row["rtt_avg_ms"],
+
+            "loss_percent": row["loss_percent"],
+
+            "last_seen": (
+
+                datetime.fromisoformat(
+
+                    row["last_seen"]
+
+                )
+
+                if row["last_seen"]
+
+                else None
+
+            )
+
+        }
+
+    @classmethod
+    def save_latency(
+
+        cls,
+
+        latency
+
+    ):
+
+        connection = cls.connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+
+            """
+
+            INSERT OR REPLACE INTO wifi_latency (
+
+                id,
+
+                gateway,
+
+                rtt_avg_ms,
+
+                loss_percent,
+
+                last_seen
+
+            )
+
+            VALUES (
+
+                1,
+
+                ?, ?, ?, ?
+
+            )
+
+            """,
+
+            (
+
+                latency["gateway"],
+
+                latency["rtt_avg_ms"],
+
+                latency["loss_percent"],
+
+                latency["last_seen"]
+
+            )
+
+        )
+
+        connection.commit()
+
+        connection.close()

@@ -104,6 +104,20 @@ CARD: ESTADO DA CONEXÃO
 
 }
 
+.dashboard-latency{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    gap:14px;
+
+    padding:6px 2px;
+
+}
+
 .dashboard-status-indicator{
 
     display:flex;
@@ -173,6 +187,30 @@ CARD: ESTADO DA CONEXÃO
     font-weight:600;
 
     color:#2563eb;
+
+}
+
+.dashboard-status-value{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    font-family:Consolas, Monaco, monospace;
+
+}
+
+.dashboard-status-ip{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    font-family:Consolas, Monaco, monospace;
 
 }
 
@@ -271,20 +309,6 @@ CARD: QUALIDADE DO SINAL
     font-weight:600;
 
     color:#475569;
-
-}
-
-.dashboard-signal-value{
-
-    text-align:center;
-
-    font-size:26px;
-
-    font-weight:600;
-
-    color:#374151;
-
-    font-family:Consolas, Monaco, monospace;
 
 }
 

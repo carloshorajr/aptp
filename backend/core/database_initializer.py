@@ -96,6 +96,28 @@ class DatabaseInitializer:
 
         """)
 
+                #
+        # Estado atual da latência WiFi
+        #
+
+        cursor.execute("""
+
+            CREATE TABLE IF NOT EXISTS wifi_latency (
+
+                id INTEGER PRIMARY KEY,
+
+                gateway TEXT,
+
+                rtt_avg_ms REAL,
+
+                loss_percent REAL,
+
+                last_seen TEXT
+
+            )
+
+        """)
+
         #
         # Valor padrão
         #
@@ -139,6 +161,30 @@ class DatabaseInitializer:
             VALUES (
 
                 'signal',
+
+                1,
+
+                60
+
+            )
+
+        """)
+
+        cursor.execute("""
+
+            INSERT OR IGNORE INTO wifi_metric_settings (
+
+                metric,
+
+                enabled,
+
+                interval_seconds
+
+            )
+
+            VALUES (
+
+                'latency',
 
                 1,
 

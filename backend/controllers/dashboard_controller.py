@@ -28,6 +28,9 @@ class DashboardController:
             
             "wifi_signal":
                 DashboardService.get_wifi_signal(),
+            
+            "wifi_latency":
+                DashboardService.get_wifi_latency(),
 
             "application":
                 ApplicationService.get_application_info()
@@ -43,3 +46,8 @@ class DashboardController:
     def get_wifi_signal():
 
         return DashboardService.get_wifi_signal()
+
+    @staticmethod
+    def get_wifi_latency():
+
+        return DashboardService.get_wifi_latency()

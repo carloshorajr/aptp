@@ -125,3 +125,82 @@ class WifiService:
             last_seen=now()
 
         )
+    
+    @staticmethod
+    def collect_latency():
+
+        gateway = None
+
+        routes = CommandService.run(
+
+            "ip route"
+
+        )
+
+        if routes:
+
+            for line in routes.splitlines():
+
+                parts = line.split()
+
+                if (
+
+                    len(parts) >= 5
+
+                    and
+
+                    parts[0] == "default"
+
+                    and
+
+                    parts[1] == "via"
+
+                    and
+
+                    parts[3] == "dev"
+
+                    and
+
+                    parts[4] == "wlan0"
+
+                ):
+
+                    gateway = parts[2]
+
+                    break
+
+        if not gateway:
+
+            return None
+
+        output = CommandService.run(
+
+            [
+
+                "ping",
+
+                "-I",
+
+                "wlan0",
+
+                "-c",
+
+                "10",
+
+                gateway
+
+            ]
+
+        )
+
+        if not output:
+
+            return None
+
+        return {
+
+            "gateway": gateway.strip(),
+
+            "output": output
+
+        }

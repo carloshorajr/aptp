@@ -6,6 +6,14 @@ from backend.repositories.wifi_metric_settings_repository import (
     WifiMetricSettingsRepository
 )
 
+from backend.services.wifi_signal_service import (
+    WifiSignalService
+)
+
+from backend.services.wifi_connectivity_service import (
+    WifiConnectivityService
+)
+
 
 class MetricsController:
 
@@ -18,6 +26,10 @@ class MetricsController:
 
         signal = WifiMetricSettingsRepository.load(
             "signal"
+        )
+
+        latency = WifiMetricSettingsRepository.load(
+            "latency"
         )
 
         return {
@@ -38,6 +50,13 @@ class MetricsController:
                     ),
                     "interval_seconds":
                         signal["interval_seconds"]
+                },
+                "latency": {
+                    "enabled": bool(
+                        latency["enabled"]
+                    ),
+                    "interval_seconds":
+                        latency["interval_seconds"]
                 }
 
             }
@@ -70,6 +89,24 @@ class MetricsController:
 
             interval_seconds=int(
                 data["signal"]["interval_seconds"]
+            )
+
+        )
+
+        WifiMetricSettingsRepository.save(
+
+            metric="latency",
+
+            enabled=int(
+
+                data["latency"]["enabled"]
+
+            ),
+
+            interval_seconds=int(
+
+                data["latency"]["interval_seconds"]
+
             )
 
         )

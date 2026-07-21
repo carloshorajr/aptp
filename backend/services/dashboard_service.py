@@ -14,6 +14,10 @@ from backend.services.wifi_signal_service import (
     WifiSignalService
 )
 
+from backend.repositories.wifi_signal_repository import (
+    WifiSignalRepository
+)
+
 
 class DashboardService:
 
@@ -30,6 +34,11 @@ class DashboardService:
             "signal":
                 WifiMetricSettingsRepository.load(
                     "signal"
+                )["enabled"],
+
+            "latency":
+                WifiMetricSettingsRepository.load(
+                    "latency"
                 )["enabled"]
 
         }
@@ -97,3 +106,38 @@ class DashboardService:
             "signal_dbm": wifi.signal_dbm
 
         }
+    
+    @staticmethod
+    def get_wifi_latency():
+
+        settings = WifiMetricSettingsRepository.load(
+            "latency"
+        )
+
+        if not settings["enabled"]:
+
+            return {
+
+                "gateway": None,
+
+                "rtt_avg_ms": None,
+
+                "loss_percent": None
+
+            }
+
+        latency = WifiSignalRepository.load_latency()
+
+        if latency is None:
+
+            return {
+
+                "gateway": None,
+
+                "rtt_avg_ms": None,
+
+                "loss_percent": None
+
+            }
+
+        return latency

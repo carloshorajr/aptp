@@ -63,7 +63,7 @@
 
                 <span
                     id="wifi-connected-ssid"
-                    class="dashboard-status-text"
+                    class="dashboard-status-value"
                 >
 
                     --
@@ -103,7 +103,7 @@
 
     <div class="dashboard-card-header">
 
-        Qualidade do Sinal
+        Qualidade do Sinal WiFi
 
     </div>
 
@@ -139,9 +139,86 @@
 
         </div>
 
+        </div>
+
     </div>
 
     {% endif %}
+
+{% if widgets.latency %}
+
+<div class="dashboard-card">
+
+    <div class="dashboard-card-header">
+
+        Latência para o Gateway
+
+    </div>
+
+    <div class="dashboard-card-body dashboard-latency">
+
+        <div class="dashboard-status-field">
+
+            <span class="dashboard-status-label">
+
+                RTT Médio
+
+            </span>
+
+            <span
+                id="wifi-latency-rtt"
+                class="dashboard-status-value"
+            >
+
+                --
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-status-field">
+
+            <span class="dashboard-status-label">
+
+                Perda de Pacotes
+
+            </span>
+
+            <span
+                id="wifi-latency-loss"
+                class="dashboard-status-value"
+            >
+
+                --
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-status-field">
+
+            <span class="dashboard-status-label">
+
+                Gateway
+
+            </span>
+
+            <span
+                id="wifi-latency-gateway"
+                class="dashboard-status-ip"
+            >
+
+                --
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
 
 </div>
 

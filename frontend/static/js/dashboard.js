@@ -10,6 +10,8 @@ const Dashboard = {
 
     signalDbm: null,
 
+    latency: null,
+
     connectedTimeInterval: null,
 
     init() {
@@ -152,7 +154,24 @@ const Dashboard = {
 
             this.signalDbm = signal.signal_dbm;
 
-            const chart = data.chart;
+            const latencyResponse = await fetch(
+
+                "/dashboard/wifi-latency"
+
+            );
+
+            if (!latencyResponse.ok) {
+
+                throw new Error(
+
+                    `HTTP ${latencyResponse.status}`
+
+                );
+
+            }
+
+            this.latency = await latencyResponse.json();
+                        const chart = data.chart;
 
             if (data.connected_time) {
 
@@ -239,6 +258,8 @@ const Dashboard = {
 
             this.renderSignal();
 
+            this.renderLatency();
+
             if (this.chart) {
 
                 this.chart.data.labels =
@@ -280,6 +301,98 @@ const Dashboard = {
                 error
 
             );
+
+        }
+
+    },
+
+    renderLatency() {
+
+        const rtt = document.getElementById(
+
+            "wifi-latency-rtt"
+
+        );
+
+        const loss = document.getElementById(
+
+            "wifi-latency-loss"
+
+        );
+
+        const gateway = document.getElementById(
+
+            "wifi-latency-gateway"
+
+        );
+
+        if (
+
+            !rtt ||
+
+            !loss ||
+
+            !gateway
+
+        ) {
+
+            return;
+
+        }
+
+        if (
+
+            !this.latency
+
+        ) {
+
+            rtt.textContent = "--";
+
+            loss.textContent = "--";
+
+            gateway.textContent = "--";
+
+            return;
+
+        }
+
+        gateway.textContent =
+
+            this.latency.gateway || "--";
+
+        if (
+
+            this.latency.rtt_avg_ms === null
+
+        ) {
+
+            rtt.textContent = "--";
+
+        }
+
+        else {
+
+            rtt.textContent =
+
+                `${this.latency.rtt_avg_ms} ms`;
+
+        }
+
+        if (
+
+            this.latency.loss_percent === null
+
+        ) {
+
+            loss.textContent = "--";
+
+        }
+
+        else {
+
+            loss.textContent =
+
+                `${this.latency.loss_percent}%`;
 
         }
 

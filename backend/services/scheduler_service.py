@@ -45,6 +45,8 @@ class SchedulerService:
 
                 WifiSignalService.collect()
 
+                WifiSignalService.collect_latency()
+
             except Exception as e:
 
                 print(e)

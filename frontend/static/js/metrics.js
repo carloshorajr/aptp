@@ -46,6 +46,23 @@ const Metrics = {
 
             },
 
+            latency: {
+
+                button: document.getElementById(
+                    "latency-enabled"
+                ),
+
+                interval: document.getElementById(
+                    "latency-interval"
+                ),
+
+                initialEnabled:
+                    document.getElementById(
+                        "latency-enabled"
+                    ).checked
+
+            },
+
         };
 
         const saveButton = document.getElementById(

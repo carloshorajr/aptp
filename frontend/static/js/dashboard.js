@@ -236,6 +236,8 @@ const Dashboard = {
 
                             y: {
 
+                                reverse: true,
+
                                 min: -90,
 
                                 max: -30

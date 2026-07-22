@@ -40,7 +40,13 @@ const Dashboard = {
 
                                 data: [],
 
-                                backgroundColor: "#2563eb"
+                                backgroundColor: "#2563eb",
+
+                                barPercentage: 0.55,
+
+                                categoryPercentage: 0.70,
+
+                                borderRadius: 4,
 
                             },
 
@@ -50,7 +56,13 @@ const Dashboard = {
 
                                 data: [],
 
-                                backgroundColor: "#dc2626"
+                                backgroundColor: "#dc2626",
+
+                                barPercentage: 0.55,
+
+                                categoryPercentage: 0.70,
+
+                                borderRadius: 4,
 
                             }
 
@@ -68,7 +80,17 @@ const Dashboard = {
 
                             legend: {
 
-                                position: "bottom"
+                                position: "bottom",
+
+                                align: "center",
+
+                                labels: {
+
+                                    boxWidth: 42,
+
+                                    padding: 16
+
+                                }
 
                             }
 
@@ -171,8 +193,8 @@ const Dashboard = {
             }
 
             this.latency = await latencyResponse.json();
-                        const chart = data.chart;
-
+                        const chart = data.chart.slice(-30);
+                        
             if (data.connected_time) {
 
                 this.connectedSSID = data.connected_time.ssid;
@@ -200,11 +222,19 @@ const Dashboard = {
 
             );
 
+            const statusIcon = document.getElementById(
+            
+                "wifi-status-icon"
+            
+            );
+
             if (
 
                 indicator &&
 
-                statusText
+                statusText &&
+
+                statusIcon
 
             ) {
 
@@ -230,6 +260,10 @@ const Dashboard = {
 
                     "Conectado";
 
+                statusIcon.src =
+                    
+                    "/static/icons/wifi_connect_green.svg";
+
             }
 
             else {
@@ -250,6 +284,10 @@ const Dashboard = {
 
                     "Desconectado";
 
+                statusIcon.src =
+                    
+                    "/static/icons/wifi_connect_red.svg";
+
             }
         
         }
@@ -266,7 +304,7 @@ const Dashboard = {
 
                     chart.map(
 
-                        item => item.day
+                        item => item.day.substring(0, 5)
 
                     );
 

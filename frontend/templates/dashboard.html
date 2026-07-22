@@ -43,7 +43,12 @@
                 class="dashboard-status-indicator dashboard-status-connected"
             >
 
-                <span class="dashboard-status-dot"></span>
+                <img
+                    id="wifi-status-icon"
+                    class="dashboard-status-icon"
+                    src="/static/icons/wifi_connect.svg"
+                    alt=""
+                >
 
                 <span id="wifi-status-text">
 
@@ -55,12 +60,6 @@
 
             <div class="dashboard-status-field">
 
-                <span class="dashboard-status-label">
-
-                    SSID
-
-                </span>
-
                 <span
                     id="wifi-connected-ssid"
                     class="dashboard-status-value"
@@ -70,13 +69,15 @@
 
                 </span>
 
+                <div class="dashboard-status-separator"></div>
+
             </div>
 
             <div class="dashboard-status-field">
 
-                <span class="dashboard-status-label">
+                <span class="dashboard-status-caption">
 
-                    Tempo
+                    TEMPO ASSOCIADO
 
                 </span>
 

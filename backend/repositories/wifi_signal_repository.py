@@ -120,6 +120,104 @@ class WifiSignalRepository(BaseRepository):
         connection.close()
 
     @classmethod
+    def save_history(
+        cls,
+        wifi
+    ):
+
+        connection = cls.connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+
+            """
+            INSERT INTO wifi_signal_history (
+
+                signal_dbm,
+
+                collected_at
+
+            )
+
+            VALUES (?, ?)
+            """,
+
+            (
+
+                wifi.signal_dbm,
+
+                wifi.last_seen
+
+            )
+
+        )
+
+        connection.commit()
+
+        connection.close()
+
+    @classmethod
+    def load_history(
+        cls,
+        limit=24
+    ):
+
+        connection = cls.connection()
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+
+            """
+            SELECT
+
+                signal_dbm,
+
+                collected_at
+
+            FROM wifi_signal_history
+
+            ORDER BY collected_at DESC
+
+            LIMIT ?
+            """,
+
+            (
+
+                limit,
+
+            )
+
+        )
+
+        rows = cursor.fetchall()
+
+        connection.close()
+
+        return list(
+
+            reversed(
+
+                [
+
+                    {
+
+                        "signal_dbm": row["signal_dbm"],
+
+                        "time": row["collected_at"][11:16]
+
+                    }
+
+                    for row in rows
+
+                ]
+
+            )
+
+        )
+
+    @classmethod
     def load_latency(cls):
 
         connection = cls.connection()

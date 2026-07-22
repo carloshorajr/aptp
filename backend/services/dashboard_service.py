@@ -83,11 +83,15 @@ class DashboardService:
 
                 "ssid": None,
 
-                "signal_dbm": None
+                "signal_dbm": None,
+
+                "history": []
 
             }
 
         wifi = WifiSignalService.current()
+
+        history = WifiSignalRepository.load_history()
 
         if wifi is None:
 
@@ -95,7 +99,9 @@ class DashboardService:
 
                 "ssid": None,
 
-                "signal_dbm": None
+                "signal_dbm": None,
+
+                "history": history
 
             }
 
@@ -103,7 +109,9 @@ class DashboardService:
 
             "ssid": wifi.ssid,
 
-            "signal_dbm": wifi.signal_dbm
+            "signal_dbm": wifi.signal_dbm,
+
+            "history": history
 
         }
     

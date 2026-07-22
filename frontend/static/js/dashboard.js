@@ -1,6 +1,8 @@
 const Dashboard = {
 
     chart: null,
+    
+    signalHistory: [],
 
     interval: null,
 
@@ -120,6 +122,136 @@ const Dashboard = {
 
         }
 
+        const signalCanvas = document.getElementById(
+
+            "wifi-signal-chart"
+
+        );
+
+        if (signalCanvas) {
+
+            const dangerZonePlugin = {
+
+                id: "dangerZone",
+
+                beforeDraw(chart) {
+
+                    const {
+
+                        ctx,
+
+                        chartArea,
+
+                        scales
+
+                    } = chart;
+
+                    const y = scales.y.getPixelForValue(-71);
+
+                    ctx.save();
+
+                    ctx.fillStyle = "rgba(220,38,38,0.12)";
+
+                    ctx.fillRect(
+
+                        chartArea.left,
+
+                        y,
+
+                        chartArea.right - chartArea.left,
+
+                        chartArea.bottom - y
+
+                    );
+
+                    ctx.restore();
+
+                }
+
+            };
+
+            this.signalChart = new Chart(
+
+                signalCanvas,
+
+                {
+
+                    type: "line",
+
+                    data: {
+
+                        labels: [],
+
+                        datasets: [
+
+                            {
+
+                                data: [],
+
+                                borderColor: "#2563eb",
+
+                                backgroundColor: "rgba(37,99,235,0.15)",
+
+                                fill: true,
+
+                                tension: 0.35,
+
+                                pointRadius: 4,
+
+                                pointHoverRadius: 6
+
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                display: false
+
+                            }
+
+                        },
+
+                        scales: {
+
+                            x: {
+
+                                grid: {
+
+                                    display: false
+
+                                }
+
+                            },
+
+                            y: {
+
+                                min: -90,
+
+                                max: -30
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            );
+
+        }
+
         this.update();
 
         this.startConnectedTimeCounter();
@@ -175,6 +307,8 @@ const Dashboard = {
             const signal = await signalResponse.json();
 
             this.signalDbm = signal.signal_dbm;
+
+            this.signalHistory = signal.history || [];
 
             const latencyResponse = await fetch(
 
@@ -294,7 +428,31 @@ const Dashboard = {
 
             this.renderConnectedTime();
 
-            this.renderSignal();
+            if (this.signalChart) {
+
+                const history =
+
+                    this.signalHistory.slice(-5);
+
+                this.signalChart.data.labels =
+
+                    history.map(
+
+                        item => item.time
+
+                    );
+
+                this.signalChart.data.datasets[0].data =
+
+                    history.map(
+
+                        item => item.signal_dbm
+
+                    );
+
+                this.signalChart.update();
+
+            }
 
             this.renderLatency();
 
@@ -500,104 +658,6 @@ const Dashboard = {
 
     },
 
-    renderSignal() {
-
-        const value = document.getElementById(
-
-            "wifi-signal-value"
-
-        );
-
-        const quality = document.getElementById(
-
-            "wifi-signal-quality"
-
-        );
-
-        const bars = document.querySelectorAll(
-
-            "#wifi-signal-icon .signal-bar"
-
-        );
-
-        if (
-
-            !value ||
-
-            !quality ||
-
-            bars.length === 0
-
-        ) {
-
-            return;
-
-        }
-
-        bars.forEach(
-
-            bar => bar.classList.remove("active")
-
-        );
-
-        if (
-
-            this.signalDbm === null
-
-        ) {
-
-            value.textContent = "--";
-
-            quality.textContent = "--";
-
-            return;
-
-        }
-
-        value.textContent =
-
-            `${this.signalDbm} dBm`;
-
-        quality.textContent = "RSSI";
-
-        const level = Math.max(
-
-            1,
-
-            Math.min(
-
-                4,
-
-                Math.round(
-
-                    (this.signalDbm + 100) / 15
-
-                )
-
-            )
-
-        );
-
-        for (
-
-            let i = 0;
-
-            i < level;
-
-            i++
-
-        ) {
-
-            bars[i].classList.add(
-
-                "active"
-
-            );
-
-        }
-
-    },
-
     startConnectedTimeCounter() {
 
         this.connectedTimeInterval = setInterval(
@@ -667,6 +727,18 @@ const Dashboard = {
             this.chart.destroy();
 
             this.chart = null;
+
+        }
+
+        if (
+
+            this.signalChart
+
+        ) {
+
+            this.signalChart.destroy();
+
+            this.signalChart = null;
 
         }
 

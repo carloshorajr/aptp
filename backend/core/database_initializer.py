@@ -96,7 +96,25 @@ class DatabaseInitializer:
 
         """)
 
-                #
+        #
+        # Histórico da qualidade do sinal WiFi
+        #
+
+        cursor.execute("""
+
+            CREATE TABLE IF NOT EXISTS wifi_signal_history (
+
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                signal_dbm INTEGER NOT NULL,
+
+                collected_at TEXT NOT NULL
+
+            )
+
+        """)
+        
+        #
         # Estado atual da latência WiFi
         #
 

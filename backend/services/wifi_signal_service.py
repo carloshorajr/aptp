@@ -48,6 +48,10 @@ class WifiSignalService:
 
             WifiSignalRepository.save(current)
 
+            WifiSignalRepository.save_history(
+                current
+            )
+
             return current
 
         #
@@ -63,6 +67,10 @@ class WifiSignalService:
         #
 
         WifiSignalRepository.save(current)
+
+        WifiSignalRepository.save_history(
+            current
+        )
 
         if current.signal_dbm <= cls.WARNING_DBM:
 

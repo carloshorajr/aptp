@@ -286,13 +286,15 @@ CARD: QUALIDADE DO SINAL
 
     display:flex;
 
-    flex-direction:column;
+    padding:0;
 
-    justify-content:center;
+}
 
-    gap:22px;
+.dashboard-signal-chart{
 
-    padding:10px;
+    width:100%;
+
+    height:100%;
 
 }
 
